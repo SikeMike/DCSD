@@ -1,0 +1,118 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_arith.ALL;
+
+entity lcd_control_tb is
+
+  -- Entidad vacia
+
+end lcd_control_tb;
+
+architecture arq_lcd_control_tb of lcd_control_tb is
+
+component lcd_control_comp
+  
+  port(
+    LCD_Init_Done, OP_SETCURSOR, OP_DRAWCOLOUR, CLK, RESETL : in std_logic;
+    XCOL :     in std_logic_vector(7 downto 0);
+    YROW :     in std_logic_vector(8 downto 0);
+    RGB :      in std_logic_vector(15 downto 0);
+    NUM_PIX :  in std_logic_vector(16 downto 0);
+
+    DONE_CURSOR, DONE_COLOUR, LCD_CS_N, LCD_WR_N, LCD_RS : out std_logic;
+    LCD_DATA : out std_logic_vector(15 downto 0)
+  );
+
+end component;
+
+signal tb_LCD_Init_Done : std_logic := '0';
+signal tb_OP_SETCURSOR : std_logic := '0';
+signal tb_OP_DRAWCOLOUR : std_logic := '0';
+signal tb_CLK : std_logic := '0';
+signal tb_RESETL : std_logic := '1';
+signal tb_XCOL : std_logic_vector(7 downto 0) := "00000000";
+signal tb_YROW : std_logic_vector(8 downto 0) := "000000000";
+signal tb_RGB : std_logic_vector(15 downto 0) := "0000000000000000";
+signal tb_NUM_PIX : std_logic_vector(16 downto 0) := "00000000000000000";
+signal tb_DONE_CURSOR : std_logic;
+signal tb_DONE_COLOUR : std_logic;
+signal tb_LCD_CS_N : std_logic;
+signal tb_LCD_WR_N : std_logic;
+signal tb_LCD_RS : std_logic;
+signal tb_LCD_DATA : std_logic_vector(15 downto 0);
+
+begin
+
+  U1 : lcd_control_comp port map (
+    LCD_Init_Done => tb_LCD_Init_Done,
+    OP_SETCURSOR => tb_OP_SETCURSOR,
+    OP_DRAWCOLOUR => tb_OP_DRAWCOLOUR,
+    CLK => tb_CLK,
+    RESETL => tb_RESETL,
+    XCOL => tb_XCOL,
+    YROW => tb_YROW,
+    RGB => tb_RGB,
+    NUM_PIX => tb_NUM_PIX,
+    DONE_CURSOR => tb_DONE_CURSOR,
+    DONE_COLOUR => tb_DONE_COLOUR,
+    LCD_CS_N => tb_LCD_CS_N,
+    LCD_WR_N => tb_LCD_WR_N,
+    LCD_RS => tb_LCD_RS,
+    LCD_DATA => tb_LCD_DATA
+
+  );
+
+  tb_clk<= not tb_clk after 10 ns;
+
+  simulacion : process
+  begin
+    wait for 20 ns;     -- ciclo 1
+    tb_RESETL <= '0';
+    wait for 20 ns;     -- ciclo 2
+    tb_RESETL <= '1';
+    tb_LCD_Init_Done <= '1';
+    wait for 20 ns;     -- ciclo 3
+    tb_OP_SETCURSOR <= '1';
+    tb_XCOL <= conv_std_logic_vector(14, 8);
+    tb_YROW <= conv_std_logic_vector(23, 9);
+    tb_RGB <= "0000000000000000";
+    wait for 20 ns;     -- ciclo 4
+    
+    wait for 20 ns;     -- ciclo 5
+    
+    wait for 20 ns;     -- ciclo 6
+    
+    wait for 20 ns;     -- ciclo 7
+    
+    wait for 20 ns;     -- ciclo 8
+    
+    wait for 20 ns;     -- ciclo 9
+    
+    wait for 20 ns;     -- ciclo 10
+    
+    wait for 20 ns;     -- ciclo 11
+    
+    wait for 20 ns;     -- ciclo 12
+    
+    wait for 20 ns;     -- ciclo 13
+    
+    wait for 20 ns;     -- ciclo 14
+    
+    wait for 20 ns;     -- ciclo 15
+    
+    wait for 20 ns;     -- ciclo 16
+    
+    wait for 20 ns;     -- ciclo 17
+    
+    wait for 20 ns;     -- ciclo 18
+    
+    wait for 20 ns;     -- ciclo 19
+    
+    wait for 20 ns;     -- ciclo 20
+
+    wait for 200 ns;
+    wait;
+  end process ;
+
+end arq_lcd_control_tb;
