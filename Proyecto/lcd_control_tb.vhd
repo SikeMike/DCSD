@@ -11,7 +11,7 @@ end lcd_control_tb;
 
 architecture arq_lcd_control_tb of lcd_control_tb is
 
-component lcd_control_comp
+component lcd_control
   
   port(
     LCD_Init_Done, OP_SETCURSOR, OP_DRAWCOLOUR, CLK, RESETL : in std_logic;
@@ -30,7 +30,7 @@ signal tb_LCD_Init_Done : std_logic := '0';
 signal tb_OP_SETCURSOR : std_logic := '0';
 signal tb_OP_DRAWCOLOUR : std_logic := '0';
 signal tb_CLK : std_logic := '0';
-signal tb_RESETL : std_logic := '1';
+signal tb_RESETL : std_logic := '0';
 signal tb_XCOL : std_logic_vector(7 downto 0) := "00000000";
 signal tb_YROW : std_logic_vector(8 downto 0) := "000000000";
 signal tb_RGB : std_logic_vector(15 downto 0) := "0000000000000000";
@@ -42,9 +42,10 @@ signal tb_LCD_WR_N : std_logic;
 signal tb_LCD_RS : std_logic;
 signal tb_LCD_DATA : std_logic_vector(15 downto 0);
 
+
 begin
 
-  U1 : lcd_control_comp port map (
+  instancia : lcd_control port map (
     LCD_Init_Done => tb_LCD_Init_Done,
     OP_SETCURSOR => tb_OP_SETCURSOR,
     OP_DRAWCOLOUR => tb_OP_DRAWCOLOUR,
@@ -68,50 +69,25 @@ begin
   simulacion : process
   begin
     wait for 20 ns;     -- ciclo 1
-    tb_RESETL <= '0';
-    wait for 20 ns;     -- ciclo 2
     tb_RESETL <= '1';
     tb_LCD_Init_Done <= '1';
-    wait for 20 ns;     -- ciclo 3
+    wait for 20 ns;
     tb_OP_SETCURSOR <= '1';
     tb_XCOL <= conv_std_logic_vector(14, 8);
     tb_YROW <= conv_std_logic_vector(23, 9);
     tb_RGB <= "0000000000000000";
-    wait for 20 ns;     -- ciclo 4
-    
-    wait for 20 ns;     -- ciclo 5
-    
-    wait for 20 ns;     -- ciclo 6
-    
-    wait for 20 ns;     -- ciclo 7
-    
-    wait for 20 ns;     -- ciclo 8
-    
-    wait for 20 ns;     -- ciclo 9
-    
-    wait for 20 ns;     -- ciclo 10
-    
-    wait for 20 ns;     -- ciclo 11
-    
-    wait for 20 ns;     -- ciclo 12
-    
-    wait for 20 ns;     -- ciclo 13
-    
-    wait for 20 ns;     -- ciclo 14
-    
-    wait for 20 ns;     -- ciclo 15
-    
-    wait for 20 ns;     -- ciclo 16
-    
-    wait for 20 ns;     -- ciclo 17
-    
-    wait for 20 ns;     -- ciclo 18
-    
-    wait for 20 ns;     -- ciclo 19
-    
-    wait for 20 ns;     -- ciclo 20
+    wait for 20 ns;
+    tb_OP_SETCURSOR <= '0';
 
-    wait for 200 ns;
+    wait for 380 ns;
+    tb_OP_DRAWCOLOUR <= '1';
+    tb_XCOL <= conv_std_logic_vector(6, 8);
+    tb_YROW <= conv_std_logic_vector(78, 9);
+    tb_RGB <= x"001F";
+    tb_NUM_PIX <= "00000000000000011";
+    wait for 60 ns;     -- ciclo 15
+    tb_OP_DRAWCOLOUR <= '0';
+    wait for 600 ns;
     wait;
   end process ;
 

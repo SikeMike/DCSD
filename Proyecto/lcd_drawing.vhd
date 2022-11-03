@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 entity lcd_drawing is
 
-  -- señales de entrada y salida
+  -- seniales de entrada y salida
   port(
     DEL_SCREEN, DRAW_FIG, DONE_CURSOR, DONE_COLOUR, CLK, RESETL : in std_logic;
     COLOUR_CODE : in std_logic_vector(2 downto 0);
@@ -21,8 +21,10 @@ end lcd_drawing;
 
 architecture arc_de_lcd_drawing of lcd_drawing is
 
---declaracion de las señales
-signal EP, ES : integer range 0 to 4;
+type ESTADO is (E0, E1, E2, E3, E4);
+
+--declaracion de las seniales
+signal EP, ES : ESTADO;
 signal LD_Square, Next_Row, END_Square, SEL_M, SEL_PIX, WHITE : std_logic;
 signal Q_Square : unsigned(8 downto 0);
 signal Colour : std_logic_vector(15 downto 0); 
@@ -33,39 +35,39 @@ begin
   COMB : process(EP, DEL_SCREEN, DRAW_FIG, DONE_CURSOR, DONE_COLOUR, END_Square)
   begin
     case EP is
-      when 0 =>
+      when E0 =>
         if (DEL_SCREEN = '1') then
-          ES <= 1;
-        elsif (DEL_SCREEN = '0' and DRAW_FIG = '1') then
-          ES <= 3;
+          ES <= E1;
+        elsif (DRAW_FIG = '1') then
+          ES <= E3;
         else
-          ES <= 0;
+          ES <= E0;
         end if;
-      when 1 =>
+      when E1 =>
         if (DONE_CURSOR = '1') then
-          ES <= 2;
+          ES <= E2;
         else
-          ES <= 1;
+          ES <= E1;
         end if;
-      when 2 =>
+      when E2 =>
         if (DONE_COLOUR = '1') then
-          ES <= 0;
+          ES <= E0;
         else
-          ES <= 2;
+          ES <= E2;
         end if;
-      when 3 =>
+      when E3 =>
         if (DONE_CURSOR = '1') then
-          ES <= 4;
+          ES <= E4;
         else
-          ES <= 3;
+          ES <= E3;
         end if;
-      when 4 =>
+      when E4 =>
         if (DONE_COLOUR = '1' and END_Square = '1') then
-          ES <= 0;
+          ES <= E0;
         elsif (DONE_COLOUR = '1' and END_Square = '0') then
-          ES <= 3;
+          ES <= E3;
         else
-          ES <= 4;
+          ES <= E4;
         end if;
     end case;
   end process COMB;
@@ -74,20 +76,20 @@ begin
   SEC : process(CLK, RESETL)
   begin
     if (RESETL = '0') then
-      EP <= 0;
+      EP <= E0;
     elsif (CLK'event and CLK = '1') then
       EP <= ES;
     end if;
   end process SEC;
 
-  --activación de las señales de control
-  OP_SETCURSOR <= '1' when ((EP = 0 and (DEL_SCREEN = '1' or DRAW_FIG = '1')) or (EP = 4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
-  OP_DRAWCOLOUR <= '1' when (EP = 1 and DONE_CURSOR = '1') or (EP = 3 and DONE_CURSOR = '1') else '0';
-  WHITE <= '1' when (EP = 1 and DONE_CURSOR = '1') else '0';
-  SEL_PIX <= '1' when (EP = 1 and DONE_CURSOR = '1') else '0';
-  LD_Square <= '1' when (EP = 0 and DEL_SCREEN = '0' and DRAW_FIG = '1') else '0';
-  SEL_M <= '1' when ((EP = 0 and DEL_SCREEN = '0' and DRAW_FIG = '1') or (EP = 4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
-  Next_Row <= '1' when (EP = 4 and DONE_COLOUR = '1' and END_SQUARE = '0') else '0';
+  --activacion de las seniales de control
+  OP_SETCURSOR <= '1' when ((EP = E0 and (DEL_SCREEN = '1' or DRAW_FIG = '1')) or (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
+  OP_DRAWCOLOUR <= '1' when (EP = E1 and DONE_CURSOR = '1') or (EP = E3 and DONE_CURSOR = '1') else '0';
+  WHITE <= '1' when (EP = E1 and DONE_CURSOR = '1') else '0';
+  SEL_PIX <= '1' when (EP = E1 and DONE_CURSOR = '1') else '0';
+  LD_Square <= '1' when (EP = E0 and DEL_SCREEN = '0' and DRAW_FIG = '1') else '0';
+  SEL_M <= '1' when ((EP = E0 and DEL_SCREEN = '0' and DRAW_FIG = '1') or (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
+  Next_Row <= '1' when (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0') else '0';
 
   --Multiplexor de NUM_PIX
   NUM_PIX <=
@@ -111,7 +113,7 @@ begin
   RGB <=
     (Colour) when WHITE = '0' else
     (x"FFFF") when WHITE = '1' else
-      "UUUUUUUUUUUUUUUU";
+    "UUUUUUUUUUUUUUUU";
 
   --Multiplexor de XCOL
   XCOL <=
@@ -122,10 +124,10 @@ begin
   --Multiplexor de YROW
   YROW <=
       (std_logic_vector(Q_Square)) when SEL_M = '1' else
-      ("000000000") when SEL_M='0' else
+      ("000000000") when SEL_M = '0' else
        "UUUUUUUUU";
 
-  --Contador LD_Square
+  --Contador Q_Square
   ContColumnas : process (CLK, RESETL)
   begin
     if (RESETL = '0') then
