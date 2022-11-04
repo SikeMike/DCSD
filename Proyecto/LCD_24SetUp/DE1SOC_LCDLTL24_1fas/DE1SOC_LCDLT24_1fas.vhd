@@ -103,7 +103,7 @@ end component;
   signal clk,reset,reset_l :  std_logic;
 
 
-  signal LT24_Init_Done: std_logic;
+  signal  LT24_Init_Done: std_logic;
   signal  LT24_CS_N_Int        :  std_logic;
   signal  LT24_RS_Int          :  std_logic;
   signal  LT24_WR_N_Int        :  std_logic;
@@ -113,8 +113,7 @@ end component;
   signal TOP_LCD_Init_Done : std_logic := '0';
   signal TOP_OP_SETCURSOR : std_logic := '0';
   signal TOP_OP_DRAWCOLOUR : std_logic := '0';
-  signal TOP_CLK : std_logic := '0';
-  signal TOP_RESETL : std_logic := '0';
+  
   signal TOP_XCOL : std_logic_vector(7 downto 0) := "00000000";
   signal TOP_YROW : std_logic_vector(8 downto 0) := "000000000";
   signal TOP_RGB : std_logic_vector(15 downto 0) := "0000000000000000";
@@ -126,21 +125,10 @@ end component;
   signal TOP_LCD_RS : std_logic;
   signal TOP_LCD_DATA : std_logic_vector(15 downto 0);
   
-  --HAY QUE ELIMINAR LAS REPETIDAS
-  
-  signal tb_DEL_SCREEN : std_logic := '0';
-signal tb_DRAW_FIG : std_logic := '0';
-signal tb_DONE_CURSOR : std_logic := '0';
-signal tb_DONE_COLOUR : std_logic := '0';
-signal tb_CLK : std_logic := '0';
-signal tb_RESETL : std_logic := '0';
-signal tb_COLOUR_CODE : std_logic_vector(2 downto 0) := "000";
-signal tb_XCOL : std_logic_vector(7 downto 0);
-signal tb_YROW : std_logic_vector(8 downto 0);
-signal tb_RGB : std_logic_vector(15 downto 0);
-signal tb_NUM_PIX : std_logic_vector(16 downto 0);
-signal tb_OP_SETCURSOR : std_logic;
-signal tb_OP_DRAWCOLOUR : std_logic;
+  signal TOP_DEL_SCREEN : std_logic := '0';
+  signal TOP_DRAW_FIG : std_logic := '0';
+  signal TOP_COLOUR_CODE : std_logic_vector(2 downto 0) := "000";
+
 
 begin 
    clk <= CLOCK_50;
@@ -148,8 +136,6 @@ begin
    reset_l<=KEY(0);
 	
    LT24_RD_N_Int<='1';
-	
-	
 
     
 -- Osagaien elkarketa        --------------    
@@ -194,7 +180,7 @@ begin
 		DONE_CURSOR => TOP_CONE_CURSOR,
 		DONE_COLOUR => TOP_DONE_COLOUR,
 		CLK => CLK,
-		RESETL => RESETL,
+		RESETL => reset_l,
 		COLOUR_CODE => TOP_COLOUR_CODE,
 
 		XCOL => TOP_XCOL,
@@ -211,9 +197,9 @@ begin
   port map (
 		LCD_Init_Done => TOP_LCD_Init_Done,
 		OP_SETCURSOR => TOP_OP_SETCURSOR,
-		OP_DRAWCOLOUR => TOP_0
+		OP_DRAWCOLOUR => TOP_OP_DRAWCOLOUR,
 		CLK => CLK, 
-		RESETL => RESETL,
+		RESETL => reset_l,
 		XCOL => TOP_XCOL,
 		YROW => TOP_YROW,
 		RGB => TOP_RGB,

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1SOC_xxx
-Thu Nov 03 15:05:25 2022
+Fri Nov 04 15:52:38 2022
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Thu Nov 03 15:05:25 2022               ;
+; Analysis & Synthesis Status ; Failed - Fri Nov 04 15:52:38 2022               ;
 ; Quartus Prime Version       ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name               ; DE1SOC_xxx                                      ;
 ; Top-level Entity Name       ; DE1SOC_xxx                                      ;
@@ -161,14 +161,13 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Thu Nov 03 15:05:14 2022
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas.qpf -c DE1SOC_xxx
+    Info: Processing started: Fri Nov 04 15:52:29 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas -c DE1SOC_xxx
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
-Error (10500): VHDL syntax error at DE1SOC_LCDLT24_1fas.vhd(149) near text ":";  expecting ";" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 149
-Error (10500): VHDL syntax error at DE1SOC_LCDLT24_1fas.vhd(160) near text ")";  expecting "(", or an identifier, or  unary operator File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
-Error (10500): VHDL syntax error at DE1SOC_LCDLT24_1fas.vhd(165) near text ")";  expecting "(", or an identifier, or  unary operator File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 165
-Info (12021): Found 0 design units, including 0 entities, in source file de1soc_lcdlt24_1fas.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file de1soc_lcdlt24_1fas.vhd
+    Info (12022): Found design unit 1: DE1SOC_LCDLT24_1fas-str File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 43
+    Info (12023): Found entity 1: DE1SOC_LCDLT24_1fas File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_setup/romsinc.vhd
     Info (12022): Found design unit 1: romsinc-a File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/LCD_SetUp/romsinc.vhd Line: 14
     Info (12023): Found entity 1: romsinc File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/LCD_SetUp/romsinc.vhd Line: 6
@@ -190,10 +189,11 @@ Info (12021): Found 2 design units, including 1 entities, in source file /users/
 Info (12021): Found 2 design units, including 1 entities, in source file /users/ehu/desktop/dcsd-main/dcsd/proyecto/lcd_control.vhd
     Info (12022): Found design unit 1: lcd_control-arc_de_lcd_control File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_control.vhd Line: 21
     Info (12023): Found entity 1: lcd_control File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_control.vhd Line: 5
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 3 errors, 1 warning
-    Error: Peak virtual memory: 4850 megabytes
-    Error: Processing ended: Thu Nov 03 15:05:25 2022
-    Error: Elapsed time: 00:00:11
-    Error: Total CPU time (on all processors): 00:00:16
+Error (10482): VHDL error at DE1SOC_LCDLT24_1fas.vhd(170): object "DONE_CURSOR" is used but not declared File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 170
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
+    Error: Peak virtual memory: 4848 megabytes
+    Error: Processing ended: Fri Nov 04 15:52:38 2022
+    Error: Elapsed time: 00:00:09
+    Error: Total CPU time (on all processors): 00:00:17
 
 
