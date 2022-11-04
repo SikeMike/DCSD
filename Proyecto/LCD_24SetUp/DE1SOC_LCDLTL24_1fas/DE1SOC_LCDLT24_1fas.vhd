@@ -18,13 +18,13 @@ entity DE1SOC_LCDLT24_1fas is
 	-- LEDR ----------------
 	LEDR 		: out	std_logic_vector(9 downto 0);
 --      -- LT24_LCD ----------------
-        LT24_LCD_ON     : out std_logic;
-        LT24_RESET_N    : out std_logic;
-        LT24_CS_N       : out std_logic;
-        LT24_RD_N       : out std_logic;
-        LT24_RS         : out std_logic;
-        LT24_WR_N       : out std_logic;
-        LT24_D          : out   std_logic_vector(15 downto 0)
+   LT24_LCD_ON     : out std_logic;
+   LT24_RESET_N    : out std_logic;
+   LT24_CS_N       : out std_logic;
+   LT24_RD_N       : out std_logic;
+   LT24_RS         : out std_logic;
+   LT24_WR_N       : out std_logic;
+   LT24_D          : out   std_logic_vector(15 downto 0)
 
 	-- GPIO ----------------
 --	GPIO_0 		: inout	std_logic_vector(35 downto 0);
@@ -46,7 +46,7 @@ component LT24Setup
  port(
       -- CLOCK and Reset_l ----------------
       clk            : in      std_logic;
-      reset_l        : in      std_logic;
+      RESETL        : in      std_logic;
 
       LT24_LCD_ON      : out std_logic;
       LT24_RESET_N     : out std_logic;
@@ -70,33 +70,42 @@ component LT24Setup
 component LCD_DRAWING IS
 	port
 	(
-		reset,CLK		: in std_logic;
+		RESETL        : in std_logic;
+		CLK		      : in std_logic;
 		DEL_SCREEN		: in std_logic;
-		DRAW_FIG		: in std_logic;
-		COLOUR			: in std_logic_vector(2 downto 0);
-		DONE_CURSOR,DONE_COLOUR	: in std_logic;
-		SET_CURSOR,DRAW_COLOUR	: out std_logic;
-		COL			: out std_logic_vector(7 downto 0);
-                ROW			: out std_logic_vector(8 downto 0);
-                NUMPIX			: out std_logic_vector(16 downto 0);
-		RGB			: out std_logic_vector(15 downto 0)
+		DRAW_FIG		   : in std_logic;
+		COLOUR_CODE		: in std_logic_vector(2 downto 0);
+		DONE_CURSOR    : in std_logic;
+		DONE_COLOUR	   : in std_logic;
+		
+		SET_CURSOR     : out std_logic;
+		DRAW_COLOUR	   : out std_logic;
+		XCOL			   : out std_logic_vector(7 downto 0);
+      YROW			   : out std_logic_vector(8 downto 0);
+      NUMPIX			: out std_logic_vector(16 downto 0);
+		RGB			   : out std_logic_vector(15 downto 0)
 	);
 end component;
 
 component LCD_CTRL
 	port
 	(
-		reset,CLK		: in 	std_logic;
-		LCD_INIT_DONE		: in std_logic;
-		OP_SETCURSOR		: in	std_logic;
-		XCOL			: in std_logic_vector(7 downto 0);
-		YROW			: in std_logic_vector(8 downto 0);
-		OP_DRAWCOLOUR		: in	std_logic;
-		RGB			: in std_logic_vector(15 downto 0);
-		NUMPIX			: in std_logic_vector(16 downto 0);
-		DONE_CURSOR,DONE_COLOUR	: out std_logic;
-		LCD_CSN,LCD_RS,LCD_WRN	: out std_logic;
-		LCD_DATA		: out std_logic_vector(15 downto 0)
+		RESETL         : in std_logic;
+		CLK		       : in std_logic;
+		LCD_INIT_DONE	 : in std_logic;
+		OP_SETCURSOR	 : in	std_logic;
+		XCOL			    : in std_logic_vector(7 downto 0);
+		YROW			    : in std_logic_vector(8 downto 0);
+		OP_DRAWCOLOUR	 : in	std_logic;
+		RGB			    : in std_logic_vector(15 downto 0);
+		NUMPIX			 : in std_logic_vector(16 downto 0);
+		
+		DONE_CURSOR     : out std_logic;
+		DONE_COLOUR	    : out std_logic;
+		LCD_CSN         : out std_logic;
+		LCD_RS          : out std_logic;
+		LCD_WRN	       : out std_logic;
+		LCD_DATA		    : out std_logic_vector(15 downto 0)
 	);
 end component;
   
@@ -135,7 +144,16 @@ begin
    reset <= not(KEY(0));
    reset_l<=KEY(0);
 	
-   LT24_RD_N_Int<='1';
+   LT24_RD_N_Int<='1'; --PARA QUE NO HAYA DOS OPERACIONES A LA VEZ
+
+	LEDR(8)  <= LT24_Init_Done;
+	
+	
+	LEDR(6) <= not(KEY(3)); --OP_SETCURSOR 
+	LEDR(5) <= not(KEY(2)); --OP_DRAWCOLOUR
+	
+	LEDR(1) <= TOP_DONE_CURSOR;
+	LEDR(0) <= TOP_DONE_COLOUR;
 
     
 -- Osagaien elkarketa        --------------    
@@ -162,55 +180,47 @@ begin
       
       LT24_Init_Done      => LT24_Init_Done
  );
-   LEDR(8)  <= LT24_Init_Done;
-	
-	LEDR(6) <= not(KEY(3)); --OP_SETCURSOR 
-	LEDR(5) <= not(KEY(2)); --OP_DRAWCOLOUR
-	
-	LEDR(1) <= DONE_CURSOR;
-	LEDR(0) <= DONE_COLOUR;
-
 
 
   O2_LCDDRAW: LCD_DRAWING
   port map (
   
-		DEL_SCREEN => TOP_DEL_SCREEN,
-		DRAW_FIG => TOP_DRAW_FIG,
-		DONE_CURSOR => TOP_CONE_CURSOR,
+		DEL_SCREEN  => TOP_DEL_SCREEN,
+		DRAW_FIG    => TOP_DRAW_FIG,
+		DONE_CURSOR => TOP_DONE_CURSOR,
 		DONE_COLOUR => TOP_DONE_COLOUR,
-		CLK => CLK,
-		RESETL => reset_l,
+		CLK         => CLK,
+		RESETL      => reset_l,
 		COLOUR_CODE => TOP_COLOUR_CODE,
 
-		XCOL => TOP_XCOL,
-		YROW => TOP_YROW,
-		RGB => TOP_RGB,
-		NUM_PIX => TOP_NUM_PIX,
+		XCOL        => TOP_XCOL,
+		YROW        => TOP_YROW,
+		RGB         => TOP_RGB,
+		NUM_PIX     => TOP_NUM_PIX,
 
-		OP_SETCURSOR => TOP_OP_SETCURSOUR, 
+		OP_SETCURSOR  => TOP_OP_SETCURSOUR, 
 		OP_DRAWCOLOUR => TOP_OP_DRAWCOLOUR
 
 		);
 	
   O3_LCDCONT: LCD_CTRL
   port map (
-		LCD_Init_Done => TOP_LCD_Init_Done,
-		OP_SETCURSOR => TOP_OP_SETCURSOR,
-		OP_DRAWCOLOUR => TOP_OP_DRAWCOLOUR,
-		CLK => CLK, 
-		RESETL => reset_l,
-		XCOL => TOP_XCOL,
-		YROW => TOP_YROW,
-		RGB => TOP_RGB,
-		NUM_PIX => TOP_NUM_PIX,
+		LCD_Init_Done   => TOP_LCD_Init_Done,
+		OP_SETCURSOR    => TOP_OP_SETCURSOR,
+		OP_DRAWCOLOUR   => TOP_OP_DRAWCOLOUR,
+		CLK             => CLK, 
+		RESETL          => reset_l,
+		XCOL            => TOP_XCOL,
+		YROW            => TOP_YROW,
+		RGB             => TOP_RGB,
+		NUM_PIX         => TOP_NUM_PIX,
 
-		DONE_CURSOR => TOP_CONE_CURSOR,
-		DONE_COLOUR => TOP_DONE_COLOUR, 
-		LCD_CS_N => TOP_LCD_CS_N, 
-		LCD_WR_N => TOP_WR_N, 
-		LCD_RS => TOP_LCD_RS,
-		LCD_DATA => TOP_LCD_DATA
+		DONE_CURSOR     => TOP_CONE_CURSOR,
+		DONE_COLOUR     => TOP_DONE_COLOUR, 
+		LCD_CS_N        => TOP_LCD_CS_N, 
+		LCD_WR_N        => TOP_WR_N, 
+		LCD_RS          => TOP_LCD_RS,
+		LCD_DATA        => TOP_LCD_DATA
 
 		);
   
