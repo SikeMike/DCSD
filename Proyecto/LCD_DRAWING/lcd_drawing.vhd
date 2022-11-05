@@ -93,7 +93,7 @@ begin
 
   --Multiplexor de NUM_PIX
   NUM_PIX <=
-    ("00000000001111000") when SEL_PIX = '0' else -- '120'
+    ("00000000000000011") when SEL_PIX = '0' else -- '3'
     ("10010110000000000") when SEL_PIX = '1' else -- '76800'
      "UUUUUUUUUUUUUUUUU";
 
@@ -118,7 +118,7 @@ begin
   --Multiplexor de XCOL
   XCOL <=
     ("00000000") when SEL_M = '0' else
-    ("00111011") when SEL_M = '1' else
+    ("00000010") when SEL_M = '1' else --posición columna 2
      "UUUUUUUU"; 
 
   --Multiplexor de YROW
@@ -134,7 +134,7 @@ begin
       Q_Square <= "000000000";
     elsif (CLK'event and CLK = '1') then
       if (LD_SQUARE = '1') then
-        Q_Square <= "001001111";
+        Q_Square <= "000000010";
       elsif (Next_Row = '1') then
         Q_Square <= Q_Square + "000000001";
       end if;
@@ -142,6 +142,6 @@ begin
   end process ContColumnas;
 
   --Comparador END_SQUARE
-  END_SQUARE <= '1' when (Q_Square = "100100001") else '0';
+  END_SQUARE <= '1' when (Q_Square = "000000100") else '0'; --hasta la posición 4
 
 end arc_de_lcd_drawing;
