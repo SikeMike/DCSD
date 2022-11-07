@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1SOC_xxx
-Fri Nov 04 16:33:31 2022
+Mon Nov 07 17:10:11 2022
 Quartus Prime Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri Nov 04 16:33:31 2022               ;
+; Analysis & Synthesis Status ; Failed - Mon Nov 07 17:10:11 2022               ;
 ; Quartus Prime Version       ; 18.1.1 Build 646 04/11/2019 SJ Standard Edition ;
 ; Revision Name               ; DE1SOC_xxx                                      ;
 ; Top-level Entity Name       ; DE1SOC_xxx                                      ;
@@ -161,7 +161,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.1 Build 646 04/11/2019 SJ Standard Edition
-    Info: Processing started: Fri Nov 04 16:33:23 2022
+    Info: Processing started: Mon Nov 07 17:10:02 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas.qpf -c DE1SOC_xxx
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
@@ -183,28 +183,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file lcd_set
 Info (12021): Found 2 design units, including 0 entities, in source file lcd_setup/init128rom_pkg.vhd
     Info (12022): Found design unit 1: romData_pkg File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 5
     Info (12022): Found design unit 2: romData_pkg-body File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 14
-Info (12021): Found 2 design units, including 1 entities, in source file /users/ehu/desktop/dcsd-main/dcsd/proyecto/lcd_drawing.vhd
-    Info (12022): Found design unit 1: lcd_drawing-arc_de_lcd_drawing File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_drawing.vhd Line: 22
-    Info (12023): Found entity 1: lcd_drawing File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_drawing.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file /users/ehu/desktop/dcsd-main/dcsd/proyecto/lcd_control.vhd
-    Info (12022): Found design unit 1: lcd_control-arc_de_lcd_control File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_control.vhd Line: 21
-    Info (12023): Found entity 1: lcd_control File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/lcd_control.vhd Line: 5
-Error (10349): VHDL Association List error at DE1SOC_LCDLT24_1fas.vhd(163): formal "reset_l" does not exist File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 163
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "RESETL" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Warning (12019): Can't analyze file -- file ../../lcd_drawing.vhd is missing
+Warning (12019): Can't analyze file -- file ../../lcd_control.vhd is missing
+Error (10349): VHDL Association List error at DE1SOC_LCDLT24_1fas.vhd(164): formal "reset_l" does not exist File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 164
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "RESETL" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(49): see declaration for object "RESETL" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 49
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "LT24_CS_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "LT24_CS_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(59): see declaration for object "LT24_CS_N_Int" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 59
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "LT24_RS_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "LT24_RS_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(60): see declaration for object "LT24_RS_Int" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 60
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "LT24_WR_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "LT24_WR_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(61): see declaration for object "LT24_WR_N_Int" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 61
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "LT24_RD_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "LT24_RD_N_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(62): see declaration for object "LT24_RD_N_Int" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 62
-Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(160): formal port or parameter "LT24_D_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 160
+Error (10346): VHDL error at DE1SOC_LCDLT24_1fas.vhd(161): formal port or parameter "LT24_D_Int" must have actual or default value File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 161
 Error (10784): HDL error at DE1SOC_LCDLT24_1fas.vhd(63): see declaration for object "LT24_D_Int" File: C:/Users/ehu/Desktop/DCSD-main/DCSD/Proyecto/LCD_24SetUp/DE1SOC_LCDLTL24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 63
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 13 errors, 1 warning
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 13 errors, 3 warnings
     Error: Peak virtual memory: 4848 megabytes
-    Error: Processing ended: Fri Nov 04 16:33:32 2022
+    Error: Processing ended: Mon Nov 07 17:10:11 2022
     Error: Elapsed time: 00:00:09
     Error: Total CPU time (on all processors): 00:00:16
 
