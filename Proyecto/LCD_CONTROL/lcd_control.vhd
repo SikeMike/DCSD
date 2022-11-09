@@ -4,16 +4,25 @@ use IEEE.numeric_std.all;
 
 entity lcd_control is
 
-  -- seniales de entrada y salida
+  --seniales de entrada y salida
   port(
-    LCD_Init_Done, OP_SETCURSOR, OP_DRAWCOLOUR, CLK, RESETL : in std_logic;
-    XCOL :     in std_logic_vector(7 downto 0);
-    YROW :     in std_logic_vector(8 downto 0);
-    RGB :      in std_logic_vector(15 downto 0);
-    NUM_PIX :  in std_logic_vector(16 downto 0);
+    CLK :    in std_logic;
+    RESETL : in std_logic;
 
-    DONE_CURSOR, DONE_COLOUR, LCD_CS_N, LCD_WR_N, LCD_RS : out std_logic;
-    LCD_DATA : out std_logic_vector(15 downto 0)
+    LCD_Init_Done : in std_logic;
+    OP_SETCURSOR :  in std_logic;
+    OP_DRAWCOLOUR : in std_logic;
+    XCOL :          in std_logic_vector(7 downto 0);
+    YROW :          in std_logic_vector(8 downto 0);
+    RGB :           in std_logic_vector(15 downto 0);
+    NUM_PIX :       in std_logic_vector(16 downto 0);
+
+    DONE_CURSOR : out std_logic;
+    DONE_COLOUR : out std_logic;
+    LCD_CS_N :    out std_logic;
+    LCD_WR_N :    out std_logic;
+    LCD_RS :      out std_logic;
+    LCD_DATA :    out std_logic_vector(15 downto 0)
   );
 
 end lcd_control;
@@ -22,7 +31,7 @@ architecture arc_de_lcd_control of lcd_control is
 
 type ESTADO is (E0, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10);
 
---declaracion de las seniales
+--declaracion de las seniales de control
 signal EP, ES : ESTADO;
 signal RXCOL :  std_logic_vector(7 downto 0);
 signal RYROW :  std_logic_vector(8 downto 0);
@@ -79,7 +88,7 @@ begin
     end case;
   end process COMB;
 
-  --calculo del estado siguiente(secuencial)
+  --calculo del estado siguiente (secuencial)
   SEC : process(CLK, RESETL)
   begin
     if (RESETL = '0') then
@@ -148,7 +157,7 @@ begin
   RegLCD_RS : process(CLK, RESETL, RS_COM)
   begin
     if (RESETL = '0' or RS_COM = '1') then
-      LCD_RS <= '0';                     --reset
+      LCD_RS <= '0';                     --reset o comando
     elsif (CLK'event and CLK = '1') then --flanco de reloj
       if (RS_DAT = '1') then
         LCD_RS <= '1';                   --dato
@@ -160,15 +169,15 @@ begin
   ContPix : process (CLK, RESETL)
   begin
     if (RESETL = '0') then
-      aux_contpix <= "00000000000000000";                  --reset
-    elsif (CLK'event and CLK = '1') then             --flanco de reloj
-      if (LD_INF = '1') then                         --cagar dato
+      aux_contpix <= "00000000000000000";                              --reset
+    elsif (CLK'event and CLK = '1') then                               --flanco de reloj
+      if (LD_INF = '1') then                                           --cagar dato
         aux_contpix <= unsigned(NUM_PIX);
       elsif (DEC_PIX = '1' and aux_contpix > "00000000000000000") then --decrease
         aux_contpix <= aux_contpix - "00000000000000001";
       end if;
     end if;
-    if (aux_contpix = "0000000000000000") then                        --activacion senial tc
+    if (aux_contpix = "0000000000000000") then                         --activacion senial tc
       END_PIX <= '1';
     else
       END_PIX <= '0';
@@ -179,7 +188,7 @@ begin
   ContDat : process (CLK, RESETL, CL_DAT)
   begin
     if (RESETL = '0' or CL_DAT = '1') then
-      aux_contdat <= "000";          --reset
+      aux_contdat <= "000";              --reset
     elsif (CLK'event and CLK = '1') then --flanco de reloj
       if (LD_2C = '1') then
         aux_contdat <= "110";

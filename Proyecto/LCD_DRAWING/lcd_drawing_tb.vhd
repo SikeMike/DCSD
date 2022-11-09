@@ -13,27 +13,37 @@ architecture arq_lcd_drawing_tb of lcd_drawing_tb is
 
 component lcd_drawing
 
+  --seniales de entrada y salida
   port(
-    DEL_SCREEN, DRAW_FIG, DONE_CURSOR, DONE_COLOUR, CLK, RESETL : in std_logic;
+    CLK :    in std_logic;
+    RESETL : in std_logic;
+
+    DEL_SCREEN :  in std_logic;
+    DRAW_FIG :    in std_logic;
+    DONE_CURSOR : in std_logic;
+    DONE_COLOUR : in std_logic;
     COLOUR_CODE : in std_logic_vector(2 downto 0);
 
-    XCOL :    out std_logic_vector(7 downto 0);
-    YROW :    out std_logic_vector(8 downto 0);
-    RGB :     out std_logic_vector(15 downto 0);
-    NUM_PIX : out std_logic_vector(16 downto 0);
-
-    OP_SETCURSOR, OP_DRAWCOLOUR : out std_logic
+    XCOL :          out std_logic_vector(7 downto 0);
+    YROW :          out std_logic_vector(8 downto 0);
+    RGB :           out std_logic_vector(15 downto 0);
+    NUM_PIX :       out std_logic_vector(16 downto 0);
+    OP_SETCURSOR :  out std_logic;
+    OP_DRAWCOLOUR : out std_logic
   );
 
 end component;
+
+--declaracion de las seniales de control
+signal tb_CLK : std_logic := '0';
+signal tb_RESETL : std_logic := '0';
 
 signal tb_DEL_SCREEN : std_logic := '0';
 signal tb_DRAW_FIG : std_logic := '0';
 signal tb_DONE_CURSOR : std_logic := '0';
 signal tb_DONE_COLOUR : std_logic := '0';
-signal tb_CLK : std_logic := '0';
-signal tb_RESETL : std_logic := '0';
 signal tb_COLOUR_CODE : std_logic_vector(2 downto 0) := "000";
+
 signal tb_XCOL : std_logic_vector(7 downto 0);
 signal tb_YROW : std_logic_vector(8 downto 0);
 signal tb_RGB : std_logic_vector(15 downto 0);
@@ -41,16 +51,19 @@ signal tb_NUM_PIX : std_logic_vector(16 downto 0);
 signal tb_OP_SETCURSOR : std_logic;
 signal tb_OP_DRAWCOLOUR : std_logic;
 
+
 begin
 
-  instancia2 : lcd_drawing port map (
+  uDrawing : lcd_drawing port map (
+    CLK => tb_CLK,
+    RESETL => tb_RESETL,
+
     DEL_SCREEN => tb_DEL_SCREEN,
     DRAW_FIG => tb_DRAW_FIG,
     DONE_CURSOR => tb_DONE_CURSOR,
     DONE_COLOUR => tb_DONE_COLOUR,
-    CLK => tb_CLK,
-    RESETL => tb_RESETL,
     COLOUR_CODE => tb_COLOUR_CODE,
+    
     XCOL => tb_XCOL,
     YROW => tb_YROW,
     RGB => tb_RGB,

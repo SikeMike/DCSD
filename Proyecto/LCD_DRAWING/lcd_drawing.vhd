@@ -4,26 +4,32 @@ use IEEE.numeric_std.all;
 
 entity lcd_drawing is
 
-  -- seniales de entrada y salida
+  --seniales de entrada y salida
   port(
-    DEL_SCREEN, DRAW_FIG, DONE_CURSOR, DONE_COLOUR, CLK, RESETL : in std_logic;
+    CLK :    in std_logic;
+    RESETL : in std_logic;
+
+    DEL_SCREEN :  in std_logic;
+    DRAW_FIG :    in std_logic;
+    DONE_CURSOR : in std_logic;
+    DONE_COLOUR : in std_logic;
     COLOUR_CODE : in std_logic_vector(2 downto 0);
 
-    XCOL :    out std_logic_vector(7 downto 0);
-    YROW :    out std_logic_vector(8 downto 0);
-    RGB :     out std_logic_vector(15 downto 0);
-    NUM_PIX : out std_logic_vector(16 downto 0);
-
-    OP_SETCURSOR, OP_DRAWCOLOUR : out std_logic
+    XCOL :          out std_logic_vector(7 downto 0);
+    YROW :          out std_logic_vector(8 downto 0);
+    RGB :           out std_logic_vector(15 downto 0);
+    NUM_PIX :       out std_logic_vector(16 downto 0);
+    OP_SETCURSOR :  out std_logic;
+    OP_DRAWCOLOUR : out std_logic
   );
 
 end lcd_drawing;
 
 architecture arc_de_lcd_drawing of lcd_drawing is
 
-type ESTADO is (E0, E1, E2, E3, E4);
+type ESTADO is (E0, E1, E2, E3, E4, E5, E6, E7, E8, E9);
 
---declaracion de las seniales
+--declaracion de las seniales de control
 signal EP, ES : ESTADO;
 signal LD_Square, Next_Row, END_Square, SEL_M, SEL_PIX, WHITE : std_logic;
 signal Q_Square : unsigned(8 downto 0);
@@ -39,40 +45,50 @@ begin
         if (DEL_SCREEN = '1') then
           ES <= E1;
         elsif (DRAW_FIG = '1') then
-          ES <= E3;
+          ES <= E5;
         else
           ES <= E0;
         end if;
       when E1 =>
-        if (DONE_CURSOR = '1') then
-          ES <= E2;
-        else
-          ES <= E1;
-        end if;
+        ES <= E2;
       when E2 =>
-        if (DONE_COLOUR = '1') then
-          ES <= E0;
+        if (DONE_CURSOR = '1') then
+          ES <= E3;
         else
           ES <= E2;
         end if;
       when E3 =>
-        if (DONE_CURSOR = '1') then
-          ES <= E4;
-        else
-          ES <= E3;
-        end if;
+        ES <= E4;
       when E4 =>
+        if (DONE_COLOUR = '1') then
+          ES <= E0;
+        else
+          ES <= E4;
+        end if;
+      when E5 =>
+        ES <= E6;
+      when E6 =>
+        if (DONE_CURSOR = '1') then
+          ES <= E7;
+        else
+          ES <= E6;
+        end if;
+      when E7 =>
+        ES <= E8;
+      when E8 =>
         if (DONE_COLOUR = '1' and END_Square = '1') then
           ES <= E0;
         elsif (DONE_COLOUR = '1' and END_Square = '0') then
-          ES <= E3;
+          ES <= E9;
         else
-          ES <= E4;
+          ES <= E8;
         end if;
+      when E9 =>
+        ES <= E6;
     end case;
   end process COMB;
 
-  --calculo del estado siguiente(secuencial)
+  --calculo del estado siguiente (secuencial)
   SEC : process(CLK, RESETL)
   begin
     if (RESETL = '0') then
@@ -83,13 +99,13 @@ begin
   end process SEC;
 
   --activacion de las seniales de control
-  OP_SETCURSOR <= '1' when ((EP = E0 and (DEL_SCREEN = '1' or DRAW_FIG = '1')) or (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
-  OP_DRAWCOLOUR <= '1' when (EP = E1 and DONE_CURSOR = '1') or (EP = E3 and DONE_CURSOR = '1') else '0';
-  WHITE <= '1' when (EP = E1 and DONE_CURSOR = '1') else '0';
-  SEL_PIX <= '1' when (EP = E1 and DONE_CURSOR = '1') else '0';
+  OP_SETCURSOR <= '1' when (EP = E1 or EP = E5 or EP = E9) else '0';
+  OP_DRAWCOLOUR <= '1' when (EP = E3 or EP = E7) else '0';
+  WHITE <= '1' when (EP = E3) else '0';
+  SEL_PIX <= '1' when (EP = E3) else '0';
   LD_Square <= '1' when (EP = E0 and DEL_SCREEN = '0' and DRAW_FIG = '1') else '0';
-  SEL_M <= '1' when ((EP = E0 and DEL_SCREEN = '0' and DRAW_FIG = '1') or (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0')) else '0';
-  Next_Row <= '1' when (EP = E4 and DONE_COLOUR = '1' and END_SQUARE = '0') else '0';
+  SEL_M <= '1' when (EP = E5 or EP = E9) else '0';
+  Next_Row <= '1' when (EP = E8 and DONE_COLOUR = '1' and END_SQUARE = '0') else '0';
 
   --Multiplexor de NUM_PIX
   NUM_PIX <=
@@ -111,20 +127,20 @@ begin
 
   --Multiplexor de RGB
   RGB <=
-    (Colour) when WHITE = '0' else
-    (x"FFFF") when WHITE = '1' else
+    (Colour) when WHITE = '0' else  --color de entrada
+    (x"FFFF") when WHITE = '1' else --color blanco
     "UUUUUUUUUUUUUUUU";
 
   --Multiplexor de XCOL
   XCOL <=
-    ("00000000") when SEL_M = '0' else
-    ("00000010") when SEL_M = '1' else --posición columna 2
+    ("00000000") when SEL_M = '0' else --posicion columna 0
+    ("00000010") when SEL_M = '1' else --posicion columna 2
      "UUUUUUUU"; 
 
   --Multiplexor de YROW
   YROW <=
-      (std_logic_vector(Q_Square)) when SEL_M = '1' else
-      ("000000000") when SEL_M = '0' else
+      (std_logic_vector(Q_Square)) when SEL_M = '1' else --posicion fila del cuadrado
+      ("000000000") when SEL_M = '0' else                --posicion fila 0
        "UUUUUUUUU";
 
   --Contador Q_Square
@@ -142,6 +158,6 @@ begin
   end process ContColumnas;
 
   --Comparador END_SQUARE
-  END_SQUARE <= '1' when (Q_Square = "000000100") else '0'; --hasta la posición 4
+  END_SQUARE <= '1' when (Q_Square = "000000100") else '0';
 
 end arc_de_lcd_drawing;
