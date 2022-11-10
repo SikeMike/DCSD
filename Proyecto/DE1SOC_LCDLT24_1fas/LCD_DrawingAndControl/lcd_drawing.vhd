@@ -113,7 +113,7 @@ begin
   NUM_PIX <=
     ("00000000000000101") when SEL_PIX = '0' else -- '5'
     ("10010110000000000") when SEL_PIX = '1' else -- '76800'
-     "UUUUUUUUUUUUUUUUU";
+     "00000000000000101";
 
   --Multiplexor de Colour
   Colour <=
@@ -125,25 +125,25 @@ begin
     (x"F81F") when COLOUR_CODE = "101" else -- fuxia
     (x"FFE0") when COLOUR_CODE = "110" else -- amarillo
     (x"B596") when COLOUR_CODE = "111" else -- gris
-     "UUUUUUUUUUUUUUUU";
+     (x"0000");
 
   --Multiplexor de RGB
   RGB <=
     (Colour) when WHITE = '0' else  --color de entrada
     (x"FFFF") when WHITE = '1' else --color blanco
-    "UUUUUUUUUUUUUUUU";
+     (Colour);
 
   --Multiplexor de XCOL
   XCOL <=
     ("00000000") when SEL_M = '0' else --posicion columna 0
     ("00000101") when SEL_M = '1' else --posicion columna 5
-     "UUUUUUUU"; 
+     ("00000000"); 
 
   --Multiplexor de YROW
   YROW <=
       (std_logic_vector(Q_Square)) when SEL_M = '1' else --posicion fila del cuadrado
       ("000000000") when SEL_M = '0' else                --posicion fila 0
-       "UUUUUUUUU";
+       ("000000000");
 
   --Contador Q_Square
   ContColumnas : process (CLK, RESET_L)

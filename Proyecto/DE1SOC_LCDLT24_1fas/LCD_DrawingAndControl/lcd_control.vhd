@@ -184,12 +184,11 @@ begin
         aux_contpix <= unsigned(NUM_PIX);
       elsif (DEC_PIX = '1' and aux_contpix > "00000000000000000") then --decrease
         aux_contpix <= aux_contpix - "00000000000000001";
+		elsif (aux_contpix = "0000000000000000") then
+			END_PIX <= '1';                                               --activacion señal control
+		else
+			END_PIX <= '0';
       end if;
-    end if;
-    if (aux_contpix = "0000000000000000") then                         --activacion senial tc
-      END_PIX <= '1';
-    else
-      END_PIX <= '0';
     end if;
   end process ContPix;
 
@@ -205,8 +204,9 @@ begin
         aux_contdat <= aux_contdat + "001";
       end if;
     end if;
-    CONT_Q <= std_logic_vector(aux_contdat);
   end process ContDat;
+  
+  CONT_Q <= std_logic_vector(aux_contdat);
 
   --Multiplexor
   LCD_DATA <=
@@ -214,11 +214,11 @@ begin
     (x"0000") when CONT_Q = "001" else
     (x"00" & RXCOL) when CONT_Q = "010" else
     (x"002B") when CONT_Q = "011" else
-    ("000000000000000" & RYROW(0)) when CONT_Q = "100" else
+    ("000000000000000" & YROW(0)) when CONT_Q = "100" else
     ((x"00" & RYROW(7 downto 0))) when CONT_Q = "101" else
     (x"002C") when CONT_Q = "110" else
     (RRGB) when CONT_Q = "111" else
-    "UUUUUUUUUUUUUUUU";
+    (x"002A");
 
   --Decodificador
   D0 <= '1' when (CONT_Q = "000") else '0';

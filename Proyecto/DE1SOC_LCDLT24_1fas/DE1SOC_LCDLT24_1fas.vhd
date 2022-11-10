@@ -178,8 +178,8 @@ begin
 	
    LEDR(8) <= TOP_LT24_Init_Done;
 	
-	TOP_DEL_SCREEN <= KEY(3);
-	TOP_DRAW_FIG <= KEY(2);
+	TOP_DEL_SCREEN <= not(KEY(3));
+	TOP_DRAW_FIG <= not(KEY(2));
 	TOP_COLOUR_CODE <= SW(2 downto 0);
 	
 	LEDR(6) <= not(KEY(3)); --OP_SETCURSOR 
