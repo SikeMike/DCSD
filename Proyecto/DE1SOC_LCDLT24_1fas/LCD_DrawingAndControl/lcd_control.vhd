@@ -179,6 +179,7 @@ begin
   begin
     if (RESET_L = '0') then
       aux_contpix <= "00000000000000000";                              --reset
+      END_PIX <= '0';
     elsif (CLK'event and CLK = '1') then                               --flanco de reloj
       if (LD_INF = '1') then                                           --cagar dato
         aux_contpix <= unsigned(NUM_PIX);

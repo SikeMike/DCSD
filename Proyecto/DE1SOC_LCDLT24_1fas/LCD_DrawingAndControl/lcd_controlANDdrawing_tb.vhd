@@ -145,8 +145,10 @@ begin
     tb_COLOUR_CODE <= "101";
     wait for 40 ns;
     tb_DRAW_FIG <= '0';
-    wait for 4000 ns;
+    wait for 1100000 ns;
     tb_DEL_SCREEN <= '1';
+    wait for 200 ns;
+    tb_DEL_SCREEN <= '0';
     wait;
   end process ;
 
