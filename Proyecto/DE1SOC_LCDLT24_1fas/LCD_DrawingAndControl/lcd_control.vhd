@@ -199,7 +199,7 @@ begin
       aux_contdat <= "000";              --reset
     elsif (CLK'event and CLK = '1') then --flanco de reloj
       if (LD_2C = '1') then
-        aux_contdat <= "110";
+        aux_contdat <= "110";            --6
       elsif (INC_DAT = '1' and aux_contdat < "111") then
         aux_contdat <= aux_contdat + "001";
       end if;

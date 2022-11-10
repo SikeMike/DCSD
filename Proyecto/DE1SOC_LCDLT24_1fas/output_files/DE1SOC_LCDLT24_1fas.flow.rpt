@@ -1,5 +1,5 @@
 Flow report for DE1SOC_LCDLT24_1fas
-Thu Nov 10 15:51:52 2022
+Thu Nov 10 20:06:00 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,15 +40,15 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Nov 10 15:51:38 2022       ;
+; Flow Status                     ; Successful - Thu Nov 10 20:05:35 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; DE1SOC_LCDLT24_1fas                         ;
 ; Top-level Entity Name           ; DE1SOC_LCDLT24_1fas                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 498 / 32,070 ( 2 % )                        ;
-; Total registers                 ; 1068                                        ;
+; Logic utilization (in ALMs)     ; 499 / 32,070 ( 2 % )                        ;
+; Total registers                 ; 1052                                        ;
 ; Total pins                      ; 40 / 457 ( 9 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 33,792 / 4,065,280 ( < 1 % )                ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/10/2022 15:49:21 ;
+; Start date & time ; 11/10/2022 20:01:50 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE1SOC_LCDLT24_1fas ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------------+
 ; Assignment Name                     ; Value                                                                                                                                          ; Default Value ; Entity Name ; Section Id       ;
 +-------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+---------------+-------------+------------------+
-; COMPILER_SIGNATURE_ID               ; 256017921575371.166809176007572                                                                                                                ; --            ; --          ; --               ;
+; COMPILER_SIGNATURE_ID               ; 256017921575371.166810690901572                                                                                                                ; --            ; --          ; --               ;
 ; ENABLE_SIGNALTAP                    ; On                                                                                                                                             ; --            ; --          ; --               ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                                                                             ; --            ; --          ; --               ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                                                                              ; --            ; --          ; --               ;
@@ -129,11 +129,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:39     ; 1.0                     ; 4940 MB             ; 00:01:11                           ;
-; Fitter               ; 00:01:22     ; 1.1                     ; 7009 MB             ; 00:04:15                           ;
-; Assembler            ; 00:00:12     ; 1.0                     ; 4836 MB             ; 00:00:12                           ;
-; Timing Analyzer      ; 00:00:13     ; 1.5                     ; 5234 MB             ; 00:00:18                           ;
-; Total                ; 00:02:26     ; --                      ; --                  ; 00:05:56                           ;
+; Analysis & Synthesis ; 00:01:01     ; 1.0                     ; 4944 MB             ; 00:01:42                           ;
+; Fitter               ; 00:02:14     ; 1.1                     ; 6997 MB             ; 00:06:05                           ;
+; Assembler            ; 00:00:22     ; 1.0                     ; 4835 MB             ; 00:00:22                           ;
+; Timing Analyzer      ; 00:00:24     ; 1.4                     ; 5233 MB             ; 00:00:29                           ;
+; Total                ; 00:04:01     ; --                      ; --                  ; 00:08:38                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
