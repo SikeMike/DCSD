@@ -12,7 +12,7 @@ port(
 	velocidad : in unsigned;
 
 	bitReady : out std_logic;
-	dataBit : out std_logic
+	DataBit : out std_logic
 );	
 end lcd_read5times;
 
@@ -20,14 +20,14 @@ architecture arc_de_lcd_read5times of lcd_read5times is
 type ESTADO is (E0, E1, E3, E4);
 
 --DECLARACION DE LAS SENIALES DE CONTROL
-signal MIRADO, DAT_LISTO, TC_5LD_27,LD_5, LD_UNO, LD_CERO, LDCONT, esUNO, ESCERO, RESUL_1, CL_0, CLEAR : std_logic;
+signal MIRADO, DAT_LISTO, TC_5, LD_27,LD_5, LD_UNO, LD_CERO, LDCONT, esUNO, ESCERO, RESUL_1, CL_0, CLEAR : std_logic;
 signal MAS0S, MAS1S: std_logic;
 signal E_UNO, E_CERO, finUno, finCero : std_logic;
-signal QUNO, QCERO: unsigned(3 downto 0);
+signal QUNO, QCERO, aux_cont0, aux_cont1: unsigned(2 downto 0);
 signal EP, ES : ESTADO;
 
 --SEÑALES QUE NO SE USAN
---E_27, E_5
+
 
 
 begin
@@ -86,6 +86,60 @@ esCero<= '1' when (DATA < '1') else '0';
 --comparador si hay mas ceros o unos
 MAS0S<= '1' when (QCERO > QUNO) else '0';
 MAS1S<= '1' when (QCERO < QUNO) else '0';
+
+--registro del databit
+RegDataBit : process(CLK, RESET_L, CL_0)
+begin
+	if (RESET_L = '0' or CL_0='1' ) then --reset o comando
+		DataBit<='1';
+	elsif(CLK'event and CLK='1') then
+		if(RESUL_1 = '1') then
+			DataBit <= '1';
+		end if;
+end if;
+end process RegDataBit;
+
+--contador de unos
+ContUnos : process(CLK, RESET_L)
+begin
+	if(RESET_L = '0') then
+		QUNO<="000";
+	elsif(CLK'event and CLK='1') then
+		if(E_UNO='1' )then  --increase
+			aux_cont1<= aux_cont1 + "001";
+		if(finUno = '1') then
+			QUNO<=aux_cont1;
+		if(CLEAR = '1' ) then
+			aux_cont1<="000";
+		end if;
+		end if;
+		end if;
+	end if;
+end process ContUnos;
+--contador de ceros
+ContCeros: process(CLK, RESET_L)
+begin
+	if(RESET_L = '0') then
+		QCERO<="000";
+	elsif(CLK'event and CLK='1') then
+		if(E_CERO='1' )then  --increase
+			aux_cont0<= aux_cont0 + "001";
+		if(finCero = '1') then
+			QCERO<=aux_cont0;
+		if(CLEAR = '1' ) then
+			aux_cont0<="000";
+		end if;
+		end if;
+		end if;
+end if;
+end process ContCeros;
+--contador de 27
+--contador de 5
+Cont5 : process(CLK, RESET_L)
+begin
+	if(RESET_L='0') then
+		
+
 end arc_de_lcd_read5times;
 			
 			
