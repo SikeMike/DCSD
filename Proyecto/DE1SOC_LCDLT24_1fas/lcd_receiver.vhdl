@@ -16,88 +16,96 @@ entity lcd_receiver is
 
     READBIT : out std_logic;
     DATARECEIVED : out std_logic;
-    COMMAND : out vector_std_logic(7 downto 0)
+    COMMAND : out std_logic_vector(7 downto 0)
   );
 
 end lcd_receiver;
 
 architecture arc_de_lcd_receiver of lcd_receiver is
 
-type ESTADO is (E0, E1, E2, E3, E4, E5, E6);
+type ESTADO is (E0, E1, E2, E3, E4, E5, E6, E7);
 
 --declaracion de las seniales de control
 signal EP, ES : ESTADO;
-signal Clear, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, Iguales : std_logic;
+signal Clear, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, LD_Stop, StopBit, Odd, ParityBit, ParityCheck : std_logic;
 
 begin
 
   --calculo del estado siguiente (combinacional)
-  COMB : process(EP, Clear, DATA, READBIT, BITREAD, LD_Start, StartBit, FIN_Cdwn, Shift, Sum, DEC_Cdwn, LD_Parity, )
+  COMB : process(DATA, BITREAD, StartBit, FIN_Cdwn, StopBit, ParityCheck, Done)
   begin
     case EP is
       when E0 =>
-        if (LCD_Init_Done = '0') then
-          ES <= E0;
-        else -- LCD_Init_Done = '1'
-          if (OP_SETCURSOR = '1' or OP_DRAWCOLOUR = '1') then
-            ES <= E1;
-          else
-            ES <= E0;
-          end if;
-        end if;
+        ES <= E1;
+
       when E1 =>
-        ES <= E2;
+        if (DATA = '0') then
+          ES <= E2;
+        else
+          ES <= E1;
+        end if;
+
       when E2 =>
-        if (D0 = '1' or D1 = '1' or D3 = '1' or D4 = '1') then
+        if (BITREAD = '1') then
           ES <= E3;
-        elsif (D2 = '1') then
+        else
+          ES <= E2;
+	end if;
+
+      when E3 =>
+        if (StartBit = '1') then
+          ES <= E0;
+        else
           ES <= E4;
-        elsif (D5 = '1') then
+        end if;
+
+      when E4 =>
+        if (BITREAD = '1' and FIN_Cdwn = '1') then
           ES <= E5;
-        else -- D6 = '1'
+        else
+          ES <= E4;
+        end if;
+      
+      when E5 =>
+        if (BITREAD = '0') then
+          ES <= E5;
+        else
           ES <= E6;
         end if;
-      when E3 =>
-        ES <= E1;
-      when E4 =>
-        ES <= E1;
-      when E5 =>
-        ES <= E0;
+
       when E6 =>
-        ES <= E7;
+        if (StopBit = '0' and ParityCheck = '1') then
+          ES <= E7;
+        else
+          ES <= E0;
+        end if;
+
       when E7 =>
-        ES <= E8;
-      when E8 =>
-        ES <= E9;
-      when E9 =>
-        if (END_PIX = '1') then
-          ES <= E10;
+        if (Done = '1') then
+          ES <= E0;
         else
           ES <= E7;
         end if;
-      when E10 =>
-        ES <= E0;
+
       when others =>
         ES <= E0;
     end case;
   end process COMB;
 
---   --calculo del estado siguiente (secuencial)
---   SEC : process(CLK, RESET_L)
---   begin
---     if (RESET_L = '0') then
---       EP <= E0;
---     elsif (CLK'event and CLK = '1') then
---       EP <= ES;
---     end if;
---   end process SEC;
+  --calculo del estado siguiente (secuencial)
+  SEC : process(CLK, RESET_L)
+  begin
+    if (RESET_L = '0') then
+      EP <= E0;
+    elsif (CLK'event and CLK = '1') then
+      EP <= ES;
+    end if;
+  end process SEC;
 
---   --activacion de las seniales de control
---   LD_INF <= '1' when (EP = E0 and LCD_Init_Done = '1' and (OP_SETCURSOR = '1' or OP_DRAWCOLOUR = '1')) else '0';
---   CL_DAT <= '1' when (EP = E0 and LCD_Init_Done = '1' and OP_SETCURSOR = '1') else '0';
---   RS_COM <= '1' when ((EP = E0 and LCD_Init_Done = '1' and (OP_SETCURSOR = '1' or OP_DRAWCOLOUR = '1')) or EP = E4) else '0';
---   LD_2C <= '1' when (EP = E0 and LCD_Init_Done = '1' and OP_SETCURSOR = '0' and OP_DRAWCOLOUR = '1') else '0';
-  
+  --activacion de las seniales de control
+
+  Clear <= '1' when (EP = E0) else '0';
+  READBIT <= '1' when (EP = E2 or EP = E4 or EP = E5) else '0'
 --   lcd_cs_n_LOW <= '1' when (EP = E1 or EP = E7) else '0';
 --   lcd_wr_n_LOW <= '1' when (EP = E1 or EP = E7) else '0';
   
@@ -216,4 +224,4 @@ begin
 --   D6 <= '1' when (CONT_Q = "110") else '0';
 --   D7 <= '1' when (CONT_Q = "111") else '0';
 
--- end arc_de_lcd_control;
+end arc_de_lcd_receiver;
