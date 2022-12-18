@@ -10,7 +10,7 @@ port(
 	ReadBit : in std_logic;
 	DATA : in std_logic;
 	velocidad : in unsigned;
-
+	
 	bitReady : out std_logic;
 	DataBit : out std_logic
 );	
@@ -25,6 +25,7 @@ signal MAS0S, MAS1S: std_logic;
 signal E_UNO, E_CERO, E_27, E_5, finUno, finCero : std_logic;
 signal QUNO, QCERO, aux_cont0, aux_cont1, aux_cont5, aux_cont27: unsigned(2 downto 0);
 signal EP, ES : ESTADO;
+signal v_out: unsigned(14 downto 0);
 --signal x, y: unsigned;
 
 --SEÃ‘ALES QUE NO SE USAN
@@ -82,6 +83,14 @@ SEC : process(CLK, RESET_L)
       EP <= ES;
     end if;
   end process SEC;
+--calculo de la velocidad
+--con 300 x sera 27.777 = 110110010000001
+--con 600 x sera 13.888 = 11011001000000
+--con 1200 x sera 6944 =  1101100100000
+v_out<=
+("110110010000001") when velocidad = "00100101100" else --300
+("011011001000000") when velocidad = "01001011000" else --600
+"001101100100000"; --1200
 
 --activación de las señales de control
 CLEAR<= '1' when (EP = E0) else '0';
@@ -155,9 +164,7 @@ begin
 		end if;
 end if;
 end process ContCeros;
---con 300 x sera 27.777 = 110110010000001
---con 600 x sera 13.888 = 11011001000000
---con 1200 x sera 6944 =  1101100100000
+
 
 --contador de 27
 Cont27 : process (CLK, RESET_L)	
@@ -165,10 +172,19 @@ begin
 	if(RESET_L = '0') then
 		aux_cont27 <= "000";
 		mirado <= '0';
+	elsif (CLEAR_27 ='1' or CLEAR = '1') then
+		aux_cont27<="000";
+		mirado<='0';
 	elsif (CLK'event and CLK = '1' ) then
-		--if(E_27='1' and aux_cont27 )
+		if(E_27='1' and aux_cont27< v_out) then
+			aux_cont27<= aux_cont27 + "001";
+		elsif(aux_cont27=v_out) then
+			mirado<='1';
+		else
+			mirado<='0';
+		end if;
 	end if;
-		
+	
 end process Cont27;
 --contador de 5
 Cont5 : process(CLK, RESET_L)
