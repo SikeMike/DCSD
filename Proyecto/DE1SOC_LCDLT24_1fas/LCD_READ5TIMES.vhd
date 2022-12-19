@@ -1,6 +1,8 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+--use ieee.std_logic_arith.UNSIGNED;
+--use ieee.NUMERIC_STD.UNSIGNED;
 
 entity lcd_read5times is
 port(
@@ -9,7 +11,7 @@ port(
 
 	ReadBit : in std_logic;
 	DATA : in std_logic;
-	velocidad : in unsigned;
+	velocidad : in std_logic_vector(10 downto 0);
 	
 	bitReady : out std_logic;
 	DataBit : out std_logic
@@ -56,7 +58,7 @@ begin
 		ES<=E1;
 	end if;
 	when E3 =>
-	if(mirado ='0')then
+	if(mirado = '0')then
 		ES<=E3;
 	elsif(mirado ='1') then
 		if(MAS0S='1') then
@@ -93,28 +95,28 @@ v_out<=
 "001101100100000"; --1200
 
 --activación de las señales de control
-CLEAR<= '1' when (EP = E0) else '0';
-CL_0<= '1' when (EP = E3) else '0';
-CLEAR_27<= '1' when (EP = E2) else '0';
+CLEAR <= '1' when (EP = E0) else '0';
+CL_0 <= '1' when (EP = E4) else '0';
+CLEAR_27 <= '1' when (EP = E3) else '0';
 
-E_27<='1' when (EP=E1) else '0';
-E_5<='1' when (EP=E2) else '0';
+E_27 <= '1' when (EP=E1) else '0';
+E_5 <= '1' when (EP=E2) else '0';
 
-BitReady<= '1' when (EP = E3 or EP = E4) else '0';
-RESUL_1 <= '1' when (EP = E4) else '0';
-LDCONT<= '1' when (EP = E0 and ReadBit = '1') else '0';
+BitReady<= '1' when (EP = E4 or EP = E5) else '0';
+RESUL_1 <= '1' when (EP = E5) else '0';
+LDCONT <= '1' when (EP = E0 and ReadBit = '1') else '0';
 
-E_UNO<= '1' when (EP = E1 and mirado = '1' and esUNO = '1') else '0';
-E_CERO<='1' when (EP = E1 and mirado = '1' and esUNO = '0') else '0';
+E_UNO <= '1' when (EP = E2 and esUNO = '1') else '0';
+E_CERO <='1' when (EP = E2 and esUNO = '0') else '0';
 
 
 --comparador  si es uno o cero
-esUno<= '1' when (DATA = '1') else '0';
-esCero<= '1' when (DATA < '1') else '0';
+esUno <= '1' when (DATA = '1') else '0';
+esCero <= '1' when (DATA < '1') else '0';
 
 --comparador si hay mas ceros o unos
-MAS0S<= '1' when (QCERO > QUNO) else '0';
-MAS1S<= '1' when (QCERO < QUNO) else '0';
+MAS0S <= '1' when (QCERO > QUNO) else '0';
+MAS1S <= '1' when (QCERO < QUNO) else '0';
 
 --registro del databit
 RegDataBit : process(CLK, RESET_L, CL_0)
@@ -138,11 +140,9 @@ begin
 	elsif(CLK'event and CLK = '1') then
 		if(E_UNO = '1' )then  --increase
 			aux_cont1 <= aux_cont1 + "001";
-		if(finUno = '1') then
 			QUNO <= aux_cont1;
 		if(CLEAR = '1' ) then
 			aux_cont1 <= "000";
-		end if;
 		end if;
 		end if;
 	end if;
@@ -155,16 +155,13 @@ begin
 	elsif(CLK'event and CLK = '1') then
 		if(E_CERO = '1' )then  --increase
 			aux_cont0 <= aux_cont0 + "001";
-		if(finCero = '1') then
 			QCERO <= aux_cont0;
 		if(CLEAR = '1' ) then
 			aux_cont0 <= "000";
 		end if;
 		end if;
-		end if;
 end if;
 end process ContCeros;
-
 
 --contador de 27
 Cont27 : process (CLK, RESET_L)	
@@ -176,12 +173,12 @@ begin
 		aux_cont27<="000";
 		mirado<='0';
 	elsif (CLK'event and CLK = '1' ) then
-		if(E_27='1' and aux_cont27< v_out) then
+		if(E_27='1' and aux_cont27 < v_out) then
 			aux_cont27<= aux_cont27 + "001";
-		elsif(aux_cont27=v_out) then
-			mirado<='1';
+		elsif(aux_cont27 = v_out) then
+			mirado <= '1';
 		else
-			mirado<='0';
+			mirado <= '0';
 		end if;
 	end if;
 	
