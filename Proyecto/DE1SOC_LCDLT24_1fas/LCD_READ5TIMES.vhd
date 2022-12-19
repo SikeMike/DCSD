@@ -1,8 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
---use ieee.std_logic_arith.UNSIGNED;
---use ieee.NUMERIC_STD.UNSIGNED;
 
 entity lcd_read5times is
 port(
@@ -22,21 +20,17 @@ architecture arc_de_lcd_read5times of lcd_read5times is
 type ESTADO is (E0, E1, E2, E3, E4, E5);
 
 --DECLARACION DE LAS SENIALES DE CONTROL
-signal MIRADO, DAT_LISTO, TC_5, LD_27,LD_5, LD_UNO, LD_CERO, LDCONT, esUNO, ESCERO, RESUL_1, CL_0, CLEAR, CLEAR_27 : std_logic;
-signal MAS0S, MAS1S: std_logic;
-signal E_UNO, E_CERO, E_27, E_5, finUno, finCero : std_logic;
-signal QUNO, QCERO, aux_cont0, aux_cont1, aux_cont5, aux_cont27: unsigned(2 downto 0);
+signal MIRADO, TC_5, LD_27,LD_5, LD_V , esUNO, ESCERO, RESUL_1, CL_0, CLEAR : std_logic;
+signal MAS0S: std_logic;
+signal E_UNO, E_CERO, E_27, E_5 : std_logic;
+signal QUNO, QCERO, aux_cont0, aux_cont1, aux_cont5: unsigned(2 downto 0);
 signal EP, ES : ESTADO;
-signal v_out: unsigned(14 downto 0);
---signal x, y: unsigned;
-
---SEÃ‘ALES QUE NO SE USAN
--- lD_27, LD_5, LD_0, LD_1, Q_27, Q_5
+signal v_out, aux_cont27: unsigned(14 downto 0);
 
 
 begin
 --calculo del estado siguiente
-COMB: process(EP, mirado, esUNO, DAT_LISTO, MAS0S, ReadBit)
+COMB: process(EP, mirado, esUNO, MAS0S, ReadBit)
 begin
 	case EP is
 	when E0 =>
@@ -96,19 +90,19 @@ v_out<=
 
 --activación de las señales de control
 CLEAR <= '1' when (EP = E0) else '0';
-CL_0 <= '1' when (EP = E4) else '0';
-CLEAR_27 <= '1' when (EP = E3) else '0';
+LD_5 <= '1' when (EP=E0) else '0';
+LD_V<= '1' when ((EP=E0 and ReadBit = '1') or (EP=E2 and ((esUNO='1' and TC_5 ='1') or (esUNO='0' and TC_5='1')))) else '0';
 
-E_27 <= '1' when (EP=E1) else '0';
+E_27 <= '1' when (EP=E1 or EP=E3) else '0';
 E_5 <= '1' when (EP=E2) else '0';
-
-BitReady<= '1' when (EP = E4 or EP = E5) else '0';
-RESUL_1 <= '1' when (EP = E5) else '0';
-LDCONT <= '1' when (EP = E0 and ReadBit = '1') else '0';
 
 E_UNO <= '1' when (EP = E2 and esUNO = '1') else '0';
 E_CERO <='1' when (EP = E2 and esUNO = '0') else '0';
 
+CL_0 <= '1' when (EP = E3 and mirado = '1' and MAS0S = '1') else '0';
+RESUL_1 <= '1' when (EP = E3 and mirado = '1' and MAS0S = '0') else '0';
+
+BitReady<= '1' when (EP = E4 or EP = E5) else '0';
 
 --comparador  si es uno o cero
 esUno <= '1' when (DATA = '1') else '0';
@@ -116,7 +110,7 @@ esCero <= '1' when (DATA < '1') else '0';
 
 --comparador si hay mas ceros o unos
 MAS0S <= '1' when (QCERO > QUNO) else '0';
-MAS1S <= '1' when (QCERO < QUNO) else '0';
+--MAS1S <= '1' when (QCERO < QUNO) else '0';
 
 --registro del databit
 RegDataBit : process(CLK, RESET_L, CL_0)
@@ -131,6 +125,52 @@ begin
 		end if;
 end if;
 end process RegDataBit;
+
+--contador de 27
+Cont27 : process (CLK, RESET_L)	
+begin
+	if(RESET_L = '0') then
+		aux_cont27 <= "000000000000000";
+		mirado <= '0';
+	elsif (CLEAR = '1') then
+		aux_cont27<="000000000000000";
+		mirado<='0';
+	elsif (CLK'event and CLK = '1' ) then
+		if(LD_V='1') then
+			aux_cont27<=v_out;
+			if(E_27='1' and aux_cont27 > "000000000000000") then
+				aux_cont27<= aux_cont27 - "000000000000001";
+			elsif(aux_cont27 = "000000000000000") then
+				mirado <= '1';
+			else
+				mirado <= '0';
+			end if;
+		end if;
+	end if;
+	
+end process Cont27;
+--contador de 5
+Cont5 : process(CLK, RESET_L)
+begin
+	if(RESET_L = '0') then
+		aux_cont5 <= "000";
+		TC_5 <= '0';
+	elsif (CLEAR = '1') then
+		aux_cont5 <= "000";
+		TC_5 <= '0';
+	elsif (CLK'event and CLK = '1' ) then
+		if(LD_5 = '1') then
+			aux_cont5<= "101"; --5
+			if (E_5 = '1' and aux_cont5 > "000") then
+				aux_cont5 <= aux_cont5 - "001";
+			elsif (aux_cont5 = "000") then
+				TC_5 <= '1';
+			else
+				TC_5 <= '0';	
+			end if;
+		end if;
+	end if;
+end process Cont5;
 
 --contador de unos
 ContUnos : process(CLK, RESET_L)
@@ -147,6 +187,7 @@ begin
 		end if;
 	end if;
 end process ContUnos;
+
 --contador de ceros
 ContCeros: process(CLK, RESET_L)
 begin
@@ -163,42 +204,7 @@ begin
 end if;
 end process ContCeros;
 
---contador de 27
-Cont27 : process (CLK, RESET_L)	
-begin
-	if(RESET_L = '0') then
-		aux_cont27 <= "000";
-		mirado <= '0';
-	elsif (CLEAR_27 ='1' or CLEAR = '1') then
-		aux_cont27<="000";
-		mirado<='0';
-	elsif (CLK'event and CLK = '1' ) then
-		if(E_27='1' and aux_cont27 > v_out) then
-			aux_cont27<= aux_cont27 - "001";
-		elsif(aux_cont27 = v_out) then
-			mirado <= '1';
-		else
-			mirado <= '0';
-		end if;
-	end if;
-	
-end process Cont27;
---contador de 5
-Cont5 : process(CLK, RESET_L)
-begin
-	if(RESET_L = '0') then
-		aux_cont5 <= "000";
-		TC_5 <= '0';
-	elsif (CLK'event and CLK = '1' ) then
-		if (E_5 = '1' and aux_cont5 > "000") then
-			aux_cont5 <= aux_cont5 - "001";
-		elsif (aux_cont5 = "000") then
-			TC_5 <= '1';
-		else
-			TC_5 <= '0';	
-		end if;
-	end if;
-end process Cont5;
+
 end arc_de_lcd_read5times;
 			
 			

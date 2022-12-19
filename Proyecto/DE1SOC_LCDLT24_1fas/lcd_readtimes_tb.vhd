@@ -2,6 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use IEEE.std_logic_arith.ALL;
+--use ieee.std_logic_arith.UNSIGNED;
 
 entity lcd_read5times_tb is
 
@@ -9,7 +10,7 @@ end lcd_read5times_tb;
 
 architecture arq_lcd_read5times_tb of lcd_read5times_tb is
 
-component lcd_read5times_tb
+component lcd_read5times
 --seniales de entrada y salida
 port(
 	CLK: in std_logic;
@@ -17,7 +18,7 @@ port(
 
 	ReadBit : in std_logic;
 	DATA : in std_logic;
-	velocidad : in unsigned;
+	velocidad : std_logic_vector(10 downto 0);
 	
 	bitReady : out std_logic;
 	DataBit : out std_logic
@@ -29,14 +30,14 @@ signal tb_RESET_L : std_logic := '0';
 
 signal tb_ReadBit : std_logic := '0';
 signal tb_DATA : std_logic := '0';
-signal tb_velocidad : std_logic := '0';
+signal tb_velocidad : std_logic_vector(10 downto 0);
 
 signal tb_bitReady : std_logic := '0';
 signal tb_DataBit : std_logic := '0';
 
 begin
 
-u5times : ldc_read5times port map(
+u5times : lcd_read5times port map(
 	CLK => tb_CLK,
 	RESET_L => tb_RESET_L,
 
@@ -57,7 +58,7 @@ begin
 	wait for 20 ns;
 	tb_ReadBit <= '1';
 
-	wait for 20 ns:
+	wait for 20 ns;
 	tb_ReadBit <= '0';
 	 
 	wait for 40 ns;
@@ -66,4 +67,5 @@ begin
 	wait for 800 ns;
 	wait;
 end process;
+
 end arq_lcd_read5times_tb;
