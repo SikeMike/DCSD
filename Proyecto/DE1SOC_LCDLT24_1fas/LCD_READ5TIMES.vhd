@@ -173,8 +173,8 @@ begin
 		aux_cont27<="000";
 		mirado<='0';
 	elsif (CLK'event and CLK = '1' ) then
-		if(E_27='1' and aux_cont27 < v_out) then
-			aux_cont27<= aux_cont27 + "001";
+		if(E_27='1' and aux_cont27 > v_out) then
+			aux_cont27<= aux_cont27 - "001";
 		elsif(aux_cont27 = v_out) then
 			mirado <= '1';
 		else
