@@ -25,39 +25,39 @@ component lcd_receiver
 
     READBIT : out std_logic;
     DATARECEIVED : out std_logic;
-    COMMAND : out std_logic_vector(7 downto 0)
+    COMANDO : out std_logic_vector(7 downto 0)
   );
 
 end component;
 
 -- declaracion de las seniales de control
-signal tb_CLK : std_logic := 0;
-signal tb_RESET_L : std_logic := 0;
+signal tb_CLK : std_logic := '0';
+signal tb_RESET_L : std_logic := '0';
 
-signal tb_DATA : std_logic := 0;
-signal tb_BITREAD : std_logic := 0;
-signal tb_DATA_BIT : std_logic := 0;
-signal tb_DONE : std_logic := 0;
+signal tb_DATA : std_logic := '1';
+signal tb_BITREAD : std_logic := '0';
+signal tb_DATA_BIT : std_logic := '0';
+signal tb_DONE : std_logic := '0';
 
 signal tb_READBIT : std_logic;
 signal tb_DATARECEIVED : std_logic;
-signal tb_COMMAND : std_logic_vector(7 downto 0);
+signal tb_COMANDO : std_logic_vector(7 downto 0);
 
 begin
 
   uReceiver : lcd_receiver port map (
 
-    CLK => tb_CLK
-    RESET_L => tb_RESET_L
+    CLK => tb_CLK,
+    RESET_L => tb_RESET_L,
 
-    DATA => tb_DATA
-    BITREAD => tb_BITREAD
-    DATA_BIT => tb_DATA_BIT
-    DONE => tb_DONE
+    DATA => tb_DATA,
+    BITREAD => tb_BITREAD,
+    DATA_BIT => tb_DATA_BIT,
+    DONE => tb_DONE,
 
-    READBIT => tb_READBIT
-    DATARECEIVED => tb_DATARECEIVED
-    COMMAND => tb_COMMAND
+    READBIT => tb_READBIT,
+    DATARECEIVED => tb_DATARECEIVED,
+    COMANDO => tb_COMANDO
 
   );
 
@@ -65,24 +65,14 @@ begin
 
   simulacion : process
   begin
-    wait for 20 ns;     -- ciclo 1
+    wait for 20 ns;     -- E0 -> E1 (desactivo reset_l)
     tb_RESET_L <= '1';
-    tb_LCD_Init_Done <= '1';
-    wait for 20 ns;
-    tb_OP_SETCURSOR <= '1';
-    tb_XCOL <= conv_std_logic_vector(14, 8);
-    tb_YROW <= conv_std_logic_vector(23, 9);
-    tb_RGB <= "0000000000000000";
-    wait for 20 ns;
-    tb_OP_SETCURSOR <= '0';
-    wait for 380 ns;
-    tb_OP_DRAWCOLOUR <= '1';
-    tb_XCOL <= conv_std_logic_vector(6, 8);
-    tb_YROW <= conv_std_logic_vector(78, 9);
-    tb_RGB <= x"001F";
-    tb_NUM_PIX <= "00000000000000011";
-    wait for 60 ns;     -- ciclo 15
-    tb_OP_DRAWCOLOUR <= '0';
+    wait for 40 ns;     -- E1 -> E2 Cambio en DATA
+    tb_DATA <= '0';
+    wait for 40 ns;     -- E2 -> E3 Bitread se activa y guardo DATA_BIT en StartBit
+    tb_BITREAD <= '1';
+    tb_DATA_BIT <= '0';
+    wait for 200 ns;
     wait;
   end process ;
 

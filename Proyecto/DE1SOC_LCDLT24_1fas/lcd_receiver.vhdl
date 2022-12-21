@@ -6,17 +6,17 @@ entity lcd_receiver is
 
   --seniales de entrada y salida
   port(
-    CLK :    in std_logic;
+    CLK :     in std_logic;
     RESET_L : in std_logic;
 
-    DATA : in std_logic;
-    BITREAD : in std_logic;
+    DATA :     in std_logic;
+    BITREAD :  in std_logic;
     DATA_BIT : in std_logic;
-    DONE : in std_logic;
+    DONE :     in std_logic;
 
-    READBIT : out std_logic;
+    READBIT :      out std_logic;
     DATARECEIVED : out std_logic;
-    COMMAND : out std_logic_vector(7 downto 0)
+    COMANDO :      out std_logic_vector(7 downto 0)
   );
 
 end lcd_receiver;
@@ -29,7 +29,9 @@ type ESTADO is (E0, E1, E2, E3, E4, E5, E6, E7);
 signal EP, ES : ESTADO;
 signal Clear, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, LD_Stop, StopBit, Odd, InputK, ParityBit, ParityCheck : std_logic;
 
-signal Q_Cdwn : unsigned(3 downto 0);
+signal Aux_Comand : std_logic_vector(7 downto 0);
+
+signal Q_Cdwn : unsigned(2 downto 0);
 
 begin
 
@@ -118,7 +120,7 @@ begin
   DATARECEIVED <= '1' when (EP = E7) else '0';
 
   --OR Gate
-  InputK <= '1' when (Sum = '1' or Clear '1') else '0';
+  InputK <= '1' when (Sum = '1' or Clear = '1') else '0';
 
   --Registro StartBit
   RegStart : process(CLK, RESET_L)
@@ -126,7 +128,9 @@ begin
     if (RESET_L = '0') then
       StartBit <= '0';                   --reset
     elsif (CLK'event and CLK = '1') then --flanco de reloj
-      if (LD_Start = '1') then
+      if (Clear = '1') then
+        StartBit <= '0';                 --clear
+      elsif (LD_Start = '1') then
         StartBit <= DATA_BIT;            --cargar startbit
       end if;
     end if;
@@ -138,7 +142,9 @@ begin
     if (RESET_L = '0') then
       ParityBit <= '0';                  --reset
     elsif (CLK'event and CLK = '1') then --flanco de reloj
-      if (LD_Parity = '1') then
+      if (Clear = '1') then
+        ParityBit <= '0';                 --clear
+      elsif (LD_Parity = '1') then
         ParityBit <= DATA_BIT;           --cargar paritybit
       end if;
     end if;
@@ -150,25 +156,30 @@ begin
     if (RESET_L = '0') then
       StopBit <= '0';                    --reset
     elsif (CLK'event and CLK = '1') then --flanco de reloj
-      if (LD_Stop = '1') then
+      if (Clear = '1') then
+        StopBit <= '0';                  --clear
+      elsif (LD_Stop = '1') then
         StopBit <= DATA_BIT;             --cargar stopbit
       end if;
     end if;
   end process RegStop;
 
-  --Registro de desplazamiento COMMAND
-  RegCOMMAND : process(CLK, RESET_L)
+  --Registro de desplazamiento COMANDO
+  RegCOMANDO : process(CLK, RESET_L)
   begin
     if (RESET_L = '0') then
-      COMMAND <= (others => '0');                 --reset
+      Aux_Comand <= (others => '0');              --reset
     elsif (CLK'event and CLK = '1') then          --flanco de reloj
       if (Clear = '1') then
-        COMMAND <= (others => '0');               --clear
-      elsif ("0"&Shift = "01") then
-        COMMAND <= COMMAND(6 downto 0)&DATA_BIT;  --cargar un bit de data
+        Aux_Comand <= (others => '0');               --clear
+      elsif (Shift = '1') then
+        Aux_Comand <= Aux_Comand(6 downto 0) & DATA_BIT;
       end if;
     end if;
-  end process RegCOMMAND;
+  end process RegCOMANDO;
+--###############################################
+  COMANDO <= Aux_Comand;
+--###############################################
 
   --Biestable Flip Flop Odd
   FlipFlopOdd : process (CLK, RESET_L)
@@ -177,11 +188,11 @@ begin
       Odd <= '0';                             --reset
     elsif (CLK'event and CLK = '1') then      --flanco de reloj
       if (Sum = '1' and InputK = '1') then
-        Odd = not Odd;                        --flip
+        Odd <= not Odd;                        --flip
       elsif (Sum = '1' and InputK = '0') then
-        Odd = '1';                            --set
+        Odd <= '1';                            --set
       elsif (Sum = '0' and InputK = '1') then
-        Odd = '0';                            --clear
+        Odd <= '0';                            --clear
       end if;
     end if;
   end process FlipFlopOdd;
@@ -190,18 +201,17 @@ begin
   ContBits : process (CLK, RESET_L)
   begin
     if (RESET_L = '0') then
-      Q_Cdwn = "000";                     --reset
-      FIN_Cdwn <= '0';
+      Q_Cdwn <= to_unsigned(0, 3);        --reset
     elsif (CLK'event and CLK = '1') then  --flanco de reloj
       if (Clear = '1') then
-        Q_Cdwn = "111";                   --clear
+        Q_Cdwn <= to_unsigned(7, 3);      --load (clear)
       elsif (DEC_Cdwn = '1') then
-        Q_Cdwn = Q_Cdwn - "001";          --decrease
+        Q_Cdwn <= (Q_Cdwn - to_unsigned(1, 3));         --decrease
       end if;
     end if;
   end process ContBits;
 --###############################################
-  FIN_Cdwn <= '1' when (Q_Cdwn = "000") else '0';
+  FIN_Cdwn <= '1' when (Q_Cdwn = 0) else '0';
 --###############################################
 
 --Comparador ParityCheck
