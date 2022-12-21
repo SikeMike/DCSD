@@ -14,7 +14,7 @@ entity lcd_receiver is
     RX_BIT :      in std_logic;
     DONE :        in std_logic;
 
-    OP_FILTER :       out std_logic;
+    OP_FILTER :    out std_logic;
     COMAND_READY : out std_logic;
     COMANDO :      out std_logic_vector(7 downto 0)
   );
@@ -31,7 +31,7 @@ signal Init, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, LD_S
 
 signal aux_Comando : std_logic_vector(7 downto 0);
 
-signal Q_Cdwn : unsigned(2 downto 0);
+signal Q_Cdwn : unsigned(3 downto 0);
 
 begin
 
@@ -78,7 +78,7 @@ begin
         end if;
 
       when E6 =>
-        if (StopBit = '0' and ParityCheck = '1') then
+        if (StopBit = '1' and ParityCheck = '1') then
           ES <= E7;
         else
           ES <= E0;
@@ -201,12 +201,12 @@ begin
   ContBits : process (CLK, RESET_L)
   begin
     if (RESET_L = '0') then
-      Q_Cdwn <= to_unsigned(0, 3);        --reset
+      Q_Cdwn <= to_unsigned(0, 4);        --reset
     elsif (CLK'event and CLK = '1') then  --flanco de reloj
       if (Init = '1') then
-        Q_Cdwn <= to_unsigned(7, 3);      --load (Init)
+        Q_Cdwn <= to_unsigned(8, 4);      --load (Init)
       elsif (DEC_Cdwn = '1') then
-        Q_Cdwn <= (Q_Cdwn - to_unsigned(1, 3));         --decrease
+        Q_Cdwn <= (Q_Cdwn - to_unsigned(1, 4));         --decrease
       end if;
     end if;
   end process ContBits;
