@@ -18,13 +18,13 @@ component lcd_receiver
     CLK :    in std_logic;
     RESET_L : in std_logic;
 
-    DATA : in std_logic;
-    BITREAD : in std_logic;
-    DATA_BIT : in std_logic;
+    RX : in std_logic;
+    FILTER_DONE : in std_logic;
+    RX_BIT : in std_logic;
     DONE : in std_logic;
 
-    READBIT : out std_logic;
-    DATARECEIVED : out std_logic;
+    OP_FILTER : out std_logic;
+    COMAND_READY : out std_logic;
     COMANDO : out std_logic_vector(7 downto 0)
   );
 
@@ -34,13 +34,13 @@ end component;
 signal tb_CLK : std_logic := '0';
 signal tb_RESET_L : std_logic := '0';
 
-signal tb_DATA : std_logic := '1';
-signal tb_BITREAD : std_logic := '0';
-signal tb_DATA_BIT : std_logic := '0';
+signal tb_RX : std_logic := '1';
+signal tb_FILTER_DONE : std_logic := '0';
+signal tb_RX_BIT : std_logic := '0';
 signal tb_DONE : std_logic := '0';
 
-signal tb_READBIT : std_logic;
-signal tb_DATARECEIVED : std_logic;
+signal tb_OP_FILTER : std_logic;
+signal tb_COMAND_READY : std_logic;
 signal tb_COMANDO : std_logic_vector(7 downto 0);
 
 begin
@@ -50,13 +50,13 @@ begin
     CLK => tb_CLK,
     RESET_L => tb_RESET_L,
 
-    DATA => tb_DATA,
-    BITREAD => tb_BITREAD,
-    DATA_BIT => tb_DATA_BIT,
+    RX => tb_RX,
+    FILTER_DONE => tb_FILTER_DONE,
+    RX_BIT => tb_RX_BIT,
     DONE => tb_DONE,
 
-    READBIT => tb_READBIT,
-    DATARECEIVED => tb_DATARECEIVED,
+    OP_FILTER => tb_OP_FILTER,
+    COMAND_READY => tb_COMAND_READY,
     COMANDO => tb_COMANDO
 
   );
@@ -67,12 +67,13 @@ begin
   begin
     wait for 20 ns;     -- E0 -> E1 (desactivo reset_l)
     tb_RESET_L <= '1';
-    wait for 40 ns;     -- E1 -> E2 Cambio en DATA
-    tb_DATA <= '0';
-    wait for 40 ns;     -- E2 -> E3 Bitread se activa y guardo DATA_BIT en StartBit
-    tb_BITREAD <= '1';
-    tb_DATA_BIT <= '0';
-    wait for 200 ns;
+    wait for 40 ns;     -- E1 -> E2 Cambio en RX
+    tb_RX <= '0';
+    wait for 40 ns;     -- E2 -> E3 FILTER_DONE se activa y guardo RX_BIT en StartBit
+    tb_FILTER_DONE <= '1';
+    tb_RX <= '1';
+    tb_RX_BIT <= '1';
+    wait for 200 ns;    -- StartBit debería de valer 1 por lo que se descarta el dato y se vuelve al principio
     wait;
   end process ;
 
