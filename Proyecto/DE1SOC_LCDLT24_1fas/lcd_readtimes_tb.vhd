@@ -57,12 +57,9 @@ begin
 	
 	wait for 20 ns;
 	tb_ReadBit <= '1';
-
-	wait for 20 ns;
-	tb_ReadBit <= '0';
+	tb_DATA <= '1';
+	tb_velocidad <= "00100101100";
 	 
-	wait for 40 ns;
-	tb_bitReady<='1';
 
 	wait for 800 ns;
 	wait;

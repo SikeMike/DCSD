@@ -91,7 +91,7 @@ v_out<=
 --activación de las señales de control
 CLEAR <= '1' when (EP = E0) else '0';
 LD_5 <= '1' when (EP=E0) else '0';
-LD_V<= '1' when ((EP=E0 and ReadBit = '1') or (EP=E2 and ((esUNO='1' and TC_5 ='1') or (esUNO='0' and TC_5='1')))) else '0';
+LD_V<= '1' when ((EP=E0 and ReadBit = '1' and CLK'event and CLK = '1') or (EP=E2 and TC_5='1')) else '0';
 
 E_27 <= '1' when (EP=E1 or EP=E3) else '0';
 E_5 <= '1' when (EP=E2) else '0';
@@ -135,8 +135,8 @@ begin
 	elsif (CLEAR = '1') then
 		aux_cont27<="000000000000000";
 		mirado<='0';
-	elsif (CLK'event and CLK = '1' ) then
-		if(LD_V='1') then
+	elsif (CLK'event and CLK = '1' and LD_V = '1') then
+		--if(LD_V='1') then
 			aux_cont27<=v_out;
 			if(E_27='1' and aux_cont27 > "000000000000000") then
 				aux_cont27<= aux_cont27 - "000000000000001";
@@ -145,7 +145,7 @@ begin
 			else
 				mirado <= '0';
 			end if;
-		end if;
+		
 	end if;
 	
 end process Cont27;
