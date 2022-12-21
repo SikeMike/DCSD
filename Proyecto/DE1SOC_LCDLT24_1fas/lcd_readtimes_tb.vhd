@@ -59,9 +59,7 @@ begin
 	tb_ReadBit <= '1';
 	tb_DATA <= '1';
 	tb_velocidad <= "00100101100";
-	 
 
-	wait for 800 ns;
 	wait;
 end process;
 

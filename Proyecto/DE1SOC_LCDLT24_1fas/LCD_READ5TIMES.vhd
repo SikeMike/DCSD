@@ -17,7 +17,7 @@ port(
 end lcd_read5times;
 
 architecture arc_de_lcd_read5times of lcd_read5times is
-type ESTADO is (E0, E1, E2, E3, E4, E5);
+type ESTADO is (E0, E1, E2, E3, E4, E5, E6);
 
 --DECLARACION DE LAS SENIALES DE CONTROL
 signal MIRADO, TC_5, LD_27,LD_5, LD_V , esUNO, ESCERO, RESUL_1, CL_0, CLEAR : std_logic;
@@ -40,30 +40,36 @@ begin
 		ES <=E0;
 	end if;
 	when E1 =>
-	if (mirado = '1') then
+	--if (mirado = '1') then
 		ES<= E2;
-	else
-		ES<=E1;
-	end if;
-	when E2 =>
-	if((esUNO='1' or esUNO='0') and TC_5='1') then
+	--else
+		--ES<=E1;
+	--end if;
+	when E2 => 
+	if (mirado = '1') then
 		ES<=E3;
-	elsif ((esUNO='1' or esUNO='0') and TC_5='0') then
-		ES<=E1;
+	else
+		ES<=E2;
 	end if;
 	when E3 =>
-	if(mirado = '0')then
-		ES<=E3;
-	elsif(mirado ='1') then
-		if(MAS0S='1') then
-			ES<=E4;
-		else
-			ES<=E5;
-		end if;
+	if(TC_5='1') then
+		ES<=E4;
+	else
+		ES <= E1;
 	end if;
 	when E4 =>
-		ES <= E0;
+	if(mirado = '0')then
+		ES<=E4;
+	elsif(mirado ='1') then
+		if(MAS0S='1') then
+			ES<=E5;
+		else
+			ES<=E6;
+		end if;
+	end if;
 	when E5 =>
+		ES <= E0;
+	when E6 =>
 		ES <= E0;
 	when others =>
 		ES <= E0;
@@ -91,18 +97,18 @@ v_out<=
 --activación de las señales de control
 CLEAR <= '1' when (EP = E0) else '0';
 LD_5 <= '1' when (EP=E0) else '0';
-LD_V<= '1' when ((EP=E0 and ReadBit = '1' and CLK'event and CLK = '1') or (EP=E2 and TC_5='1')) else '0';
+LD_V<= '1' when ((EP=E1) or (EP=E3 and TC_5='1')) else '0';
 
-E_27 <= '1' when (EP=E1 or EP=E3) else '0';
-E_5 <= '1' when (EP=E2) else '0';
+E_27 <= '1' when (EP=E2 or EP=E4) else '0';
+E_5 <= '1' when (EP=E3) else '0';
 
-E_UNO <= '1' when (EP = E2 and esUNO = '1') else '0';
-E_CERO <='1' when (EP = E2 and esUNO = '0') else '0';
+E_UNO <= '1' when (EP = E3 and esUNO = '1') else '0';
+E_CERO <='1' when (EP = E3 and esUNO = '0') else '0';
 
-CL_0 <= '1' when (EP = E3 and mirado = '1' and MAS0S = '1') else '0';
-RESUL_1 <= '1' when (EP = E3 and mirado = '1' and MAS0S = '0') else '0';
+CL_0 <= '1' when (EP = E4 and mirado = '1' and MAS0S = '1') else '0';
+RESUL_1 <= '1' when (EP = E4 and mirado = '1' and MAS0S = '0') else '0';
 
-BitReady<= '1' when (EP = E4 or EP = E5) else '0';
+BitReady<= '1' when (EP = E5 or EP = E6) else '0';
 
 --comparador  si es uno o cero
 esUno <= '1' when (DATA = '1') else '0';
@@ -135,17 +141,18 @@ begin
 	elsif (CLEAR = '1') then
 		aux_cont27<="000000000000000";
 		mirado<='0';
-	elsif (CLK'event and CLK = '1' and LD_V = '1') then
-		--if(LD_V='1') then
+	elsif (CLK'event and CLK = '1' ) then
+		if(LD_V='1') then
 			aux_cont27<=v_out;
 			if(E_27='1' and aux_cont27 > "000000000000000") then
 				aux_cont27<= aux_cont27 - "000000000000001";
+				mirado <= '0';
 			elsif(aux_cont27 = "000000000000000") then
 				mirado <= '1';
 			else
 				mirado <= '0';
 			end if;
-		
+		end if;
 	end if;
 	
 end process Cont27;
