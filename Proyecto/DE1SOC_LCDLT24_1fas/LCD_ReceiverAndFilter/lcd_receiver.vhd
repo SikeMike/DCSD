@@ -34,7 +34,6 @@ signal aux_Comando : std_logic_vector(7 downto 0);
 signal Q_Cdwn : unsigned(3 downto 0);
 
 begin
-
   --calculo del estado siguiente (combinacional)
   COMB : process(EP, RX, FILTER_DONE, StartBit, FIN_Cdwn, StopBit, ParityCheck, Done)
   begin
