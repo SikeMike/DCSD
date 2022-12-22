@@ -35,7 +35,7 @@ signal Q_Cdwn : unsigned(3 downto 0);
 
 begin
   --calculo del estado siguiente (combinacional)
-  COMB : process(EP, RX, FILTER_DONE, StartBit, FIN_Cdwn, StopBit, ParityCheck, Done)
+  COMB : process(EP, RX, FILTER_DONE, StartBit, FIN_Cdwn, StopBit, ParityCheck, DONE)
   begin
     case EP is
       when E0 =>
@@ -84,7 +84,7 @@ begin
         end if;
 
       when E7 =>
-        if (Done = '1') then
+        if (DONE = '1') then
           ES <= E0;
         else
           ES <= E7;
@@ -107,7 +107,7 @@ begin
 
   --activacion de las seniales de control
   Init <= '1' when (EP = E0) else '0';
-  OP_FILTER <= '1' when (EP = E2 or EP = E4 or EP = E5) else '0';
+  OP_FILTER <= '1' when ((EP = E2 or EP = E4 or EP = E5) and FILTER_DONE = '0') else '0';
   LD_Start <= '1' when (EP = E2 and FILTER_DONE = '1') else '0';
 
   Shift <= '1' when (EP = E4 and FILTER_DONE = '1' and FIN_Cdwn = '0') else '0';
@@ -116,7 +116,7 @@ begin
   LD_Parity <= '1' when (EP = E4 and FILTER_DONE = '1' and FIN_Cdwn = '1') else '0';
 
   LD_Stop <= '1' when (EP = E5 and FILTER_DONE = '1') else '0';
-  COMAND_READY <= '1' when (EP = E7) else '0';
+  COMAND_READY <= '1' when (EP = E7 and DONE = '0') else '0';
 
   --OR Gate
   InputK <= '1' when (Sum = '1' or Init = '1') else '0';

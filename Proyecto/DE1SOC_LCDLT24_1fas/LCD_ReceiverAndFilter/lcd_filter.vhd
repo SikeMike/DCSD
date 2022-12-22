@@ -14,13 +14,13 @@ entity lcd_filter is
     SPEED :     in std_logic_vector(1 downto 0);
     
     FILTER_DONE : out std_logic;
-    RX_BIT :     out std_logic
+    RX_BIT :      out std_logic
   );
 end lcd_filter;
 
 architecture arc_de_lcd_filter of lcd_filter is
 
-type ESTADO is (E0, E1, E2, E3, E4, E5, E6);
+type ESTADO is (E0, E1, E2, E3, E4, E5);
 
 --declaracion de las seniales de control
 signal EP, ES : ESTADO;
@@ -37,52 +37,28 @@ signal q_reading, aux_cont1, aux_cont0 : unsigned(2 downto 0);
 begin
 
   --calculo del estado siguiente
-  COMB: process(EP, Waiting_End, RX, IS_0, OP_FILTER)
+  COMB: process(EP, OP_FILTER, Waiting_End, END_Reading, RX, IS_0)
     begin
       case EP is
-      when E0 =>
-        if (OP_FILTER = '1') then
-          ES <= E1;
-        else
-          ES <= E0;
-        end if;
-
-      when E1 =>
-        ES <= E2;
-
-      when E2 => 
-        if (Waiting_End = '1') then
-          ES <= E3;
-        else
-          ES <= E2;
-        end if;
-
-      when E3 =>
-        if (END_Reading = '1') then
-          ES <= E4;
-        else
-          ES <= E1;
-        end if;
-
-      when E4 =>
-        if (Waiting_End = '0') then
-          ES <= E4;
-        else
-          if (IS_0 = '1') then
-            ES <= E5;
+        when E0 =>
+          if (OP_FILTER = '1') then
+            ES <= E1;
           else
-            ES <= E6;
+            ES <= E0;
           end if;
-        end if;
 
-      when E5 =>
-        ES <= E0;
+        when E1 => 
+          if (Waiting_End = '1' and END_Reading = '1') then
+            ES <= E2;
+          else
+            ES <= E1;
+          end if;
 
-      when E6 =>
-        ES <= E0;
+        when E2 =>
+          ES <= E0;
 
-      when others =>
-        ES <= E0;
+        when others =>
+          ES <= E0;
       end case;
   end process COMB;
 
@@ -101,24 +77,24 @@ begin
   --con 600 x sera 13.888 = 11011001000000
   --con 1200 x sera 6944 =  1101100100000
   WaitingCicles <=
-    (std_logic_vector(to_unsigned(27777, 15))) when (SPEED = "01") else --300
+    (std_logic_vector(to_unsigned(2, 15))) when (SPEED = "01") else --300       #########################
     (std_logic_vector(to_unsigned(13888, 15))) when (SPEED = "10") else --600
     (std_logic_vector(to_unsigned(6944, 15))); --1200
 
   --activacion de las seniales de control
   Init <= '1' when (EP = E0) else '0';
-  LD_WaitingCicles <= '1' when ((EP = E1) or (EP = E3 and END_Reading = '1')) else '0';
+  LD_WaitingCicles <= '1' when ((EP = E0 and OP_FILTER = '1') or (EP = E1 and Waiting_End = '1' and END_Reading = '0')) else '0';
 
-  DEC_Cicles <= '1' when (EP = E2 or EP = E4) else '0';
-  DEC_Reading <= '1' when (EP = E3) else '0';
+  DEC_Cicles <= '1' when (EP = E1 and Waiting_End = '0') else '0';
+  DEC_Reading <= '1' when (EP = E1 and Waiting_End = '1' and End_Reading = '0') else '0';
 
-  INC_1 <= '1' when (EP = E3 and RX = '1') else '0';
-  INC_0 <='1' when (EP = E3 and RX = '0') else '0';
+  INC_1 <= '1' when (EP = E1 and Waiting_End = '1' and End_Reading = '0' and RX = '1') else '0';
+  INC_0 <='1' when (EP = E1 and Waiting_End = '1' and End_Reading = '0' and RX = '0') else '0';
 
-  Output_0 <= '1' when (EP = E4 and Waiting_End = '1' and IS_0 = '1') else '0';
-  Output_1 <= '1' when (EP = E4 and Waiting_End = '1' and IS_0 = '0') else '0';
+  Output_0 <= '1' when (EP = E1 and Waiting_End = '1' and End_Reading = '1' and IS_0 = '1') else '0';
+  Output_1 <= '1' when (EP = E3 and Waiting_End = '1' and End_Reading = '1' and IS_0 = '0') else '0';
 
-  FILTER_DONE <= '1' when (EP = E5 or EP = E6) else '0';
+  FILTER_DONE <= '1' when (EP = E2) else '0';
 
   --comparador si hay mas ceros o unos
   IS_0 <= '1' when (Abs0 > Abs1) else '0';
@@ -161,7 +137,7 @@ begin
       q_reading <= to_unsigned(0, 3);
     elsif (CLK'event and CLK = '1' ) then
       if (Init = '1') then
-        q_reading <= to_unsigned(5, 3); --5
+        q_reading <= to_unsigned(1, 3);                 --#################################################################################5
       elsif (DEC_Reading = '1') then
         q_reading <= (q_reading - to_unsigned(1, 3));
       end if;

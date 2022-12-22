@@ -3,13 +3,13 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use IEEE.std_logic_arith.ALL;
 
-entity lcd_receiver_tb is
+entity lcd_receiver_1tb is
 
   -- Entidad vacia
 
-end lcd_receiver_tb;
+end lcd_receiver_1tb;
 
-architecture arq_lcd_receiver_tb of lcd_receiver_tb is
+architecture arq_lcd_receiver_1tb of lcd_receiver_1tb is
 
 component lcd_receiver
 
@@ -63,7 +63,7 @@ begin
 
   tb_CLK <= not tb_CLK after 10 ns;
 
-  simulacion : process
+  simulacion1 : process
   begin
     wait for 20 ns;     -- E0 -> E1 (desactivo reset_l)
     tb_RESET_L <= '1';
@@ -77,4 +77,4 @@ begin
     wait;
   end process ;
 
-end arq_lcd_receiver_tb;
+end arq_lcd_receiver_1tb;

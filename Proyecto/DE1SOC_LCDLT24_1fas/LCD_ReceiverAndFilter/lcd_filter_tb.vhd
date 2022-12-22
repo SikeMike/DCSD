@@ -37,7 +37,7 @@ signal tb_RX : std_logic := '1';
 signal tb_SPEED : std_logic_vector(1 downto 0) := "01";
 
 signal tb_FILTER_DONE : std_logic;
-signal tb_RX_BIT :      std_logic;
+signal tb_RX_BIT : std_logic;
 
 begin
 
@@ -60,8 +60,12 @@ begin
   simulacion : process
   begin
     wait for 20 ns;
-    tb_RESET_L<= '1';
-
+    tb_RESET_L <= '1';
+    wait for 60 ns;
+    tb_OP_FILTER <= '1';
+    tb_RX <= '1';
+    wait for 20 ns;
+    tb_OP_FILTER <= '0';
     wait;
   end process;
 
