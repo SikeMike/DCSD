@@ -34,6 +34,8 @@ signal Abs0, Abs1 : std_logic_vector(2 downto 0);
 signal q_cicles : unsigned(14 downto 0);
 signal q_reading, aux_cont1, aux_cont0 : unsigned(2 downto 0);
 
+signal int0s, int1s : integer;
+
 begin
 
   --calculo del estado siguiente
@@ -77,7 +79,7 @@ begin
   --con 600 x sera 13.888 = 11011001000000
   --con 1200 x sera 6944 =  1101100100000
   WaitingCicles <=
-    (std_logic_vector(to_unsigned(2, 15))) when (SPEED = "01") else --300       #########################
+    (std_logic_vector(to_unsigned(5, 15))) when (SPEED = "01") else --300       #########################
     (std_logic_vector(to_unsigned(13888, 15))) when (SPEED = "10") else --600
     (std_logic_vector(to_unsigned(6944, 15))); --1200
 
@@ -92,12 +94,14 @@ begin
   INC_0 <='1' when (EP = E1 and Waiting_End = '1' and End_Reading = '0' and RX = '0') else '0';
 
   Output_0 <= '1' when (EP = E1 and Waiting_End = '1' and End_Reading = '1' and IS_0 = '1') else '0';
-  Output_1 <= '1' when (EP = E3 and Waiting_End = '1' and End_Reading = '1' and IS_0 = '0') else '0';
+  Output_1 <= '1' when (EP = E1 and Waiting_End = '1' and End_Reading = '1' and IS_0 = '0') else '0';
 
   FILTER_DONE <= '1' when (EP = E2) else '0';
 
   --comparador si hay mas ceros o unos
-  IS_0 <= '1' when (Abs0 > Abs1) else '0';
+  int0s <= (to_integer(unsigned(Abs0)));
+  int1s <= (to_integer(unsigned(Abs1)));
+  IS_0 <= '1' when (int0s > int1s) else '0';
 
   --registro del RX_BIT
   RegRXBit : process(CLK, RESET_L)
@@ -137,7 +141,7 @@ begin
       q_reading <= to_unsigned(0, 3);
     elsif (CLK'event and CLK = '1' ) then
       if (Init = '1') then
-        q_reading <= to_unsigned(1, 3);                 --#################################################################################5
+        q_reading <= to_unsigned(3, 3);                 --#################################################################################5
       elsif (DEC_Reading = '1') then
         q_reading <= (q_reading - to_unsigned(1, 3));
       end if;

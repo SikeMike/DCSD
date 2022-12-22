@@ -59,10 +59,13 @@ begin
 
   simulacion : process
   begin
+    wait for 10 ns; --(para sincronizar)
     wait for 20 ns;
     tb_RESET_L <= '1';
     wait for 60 ns;
     tb_OP_FILTER <= '1';
+    tb_RX <= '0';
+    wait for 250 ns;
     tb_RX <= '1';
     wait for 20 ns;
     tb_OP_FILTER <= '0';

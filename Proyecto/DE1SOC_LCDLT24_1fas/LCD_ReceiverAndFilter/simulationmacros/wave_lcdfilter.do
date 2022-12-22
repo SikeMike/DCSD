@@ -24,13 +24,15 @@ add wave -noupdate -color {Spring Green} /lcd_filter_tb/uFilter/Output_1
 add wave -noupdate /lcd_filter_tb/uFilter/Output_0
 add wave -noupdate /lcd_filter_tb/uFilter/WaitingCicles
 add wave -noupdate /lcd_filter_tb/uFilter/Abs0
+add wave -noupdate /lcd_filter_tb/uFilter/int0s
+add wave -noupdate /lcd_filter_tb/uFilter/int1s
 add wave -noupdate /lcd_filter_tb/uFilter/Abs1
 add wave -noupdate /lcd_filter_tb/uFilter/q_cicles
 add wave -noupdate /lcd_filter_tb/uFilter/q_reading
 add wave -noupdate /lcd_filter_tb/uFilter/aux_cont1
 add wave -noupdate /lcd_filter_tb/uFilter/aux_cont0
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {527261 ps} 0}
+WaveRestoreCursors {{Cursor 1} {230439 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 239
 configure wave -valuecolwidth 88
@@ -46,4 +48,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1050 ns}
+WaveRestoreZoom {0 ps} {420 ns}
