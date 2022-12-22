@@ -628,20 +628,6 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to CLOCK_
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
-set_global_assignment -name VHDL_FILE LCD_ReceiverAndFilter/lcd_receiver.vhd
-set_global_assignment -name VHDL_FILE LCD_ReceiverAndFilter/lcd_filter.vhd
-set_global_assignment -name VHDL_FILE LCD_DrawingAndControl/lcd_drawing.vhd
-set_global_assignment -name VHDL_FILE LCD_DrawingAndControl/lcd_control.vhd
-set_global_assignment -name VHDL_FILE LCD_SetUp/romsinc.vhd
-set_global_assignment -name VHDL_FILE LCD_SetUp/LT24SetUp.vhd
-set_global_assignment -name VHDL_FILE LCD_SetUp/LT24InitReset.vhd
-set_global_assignment -name VHDL_FILE LCD_SetUp/LT24InitLCD.vhd
-set_global_assignment -name VHDL_FILE LCD_SetUp/Init128rom_pkg.vhd
-set_global_assignment -name VHDL_FILE DE1SOC_LCDLT24_1fas.vhd
-set_global_assignment -name SDC_FILE DE1SOC_LCDLT24_1fas.sdc
-set_global_assignment -name SOURCE_FILE DE1SOC_LCDLT24_1fas.qsf
-set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
-set_global_assignment -name VHDL_FILE LCD_Translator/lcd_translator.vhd
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=2048" -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
@@ -678,5 +664,19 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -t
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
+set_global_assignment -name VHDL_FILE LCD_SetUp/romsinc.vhd
+set_global_assignment -name VHDL_FILE LCD_SetUp/LT24SetUp.vhd
+set_global_assignment -name VHDL_FILE LCD_SetUp/LT24InitReset.vhd
+set_global_assignment -name VHDL_FILE LCD_SetUp/LT24InitLCD.vhd
+set_global_assignment -name VHDL_FILE LCD_SetUp/Init128rom_pkg.vhd
+set_global_assignment -name VHDL_FILE DE1SOC_LCDLT24_1fas.vhd
+set_global_assignment -name SDC_FILE DE1SOC_LCDLT24_1fas.sdc
+set_global_assignment -name SOURCE_FILE DE1SOC_LCDLT24_1fas.qsf
+set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
+set_global_assignment -name VHDL_FILE "LCD_Receiver-Filter-Translator/lcd_translator.vhd"
+set_global_assignment -name VHDL_FILE "LCD_Receiver-Filter-Translator/lcd_receiver.vhd"
+set_global_assignment -name VHDL_FILE "LCD_Receiver-Filter-Translator/lcd_filter.vhd"
+set_global_assignment -name VHDL_FILE LCD_DrawingAndControl/lcd_drawing.vhd
+set_global_assignment -name VHDL_FILE LCD_DrawingAndControl/lcd_control.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
