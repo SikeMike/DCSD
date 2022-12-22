@@ -9,12 +9,22 @@ entity DE1SOC_LCDLT24_1fas is
 --	CLOCK2_50	: in	std_logic;
 --	CLOCK3_50	: in	std_logic;
 --	CLOCK4_50	: in	std_logic;
+
+	-- UART----------------
+	UART_RX : in std_logic;
+-- UART_TX : out std_logic;
+-- UART_CTS_L : in std_logic;
+-- UART_RTS_L : out std_logic;
+
 	-- KEY ----------------
 	KEY 		: in	std_logic_vector(3 downto 0);
+	
 	-- SW ----------------
-	SW 			: in	std_logic_vector(2 downto 0);
+	SW 			: in	std_logic_vector(9 downto 0);
+	
 	-- LEDR ----------------
 	LEDR 		: out	std_logic_vector(9 downto 0);
+	
 	-- LT24_LCD ----------------
    LT24_LCD_ON     : out std_logic;
    LT24_RESET_N    : out std_logic;
@@ -109,6 +119,53 @@ component lcd_drawing
 	);
 end component;
 
+component lcd_receiver
+	port
+	(
+		CLK :     in std_logic;
+		RESET_L : in std_logic;
+
+		RX :          in std_logic;
+		FILTER_DONE : in std_logic;
+		RX_BIT :      in std_logic;
+		DONE :        in std_logic;
+
+		OP_FILTER :    out std_logic;
+		COMAND_READY : out std_logic;
+		COMAND :      out std_logic_vector(7 downto 0)
+  );
+end component;
+
+component lcd_filter
+	port
+	(
+		CLK:      in std_logic;
+		RESET_L : in std_logic;
+
+		OP_FILTER : in std_logic;
+		RX :        in std_logic;
+		SPEED :     in std_logic_vector(1 downto 0);
+    
+		FILTER_DONE : out std_logic;
+		RX_BIT :      out std_logic
+	);
+end component;
+
+component lcd_translator
+	port
+	(
+		CLK :     in std_logic;
+		RESET_L : in std_logic;
+
+		COMAND_READY :          in std_logic;
+		COMAND : in std_logic_vector(7 downto 0);
+
+		DEL_SCREEN :    out std_logic;
+		DRAW_FIG : out std_logic;
+		DONE :      out std_logic
+	);
+end component;
+
   -- LT24Setup COMPONENT
   signal TOP_clk, TOP_reset, TOP_reset_l :  std_logic;
 
@@ -165,7 +222,46 @@ end component;
   -- TOP_OP_DRAWCOLOUR : std_logic := '0';
   -- TOP_RGB : std_logic_vector(15 downto 0);
   -- TOP_NUM_PIX : std_logic_vector(16 downto 0);
+    
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  
+  -- LCD_RECEIVER COMPONENT
+  
+  --signal TOP_clk, TOP_reset, TOP_reset_l : std_logic;
+  signal TOP_RX : std_logic := '1';
+  signal TOP_FILTER_DONE : std_logic := '0';
+  signal TOP_RX_BIT : std_logic := '0';
+  signal TOP_DONE : std_logic := '0';
 
+  signal TOP_OP_FILTER : std_logic;
+  signal TOP_COMAND_READY : std_logic;
+  signal TOP_COMAND : std_logic_vector(7 downto 0);
+  
+    
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  
+  -- LCD_FILTER COMPONENT
+  
+  --signal TOP_clk, TOP_reset, TOP_reset_l : std_logic;
+  --signal TOP_OP_FILTER : std_logic := '0';
+  --signal TOP_RX : std_logic := '1';
+  signal TOP_SPEED : std_logic_vector(1 downto 0) := "01";
+
+  --signal TOP_FILTER_DONE : std_logic;
+  --signal TOP_RX_BIT : std_logic;
+  
+    
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  
+  -- LCD_TRANSLATOR COMPONENT
+  
+  --signal TOP_clk, TOP_reset, TOP_reset_l : std_logic;
+  --signal TOP_COMAND_READY : std_logic := '0';
+  --signal TOP_COMAND : std_logic_vector(7 downto 0) := (others => '0');
+
+  --signal TOP_DEL_SCREEN : std_logic;
+  --signal TOP_DRAW_FIG : std_logic;
+  --signal TOP_DONE : std_logic;
   
 
 begin
@@ -178,12 +274,17 @@ begin
 	
    LEDR(8) <= TOP_LT24_Init_Done;
 	
-	TOP_DEL_SCREEN <= not(KEY(3));
-	TOP_DRAW_FIG <= not(KEY(2));
+	--TOP_DEL_SCREEN <= not(KEY(3));					-- FASE 1
+	--TOP_DRAW_FIG <= not(KEY(2));					--
 	TOP_COLOUR_CODE <= SW(2 downto 0);
 	
 	LEDR(6) <= not(KEY(3)); --OP_SETCURSOR 
 	LEDR(5) <= not(KEY(2)); --OP_DRAWCOLOUR
+	
+	TOP_SPEED(1) <= SW(9);
+	TOP_SPEED(0) <= SW(8);
+	
+	TOP_RX <= UART_RX;
 
     
 -- Osagaien elkarketa        --------------    
@@ -209,9 +310,7 @@ begin
       LT24_D           => LT24_D,
 		
       LT24_Init_Done		=> TOP_LT24_Init_Done
- );
-
-
+	);
 
   O2_LCDDRAW: lcd_drawing
   port map (
@@ -232,8 +331,8 @@ begin
 		RGB 				=> TOP_RGB,
 		NUM_PIX 			=> TOP_NUM_PIX
 
-		);
-	
+	);
+
   O3_LCDCONT: lcd_control
   port map (
   
@@ -255,6 +354,53 @@ begin
 		LCD_RS 		=> TOP_LT24_RS_Int,
 		LCD_DATA 	=> TOP_LT24_D_Int
 
-		);
+	);
+
+  O4_LCDREC: lcd_receiver
+  port map (
+  
+		CLK		=> TOP_clk,
+		RESET_L	=> TOP_reset_l,
+
+		RX				=> TOP_RX,
+		FILTER_DONE => TOP_FILTER_DONE,
+		RX_BIT		=> TOP_RX_BIT,
+		DONE			=> TOP_DONE,
+
+		OP_FILTER		=> TOP_OP_FILTER,
+		COMAND_READY	=> TOP_COMAND_READY,
+		COMAND			=> TOP_COMAND
+
+  );
+  
+  O5_LCDFILT: lcd_filter
+  port map (
+
+		CLK		=> TOP_clk,
+		RESET_L	=> TOP_reset_l,
+
+		OP_FILTER	=> TOP_OP_FILTER,
+		RX				=> TOP_RX,
+		SPEED			=> TOP_SPEED,
+
+		FILTER_DONE => TOP_FILTER_DONE,
+		RX_BIT		=> TOP_RX_BIT
+	
+	);
+	
+	O6_LCDTRANS: lcd_translator
+	port map (
+	
+		CLK		=> TOP_clk,
+		RESET_L	=> TOP_reset_l,
+
+		COMAND_READY	=> TOP_COMAND_READY,
+		COMAND			=> TOP_COMAND,
+
+		DEL_SCREEN	=> TOP_DEL_SCREEN,
+		DRAW_FIG		=> TOP_DRAW_FIG,
+		DONE			=> TOP_DONE
+		
+	);
   
 END str;

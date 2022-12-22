@@ -25,7 +25,7 @@ component lcd_receiver
 
     OP_FILTER : out std_logic;
     COMAND_READY : out std_logic;
-    COMANDO : out std_logic_vector(7 downto 0)
+    COMAND : out std_logic_vector(7 downto 0)
   );
 
 end component;
@@ -41,7 +41,7 @@ signal tb_DONE : std_logic := '0';
 
 signal tb_OP_FILTER : std_logic;
 signal tb_COMAND_READY : std_logic;
-signal tb_COMANDO : std_logic_vector(7 downto 0);
+signal tb_COMAND : std_logic_vector(7 downto 0);
 
 begin
 
@@ -57,7 +57,7 @@ begin
 
     OP_FILTER => tb_OP_FILTER,
     COMAND_READY => tb_COMAND_READY,
-    COMANDO => tb_COMANDO
+    COMAND => tb_COMAND
 
   );
 

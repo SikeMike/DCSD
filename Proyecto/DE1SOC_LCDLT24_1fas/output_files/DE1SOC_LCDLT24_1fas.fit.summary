@@ -1,13 +1,13 @@
-Fitter Status : Successful - Thu Nov 10 20:05:08 2022
+Fitter Status : Successful - Thu Dec 22 19:48:27 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : DE1SOC_LCDLT24_1fas
 Top-level Entity Name : DE1SOC_LCDLT24_1fas
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 499 / 32,070 ( 2 % )
-Total registers : 1052
-Total pins : 40 / 457 ( 9 % )
+Logic utilization (in ALMs) : 540 / 32,070 ( 2 % )
+Total registers : 1142
+Total pins : 48 / 457 ( 11 % )
 Total virtual pins : 0
 Total block memory bits : 33,792 / 4,065,280 ( < 1 % )
 Total RAM Blocks : 4 / 397 ( 1 % )

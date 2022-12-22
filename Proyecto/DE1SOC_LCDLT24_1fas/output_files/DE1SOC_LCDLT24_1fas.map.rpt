@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1SOC_LCDLT24_1fas
-Thu Nov 10 20:02:53 2022
+Thu Dec 22 19:46:03 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -15,26 +15,29 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
- 10. State Machine - |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|EP
- 11. State Machine - |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|EP
- 12. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|ep3
- 13. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|ep2
- 14. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|ep
- 15. Registers Protected by Synthesis
- 16. Registers Removed During Synthesis
- 17. General Register Statistics
- 18. Inverted Register Statistics
- 19. Multiplexer Restructuring Statistics (Restructuring Performed)
- 20. Source assignments for LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET
- 21. Source assignments for sld_signaltap:auto_signaltap_0
- 22. Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0
- 23. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
- 24. Port Connectivity Checks: "LT24Setup:O1_SETUP"
- 25. Signal Tap Logic Analyzer Settings
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Connections to In-System Debugging Instance "auto_signaltap_0"
- 29. Analysis & Synthesis Messages
+ 10. State Machine - |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|EP
+ 11. State Machine - |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|EP
+ 12. State Machine - |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|EP
+ 13. State Machine - |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|EP
+ 14. State Machine - |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|EP
+ 15. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|ep3
+ 16. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|ep2
+ 17. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|ep
+ 18. Registers Protected by Synthesis
+ 19. Registers Removed During Synthesis
+ 20. General Register Statistics
+ 21. Inverted Register Statistics
+ 22. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 23. Source assignments for LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET
+ 24. Source assignments for sld_signaltap:auto_signaltap_0
+ 25. Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0
+ 26. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
+ 27. Port Connectivity Checks: "LT24Setup:O1_SETUP"
+ 28. Signal Tap Logic Analyzer Settings
+ 29. Post-Synthesis Netlist Statistics for Top Partition
+ 30. Elapsed Time Per Partition
+ 31. Connections to In-System Debugging Instance "auto_signaltap_0"
+ 32. Analysis & Synthesis Messages
 
 
 
@@ -60,14 +63,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Nov 10 20:02:53 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Dec 22 19:46:03 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; DE1SOC_LCDLT24_1fas                         ;
 ; Top-level Entity Name           ; DE1SOC_LCDLT24_1fas                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1020                                        ;
-; Total pins                      ; 40                                          ;
+; Total registers                 ; 1082                                        ;
+; Total pins                      ; 48                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 33,792                                      ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -184,76 +187,79 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                                        ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                              ; Library     ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
-; LCD_DrawingAndControl/lcd_drawing.vhd                              ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd                              ;             ;
-; LCD_DrawingAndControl/lcd_control.vhd                              ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd                              ;             ;
-; LCD_SetUp/romsinc.vhd                                              ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd                                              ;             ;
-; LCD_SetUp/LT24SetUp.vhd                                            ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd                                            ;             ;
-; LCD_SetUp/LT24InitReset.vhd                                        ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd                                        ;             ;
-; LCD_SetUp/LT24InitLCD.vhd                                          ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd                                          ;             ;
-; LCD_SetUp/Init128rom_pkg.vhd                                       ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd                                       ;             ;
-; DE1SOC_LCDLT24_1fas.vhd                                            ; yes             ; User VHDL File                               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd                                            ;             ;
-; sld_signaltap.vhd                                                  ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap.vhd                                                                                  ;             ;
-; sld_signaltap_impl.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd                                                                             ;             ;
-; sld_ela_control.vhd                                                ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_control.vhd                                                                                ;             ;
-; lpm_shiftreg.tdf                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_shiftreg.tdf                                                                                   ;             ;
-; lpm_constant.inc                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_constant.inc                                                                                   ;             ;
-; dffeea.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/dffeea.inc                                                                                         ;             ;
-; aglobal181.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                                     ;             ;
-; sld_mbpmg.vhd                                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_mbpmg.vhd                                                                                      ;             ;
-; sld_ela_trigger_flow_mgr.vhd                                       ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd                                                                       ;             ;
-; sld_buffer_manager.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_buffer_manager.vhd                                                                             ;             ;
-; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                                     ;             ;
-; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                              ;             ;
-; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                        ;             ;
-; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                     ;             ;
-; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                      ;             ;
-; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                                                                         ;             ;
-; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                                                                         ;             ;
-; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                       ;             ;
-; db/altsyncram_ug84.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/altsyncram_ug84.tdf                                             ;             ;
-; altdpram.tdf                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                                       ;             ;
-; memmodes.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/others/maxplus2/memmodes.inc                                                                                     ;             ;
-; a_hdffe.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_hdffe.inc                                                                                        ;             ;
-; alt_le_rden_reg.inc                                                ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_le_rden_reg.inc                                                                                ;             ;
-; altsyncram.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.inc                                                                                     ;             ;
-; lpm_mux.tdf                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.tdf                                                                                        ;             ;
-; muxlut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/muxlut.inc                                                                                         ;             ;
-; bypassff.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc                                                                                       ;             ;
-; altshift.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc                                                                                       ;             ;
-; db/mux_blc.tdf                                                     ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/mux_blc.tdf                                                     ;             ;
-; lpm_decode.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.tdf                                                                                     ;             ;
-; declut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/declut.inc                                                                                         ;             ;
-; lpm_compare.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_compare.inc                                                                                    ;             ;
-; db/decode_vnf.tdf                                                  ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/decode_vnf.tdf                                                  ;             ;
-; lpm_counter.tdf                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.tdf                                                                                    ;             ;
-; lpm_add_sub.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                                                    ;             ;
-; cmpconst.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/cmpconst.inc                                                                                       ;             ;
-; lpm_counter.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.inc                                                                                    ;             ;
-; alt_counter_stratix.inc                                            ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_counter_stratix.inc                                                                            ;             ;
-; db/cntr_29i.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_29i.tdf                                                    ;             ;
-; db/cmpr_e9c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_e9c.tdf                                                    ;             ;
-; db/cntr_q1j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_q1j.tdf                                                    ;             ;
-; db/cntr_u8i.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_u8i.tdf                                                    ;             ;
-; db/cmpr_d9c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_d9c.tdf                                                    ;             ;
-; db/cntr_kri.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_kri.tdf                                                    ;             ;
-; db/cmpr_99c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_99c.tdf                                                    ;             ;
-; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                                     ;             ;
-; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                      ;             ;
-; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                  ;             ;
-; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                                        ; altera_sld  ;
-; db/ip/sldaa8a7c86/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/alt_sld_fab.v                                    ; alt_sld_fab ;
-; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
-; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
-; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
-; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
-; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
-; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                                   ;             ;
-+--------------------------------------------------------------------+-----------------+----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                                                   ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                                         ; Library     ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; LCD_ReceiverAndFilter/lcd_receiver.vhd                             ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_receiver.vhd                             ;             ;
+; LCD_ReceiverAndFilter/lcd_filter.vhd                               ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_filter.vhd                               ;             ;
+; LCD_DrawingAndControl/lcd_drawing.vhd                              ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd                              ;             ;
+; LCD_DrawingAndControl/lcd_control.vhd                              ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd                              ;             ;
+; LCD_SetUp/romsinc.vhd                                              ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd                                              ;             ;
+; LCD_SetUp/LT24SetUp.vhd                                            ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd                                            ;             ;
+; LCD_SetUp/LT24InitReset.vhd                                        ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd                                        ;             ;
+; LCD_SetUp/LT24InitLCD.vhd                                          ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd                                          ;             ;
+; LCD_SetUp/Init128rom_pkg.vhd                                       ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd                                       ;             ;
+; DE1SOC_LCDLT24_1fas.vhd                                            ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd                                            ;             ;
+; LCD_Translator/lcd_translator.vhd                                  ; yes             ; User VHDL File                               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Translator/lcd_translator.vhd                                  ;             ;
+; sld_signaltap.vhd                                                  ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap.vhd                                                                                             ;             ;
+; sld_signaltap_impl.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_signaltap_impl.vhd                                                                                        ;             ;
+; sld_ela_control.vhd                                                ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_control.vhd                                                                                           ;             ;
+; lpm_shiftreg.tdf                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_shiftreg.tdf                                                                                              ;             ;
+; lpm_constant.inc                                                   ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_constant.inc                                                                                              ;             ;
+; dffeea.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/dffeea.inc                                                                                                    ;             ;
+; aglobal181.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                                                                                ;             ;
+; sld_mbpmg.vhd                                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_mbpmg.vhd                                                                                                 ;             ;
+; sld_ela_trigger_flow_mgr.vhd                                       ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_ela_trigger_flow_mgr.vhd                                                                                  ;             ;
+; sld_buffer_manager.vhd                                             ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_buffer_manager.vhd                                                                                        ;             ;
+; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                                                ;             ;
+; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                         ;             ;
+; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                                   ;             ;
+; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                                ;             ;
+; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                                 ;             ;
+; altrom.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                                                                                    ;             ;
+; altram.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                                                                                    ;             ;
+; altdpram.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                  ;             ;
+; db/altsyncram_ug84.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/altsyncram_ug84.tdf                                             ;             ;
+; altdpram.tdf                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.tdf                                                                                                  ;             ;
+; memmodes.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/others/maxplus2/memmodes.inc                                                                                                ;             ;
+; a_hdffe.inc                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_hdffe.inc                                                                                                   ;             ;
+; alt_le_rden_reg.inc                                                ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_le_rden_reg.inc                                                                                           ;             ;
+; altsyncram.inc                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.inc                                                                                                ;             ;
+; lpm_mux.tdf                                                        ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.tdf                                                                                                   ;             ;
+; muxlut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/muxlut.inc                                                                                                    ;             ;
+; bypassff.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc                                                                                                  ;             ;
+; altshift.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc                                                                                                  ;             ;
+; db/mux_blc.tdf                                                     ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/mux_blc.tdf                                                     ;             ;
+; lpm_decode.tdf                                                     ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.tdf                                                                                                ;             ;
+; declut.inc                                                         ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/declut.inc                                                                                                    ;             ;
+; lpm_compare.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_compare.inc                                                                                               ;             ;
+; db/decode_vnf.tdf                                                  ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/decode_vnf.tdf                                                  ;             ;
+; lpm_counter.tdf                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.tdf                                                                                               ;             ;
+; lpm_add_sub.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                                                               ;             ;
+; cmpconst.inc                                                       ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/cmpconst.inc                                                                                                  ;             ;
+; lpm_counter.inc                                                    ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_counter.inc                                                                                               ;             ;
+; alt_counter_stratix.inc                                            ; yes             ; Megafunction                                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/alt_counter_stratix.inc                                                                                       ;             ;
+; db/cntr_29i.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_29i.tdf                                                    ;             ;
+; db/cmpr_e9c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_e9c.tdf                                                    ;             ;
+; db/cntr_q1j.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_q1j.tdf                                                    ;             ;
+; db/cntr_u8i.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_u8i.tdf                                                    ;             ;
+; db/cmpr_d9c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_d9c.tdf                                                    ;             ;
+; db/cntr_kri.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_kri.tdf                                                    ;             ;
+; db/cmpr_99c.tdf                                                    ; yes             ; Auto-Generated Megafunction                  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_99c.tdf                                                    ;             ;
+; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                                                ;             ;
+; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                                 ;             ;
+; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                             ;             ;
+; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                                                   ; altera_sld  ;
+; db/ip/sldaa8a7c86/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/alt_sld_fab.v                                    ; alt_sld_fab ;
+; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
+; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
+; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
+; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
+; db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
+; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                                              ;             ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
 
 
 +--------------------------------------------------------------+
@@ -261,27 +267,27 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 591            ;
+; Estimate of Logic utilization (ALMs needed) ; 628            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 637            ;
-;     -- 7 input functions                    ; 3              ;
-;     -- 6 input functions                    ; 124            ;
-;     -- 5 input functions                    ; 112            ;
+; Combinational ALUT usage for logic          ; 698            ;
+;     -- 7 input functions                    ; 4              ;
+;     -- 6 input functions                    ; 134            ;
+;     -- 5 input functions                    ; 130            ;
 ;     -- 4 input functions                    ; 67             ;
-;     -- <=3 input functions                  ; 331            ;
+;     -- <=3 input functions                  ; 363            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 1020           ;
+; Dedicated logic registers                   ; 1082           ;
 ;                                             ;                ;
-; I/O pins                                    ; 40             ;
+; I/O pins                                    ; 48             ;
 ; Total MLAB memory bits                      ; 0              ;
 ; Total block memory bits                     ; 33792          ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 632            ;
-; Total fan-out                               ; 6634           ;
-; Average fan-out                             ; 3.73           ;
+; Maximum fan-out                             ; 694            ;
+; Total fan-out                               ; 7128           ;
+; Average fan-out                             ; 3.72           ;
 +---------------------------------------------+----------------+
 
 
@@ -290,13 +296,16 @@ refer to the applicable agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                             ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |DE1SOC_LCDLT24_1fas                                                                                                                    ; 637 (3)             ; 1020 (0)                  ; 33792             ; 0          ; 40   ; 0            ; |DE1SOC_LCDLT24_1fas                                                                                                                                                                                                                                                                                                                                            ; DE1SOC_LCDLT24_1fas               ; work         ;
-;    |LT24Setup:O1_SETUP|                                                                                                                 ; 178 (40)            ; 135 (19)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP                                                                                                                                                                                                                                                                                                                         ; LT24Setup                         ; work         ;
-;       |LT24InitLCD:DUT_InitLCD|                                                                                                         ; 34 (23)             ; 31 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD                                                                                                                                                                                                                                                                                                 ; LT24InitLCD                       ; work         ;
-;          |romsinc:DUT_ROM|                                                                                                              ; 11 (11)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM                                                                                                                                                                                                                                                                                 ; romsinc                           ; work         ;
+; |DE1SOC_LCDLT24_1fas                                                                                                                    ; 698 (1)             ; 1082 (0)                  ; 33792             ; 0          ; 48   ; 0            ; |DE1SOC_LCDLT24_1fas                                                                                                                                                                                                                                                                                                                                            ; DE1SOC_LCDLT24_1fas               ; work         ;
+;    |LT24Setup:O1_SETUP|                                                                                                                 ; 178 (38)            ; 135 (19)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP                                                                                                                                                                                                                                                                                                                         ; LT24Setup                         ; work         ;
+;       |LT24InitLCD:DUT_InitLCD|                                                                                                         ; 36 (23)             ; 31 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD                                                                                                                                                                                                                                                                                                 ; LT24InitLCD                       ; work         ;
+;          |romsinc:DUT_ROM|                                                                                                              ; 13 (13)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM                                                                                                                                                                                                                                                                                 ; romsinc                           ; work         ;
 ;       |LT24InitReset:DUT_RESET|                                                                                                         ; 104 (104)           ; 85 (85)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET                                                                                                                                                                                                                                                                                                 ; LT24InitReset                     ; work         ;
-;    |lcd_control:O3_LCDCONT|                                                                                                             ; 53 (53)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT                                                                                                                                                                                                                                                                                                                     ; lcd_control                       ; work         ;
-;    |lcd_drawing:O2_LCDDRAW|                                                                                                             ; 41 (41)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW                                                                                                                                                                                                                                                                                                                     ; lcd_drawing                       ; work         ;
+;    |lcd_control:O3_LCDCONT|                                                                                                             ; 50 (50)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT                                                                                                                                                                                                                                                                                                                     ; lcd_control                       ; work         ;
+;    |lcd_drawing:O2_LCDDRAW|                                                                                                             ; 37 (37)             ; 18 (18)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW                                                                                                                                                                                                                                                                                                                     ; lcd_drawing                       ; work         ;
+;    |lcd_filter:O5_LCDFILT|                                                                                                              ; 47 (47)             ; 28 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT                                                                                                                                                                                                                                                                                                                      ; lcd_filter                        ; work         ;
+;    |lcd_receiver:O4_LCDREC|                                                                                                             ; 19 (19)             ; 24 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC                                                                                                                                                                                                                                                                                                                     ; lcd_receiver                      ; work         ;
+;    |lcd_translator:O6_LCDTRANS|                                                                                                         ; 4 (4)               ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS                                                                                                                                                                                                                                                                                                                 ; lcd_translator                    ; work         ;
 ;    |sld_hub:auto_hub|                                                                                                                   ; 92 (1)              ; 91 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
 ;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 91 (0)              ; 91 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
 ;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 91 (0)              ; 91 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
@@ -394,6 +403,50 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |DE1SOC_LCDLT24_1fas|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric ;                 ;
 ; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |DE1SOC_LCDLT24_1fas|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_splitter:splitter   ;                 ;
 +--------+--------------+---------+--------------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------+
+; State Machine - |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|EP ;
++-------+-------+-------+--------------------------------------------+
+; Name  ; EP.E2 ; EP.E1 ; EP.E0                                      ;
++-------+-------+-------+--------------------------------------------+
+; EP.E0 ; 0     ; 0     ; 0                                          ;
+; EP.E1 ; 0     ; 1     ; 1                                          ;
+; EP.E2 ; 1     ; 0     ; 1                                          ;
++-------+-------+-------+--------------------------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------+
+; State Machine - |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|EP ;
++-------+-------+-------+-------+-------+-------+---------------+
+; Name  ; EP.E5 ; EP.E4 ; EP.E3 ; EP.E2 ; EP.E1 ; EP.E0         ;
++-------+-------+-------+-------+-------+-------+---------------+
+; EP.E0 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0             ;
+; EP.E1 ; 0     ; 0     ; 0     ; 0     ; 1     ; 1             ;
+; EP.E2 ; 0     ; 0     ; 0     ; 1     ; 0     ; 1             ;
+; EP.E3 ; 0     ; 0     ; 1     ; 0     ; 0     ; 1             ;
+; EP.E4 ; 0     ; 1     ; 0     ; 0     ; 0     ; 1             ;
+; EP.E5 ; 1     ; 0     ; 0     ; 0     ; 0     ; 1             ;
++-------+-------+-------+-------+-------+-------+---------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------+
+; State Machine - |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|EP        ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+; Name  ; EP.E7 ; EP.E6 ; EP.E5 ; EP.E4 ; EP.E3 ; EP.E2 ; EP.E1 ; EP.E0 ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
+; EP.E0 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ;
+; EP.E1 ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 1     ;
+; EP.E2 ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 1     ;
+; EP.E3 ; 0     ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 1     ;
+; EP.E4 ; 0     ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 1     ;
+; EP.E5 ; 0     ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 1     ;
+; EP.E6 ; 0     ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ;
+; EP.E7 ; 1     ; 0     ; 0     ; 0     ; 0     ; 0     ; 0     ; 1     ;
++-------+-------+-------+-------+-------+-------+-------+-------+-------+
 
 
 Encoding Type:  One-Hot
@@ -512,7 +565,11 @@ Encoding Type:  One-Hot
 ; lcd_control:O3_LCDCONT|RRGB[7,8]       ; Merged with lcd_control:O3_LCDCONT|RRGB[10] ;
 ; lcd_control:O3_LCDCONT|RRGB[14]        ; Merged with lcd_control:O3_LCDCONT|RRGB[11] ;
 ; lcd_control:O3_LCDCONT|RRGB[13,15]     ; Merged with lcd_control:O3_LCDCONT|RRGB[12] ;
-; Total Number of Removed Registers = 18 ;                                             ;
+; lcd_filter:O5_LCDFILT|EP.E3            ; Lost fanout                                 ;
+; lcd_filter:O5_LCDFILT|EP.E4            ; Lost fanout                                 ;
+; lcd_filter:O5_LCDFILT|EP.E5            ; Lost fanout                                 ;
+; lcd_drawing:O2_LCDDRAW|EP.E5           ; Lost fanout                                 ;
+; Total Number of Removed Registers = 22 ;                                             ;
 +----------------------------------------+---------------------------------------------+
 
 
@@ -521,12 +578,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1020  ;
-; Number of registers using Synchronous Clear  ; 189   ;
-; Number of registers using Synchronous Load   ; 173   ;
-; Number of registers using Asynchronous Clear ; 482   ;
+; Total registers                              ; 1082  ;
+; Number of registers using Synchronous Clear  ; 211   ;
+; Number of registers using Synchronous Load   ; 180   ;
+; Number of registers using Asynchronous Clear ; 545   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 456   ;
+; Number of registers using Clock Enable       ; 488   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -555,25 +612,31 @@ Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contdat[1]                      ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[5]                      ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[12]                     ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[1]                         ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[4]                         ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_15usec[3]  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[7]  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_5msec[7]   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[8] ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[0] ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[12]                            ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[3]                               ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|ES.E4                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|Q_Com[0]                         ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[10]                          ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[1]                           ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_reading[0]                          ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|aux_Comand[7]                        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contdat[1]                       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[10]                      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[15]                      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_15usec[4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[7]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_5msec[5]    ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[10] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont1[2]                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont0[0]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[1]  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[11]                          ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[12]                             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[5]                                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|ES.E5                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------+
@@ -709,32 +772,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 202                         ;
-;     CLR               ; 78                          ;
-;     CLR SCLR          ; 65                          ;
-;     CLR SLD           ; 1                           ;
-;     ENA CLR           ; 30                          ;
-;     ENA CLR SCLR      ; 9                           ;
-;     ENA CLR SLD       ; 11                          ;
-;     plain             ; 8                           ;
-; arriav_lcell_comb     ; 276                         ;
-;     arith             ; 104                         ;
-;         1 data inputs ; 98                          ;
+; arriav_ff             ; 264                         ;
+;     CLR               ; 105                         ;
+;     CLR SCLR          ; 68                          ;
+;     CLR SLD           ; 2                           ;
+;     ENA CLR           ; 37                          ;
+;     ENA CLR SCLR      ; 28                          ;
+;     ENA CLR SLD       ; 17                          ;
+;     plain             ; 7                           ;
+; arriav_lcell_comb     ; 339                         ;
+;     arith             ; 119                         ;
+;         1 data inputs ; 113                         ;
 ;         2 data inputs ; 6                           ;
-;     extend            ; 3                           ;
-;         7 data inputs ; 3                           ;
-;     normal            ; 169                         ;
+;     extend            ; 4                           ;
+;         7 data inputs ; 4                           ;
+;     normal            ; 216                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 30                          ;
-;         3 data inputs ; 29                          ;
+;         1 data inputs ; 14                          ;
+;         2 data inputs ; 35                          ;
+;         3 data inputs ; 39                          ;
 ;         4 data inputs ; 27                          ;
-;         5 data inputs ; 27                          ;
-;         6 data inputs ; 44                          ;
-; boundary_port         ; 54                          ;
+;         5 data inputs ; 45                          ;
+;         6 data inputs ; 54                          ;
+; boundary_port         ; 62                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.10                        ;
-; Average LUT depth     ; 2.10                        ;
+; Average LUT depth     ; 2.05                        ;
 +-----------------------+-----------------------------+
 
 
@@ -791,10 +854,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; LT24_RS                              ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; LT24Setup:O1_SETUP|LT24_RS~_wirecell                        ; N/A     ;
 ; LT24_WR_N                            ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; LT24Setup:O1_SETUP|LT24_WR_N~_wirecell                      ; N/A     ;
 ; LT24_WR_N                            ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; LT24Setup:O1_SETUP|LT24_WR_N~_wirecell                      ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|DEL_SCREEN    ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; KEY[3]~_wirecell                                            ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|DEL_SCREEN    ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; KEY[3]~_wirecell                                            ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|DRAW_FIG      ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; KEY[2]~_wirecell                                            ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|DRAW_FIG      ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; KEY[2]~_wirecell                                            ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|DEL_SCREEN    ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_translator:O6_LCDTRANS|Equal0~1                         ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|DEL_SCREEN    ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_translator:O6_LCDTRANS|Equal0~1                         ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|DRAW_FIG      ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_translator:O6_LCDTRANS|Equal0~1                         ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|DRAW_FIG      ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_translator:O6_LCDTRANS|Equal0~1                         ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E0         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E0~_wirecell                      ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E0         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E0~_wirecell                      ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E1         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E1                                ; N/A     ;
@@ -805,8 +868,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; lcd_drawing:O2_LCDDRAW|EP.E3         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E3                                ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E4         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E4                                ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E4         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E4                                ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|EP.E5         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E5                                ; N/A     ;
-; lcd_drawing:O2_LCDDRAW|EP.E5         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E5                                ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|EP.E5         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                         ; N/A     ;
+; lcd_drawing:O2_LCDDRAW|EP.E5         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; GND                                                         ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E6         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E6                                ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E6         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E6                                ; N/A     ;
 ; lcd_drawing:O2_LCDDRAW|EP.E7         ; pre-synthesis ; connected ; Top                            ; post-synthesis    ; lcd_drawing:O2_LCDDRAW|EP.E7                                ; N/A     ;
@@ -860,70 +923,84 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Nov 10 20:01:48 2022
+    Info: Processing started: Thu Dec 22 19:44:57 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas -c DE1SOC_LCDLT24_1fas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_receiverandfilter/lcd_receiver.vhd
+    Info (12022): Found design unit 1: lcd_receiver-arc_de_lcd_receiver File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_receiver.vhd Line: 24
+    Info (12023): Found entity 1: lcd_receiver File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_receiver.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_receiverandfilter/lcd_filter.vhd
+    Info (12022): Found design unit 1: lcd_filter-arc_de_lcd_filter File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_filter.vhd Line: 21
+    Info (12023): Found entity 1: lcd_filter File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_ReceiverAndFilter/lcd_filter.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_drawingandcontrol/lcd_drawing.vhd
-    Info (12022): Found design unit 1: lcd_drawing-arc_de_lcd_drawing File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd Line: 28
-    Info (12023): Found entity 1: lcd_drawing File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd Line: 5
+    Info (12022): Found design unit 1: lcd_drawing-arc_de_lcd_drawing File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd Line: 28
+    Info (12023): Found entity 1: lcd_drawing File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_drawing.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_drawingandcontrol/lcd_control.vhd
-    Info (12022): Found design unit 1: lcd_control-arc_de_lcd_control File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 30
-    Info (12023): Found entity 1: lcd_control File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 5
+    Info (12022): Found design unit 1: lcd_control-arc_de_lcd_control File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 30
+    Info (12023): Found entity 1: lcd_control File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_setup/romsinc.vhd
-    Info (12022): Found design unit 1: romsinc-a File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 14
-    Info (12023): Found entity 1: romsinc File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 6
+    Info (12022): Found design unit 1: romsinc-a File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 14
+    Info (12023): Found entity 1: romsinc File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_setup/lt24setup.vhd
-    Info (12022): Found design unit 1: LT24Setup-rtl_0 File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 47
-    Info (12023): Found entity 1: LT24Setup File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 23
+    Info (12022): Found design unit 1: LT24Setup-rtl_0 File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 47
+    Info (12023): Found entity 1: LT24Setup File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 23
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_setup/lt24initreset.vhd
-    Info (12022): Found design unit 1: LT24InitReset-a File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd Line: 34
-    Info (12023): Found entity 1: LT24InitReset File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd Line: 21
+    Info (12022): Found design unit 1: LT24InitReset-a File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd Line: 34
+    Info (12023): Found entity 1: LT24InitReset File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitReset.vhd Line: 21
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_setup/lt24initlcd.vhd
-    Info (12022): Found design unit 1: LT24InitLCD-a File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 40
-    Info (12023): Found entity 1: LT24InitLCD File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 23
+    Info (12022): Found design unit 1: LT24InitLCD-a File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 40
+    Info (12023): Found entity 1: LT24InitLCD File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 23
 Info (12021): Found 2 design units, including 0 entities, in source file lcd_setup/init128rom_pkg.vhd
-    Info (12022): Found design unit 1: romData_pkg File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 5
-    Info (12022): Found design unit 2: romData_pkg-body File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 14
+    Info (12022): Found design unit 1: romData_pkg File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 5
+    Info (12022): Found design unit 2: romData_pkg-body File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/Init128rom_pkg.vhd Line: 14
 Info (12021): Found 2 design units, including 1 entities, in source file de1soc_lcdlt24_1fas.vhd
-    Info (12022): Found design unit 1: DE1SOC_LCDLT24_1fas-str File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 41
-    Info (12023): Found entity 1: DE1SOC_LCDLT24_1fas File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 5
+    Info (12022): Found design unit 1: DE1SOC_LCDLT24_1fas-str File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 51
+    Info (12023): Found entity 1: DE1SOC_LCDLT24_1fas File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file lcd_translator/lcd_translator.vhd
+    Info (12022): Found design unit 1: lcd_translator-arc_de_lcd_translator File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Translator/lcd_translator.vhd Line: 22
+    Info (12023): Found entity 1: lcd_translator File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Translator/lcd_translator.vhd Line: 5
 Info (12127): Elaborating entity "DE1SOC_LCDLT24_1fas" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at DE1SOC_LCDLT24_1fas.vhd(113): object "TOP_reset" assigned a value but never read File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 113
-Warning (10873): Using initial value X (don't care) for net "LEDR[9]" at DE1SOC_LCDLT24_1fas.vhd(17) File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-Warning (10873): Using initial value X (don't care) for net "LEDR[7]" at DE1SOC_LCDLT24_1fas.vhd(17) File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-Warning (10873): Using initial value X (don't care) for net "LEDR[4..0]" at DE1SOC_LCDLT24_1fas.vhd(17) File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-Info (12128): Elaborating entity "LT24Setup" for hierarchy "LT24Setup:O1_SETUP" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 191
-Info (12128): Elaborating entity "LT24InitReset" for hierarchy "LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 108
-Info (12128): Elaborating entity "LT24InitLCD" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 122
-Info (12128): Elaborating entity "romsinc" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 88
-Info (12128): Elaborating entity "lcd_drawing" for hierarchy "lcd_drawing:O2_LCDDRAW" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 216
-Info (12128): Elaborating entity "lcd_control" for hierarchy "lcd_control:O3_LCDCONT" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 237
-Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D6" assigned a value but never read File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
-Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D7" assigned a value but never read File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
+Warning (10036): Verilog HDL or VHDL warning at DE1SOC_LCDLT24_1fas.vhd(170): object "TOP_reset" assigned a value but never read File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 170
+Warning (10873): Using initial value X (don't care) for net "LEDR[9]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+Warning (10873): Using initial value X (don't care) for net "LEDR[7]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+Warning (10873): Using initial value X (don't care) for net "LEDR[4..0]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+Info (12128): Elaborating entity "LT24Setup" for hierarchy "LT24Setup:O1_SETUP" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 292
+Info (12128): Elaborating entity "LT24InitReset" for hierarchy "LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 108
+Info (12128): Elaborating entity "LT24InitLCD" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 122
+Info (12128): Elaborating entity "romsinc" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 88
+Info (12128): Elaborating entity "lcd_drawing" for hierarchy "lcd_drawing:O2_LCDDRAW" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 315
+Info (12128): Elaborating entity "lcd_control" for hierarchy "lcd_control:O3_LCDCONT" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 336
+Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D6" assigned a value but never read File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
+Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D7" assigned a value but never read File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
+Info (12128): Elaborating entity "lcd_receiver" for hierarchy "lcd_receiver:O4_LCDREC" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 359
+Info (12128): Elaborating entity "lcd_filter" for hierarchy "lcd_filter:O5_LCDFILT" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 376
+Info (12128): Elaborating entity "lcd_translator" for hierarchy "lcd_translator:O6_LCDTRANS" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 391
+Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(31): used explicit default value for signal "Code_DEL_SCREEN" because signal was never assigned a value File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Translator/lcd_translator.vhd Line: 31
+Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(32): used explicit default value for signal "Code_DRAW_FIG" because signal was never assigned a value File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Translator/lcd_translator.vhd Line: 32
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ug84.tdf
-    Info (12023): Found entity 1: altsyncram_ug84 File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/altsyncram_ug84.tdf Line: 27
+    Info (12023): Found entity 1: altsyncram_ug84 File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/altsyncram_ug84.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_blc.tdf
-    Info (12023): Found entity 1: mux_blc File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/mux_blc.tdf Line: 22
+    Info (12023): Found entity 1: mux_blc File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/mux_blc.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_vnf.tdf
-    Info (12023): Found entity 1: decode_vnf File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/decode_vnf.tdf Line: 22
+    Info (12023): Found entity 1: decode_vnf File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/decode_vnf.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_29i.tdf
-    Info (12023): Found entity 1: cntr_29i File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_29i.tdf Line: 27
+    Info (12023): Found entity 1: cntr_29i File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_29i.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_e9c.tdf
-    Info (12023): Found entity 1: cmpr_e9c File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_e9c.tdf Line: 22
+    Info (12023): Found entity 1: cmpr_e9c File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_e9c.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_q1j.tdf
-    Info (12023): Found entity 1: cntr_q1j File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_q1j.tdf Line: 25
+    Info (12023): Found entity 1: cntr_q1j File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_q1j.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_u8i.tdf
-    Info (12023): Found entity 1: cntr_u8i File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_u8i.tdf Line: 27
+    Info (12023): Found entity 1: cntr_u8i File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_u8i.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_d9c.tdf
-    Info (12023): Found entity 1: cmpr_d9c File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_d9c.tdf Line: 22
+    Info (12023): Found entity 1: cmpr_d9c File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_d9c.tdf Line: 22
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_kri.tdf
-    Info (12023): Found entity 1: cntr_kri File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_kri.tdf Line: 27
+    Info (12023): Found entity 1: cntr_kri File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cntr_kri.tdf Line: 27
 Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_99c.tdf
-    Info (12023): Found entity 1: cmpr_99c File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_99c.tdf Line: 22
+    Info (12023): Found entity 1: cmpr_99c File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/cmpr_99c.tdf Line: 22
 Info (12033): Analysis and Synthesis generated Signal Tap or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2022.11.10.20:02:27 Progress: Loading sldaa8a7c86/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2022.12.22.19:45:40 Progress: Loading sldaa8a7c86/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -934,45 +1011,51 @@ Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification
 Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
 Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sldaa8a7c86/alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/alt_sld_fab.v Line: 9
+    Info (12023): Found entity 1: alt_sld_fab File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/alt_sld_fab.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
 Info (12021): Found 2 design units, including 1 entities, in source file db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
-    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
+    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
-    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/db/ip/sldaa8a7c86/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM|rom" is uninferred due to inappropriate RAM size File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 16
+    Info (276004): RAM logic "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM|rom" is uninferred due to inappropriate RAM size File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 16
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 17
-    Warning (13410): Pin "LT24_LCD_ON" is stuck at VCC File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 19
-    Warning (13410): Pin "LT24_RD_N" is stuck at VCC File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 22
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
+    Warning (13410): Pin "LT24_LCD_ON" is stuck at VCC File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 29
+    Warning (13410): Pin "LT24_RD_N" is stuck at VCC File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 32
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
+Info (17049): 4 registers lost all their fanouts during netlist optimizations.
 Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 99 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 9 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/Mike/Documents/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 13
-Info (21057): Implemented 1355 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 11 input pins
+Warning (21074): Design contains 6 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 20
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/mamun/OneDrive/Documentos/- UPV/DCSD/RepositorioGithub/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Info (21057): Implemented 1443 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 19 input pins
     Info (21059): Implemented 33 output pins
-    Info (21061): Implemented 1277 logic cells
+    Info (21061): Implemented 1357 logic cells
     Info (21064): Implemented 33 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 4944 megabytes
-    Info: Processing ended: Thu Nov 10 20:02:53 2022
-    Info: Elapsed time: 00:01:05
-    Info: Total CPU time (on all processors): 00:01:46
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 26 warnings
+    Info: Peak virtual memory: 4942 megabytes
+    Info: Processing ended: Thu Dec 22 19:46:03 2022
+    Info: Elapsed time: 00:01:06
+    Info: Total CPU time (on all processors): 00:01:57
 
 

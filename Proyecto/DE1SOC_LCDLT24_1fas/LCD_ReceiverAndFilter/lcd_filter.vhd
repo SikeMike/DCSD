@@ -79,7 +79,7 @@ begin
   --con 600 x sera 13.888 = 11011001000000
   --con 1200 x sera 6944 =  1101100100000
   WaitingCicles <=
-    (std_logic_vector(to_unsigned(5, 15))) when (SPEED = "01") else --300       #########################
+    (std_logic_vector(to_unsigned(27777, 15))) when (SPEED = "01") else --300
     (std_logic_vector(to_unsigned(13888, 15))) when (SPEED = "10") else --600
     (std_logic_vector(to_unsigned(6944, 15))); --1200
 
@@ -141,7 +141,7 @@ begin
       q_reading <= to_unsigned(0, 3);
     elsif (CLK'event and CLK = '1' ) then
       if (Init = '1') then
-        q_reading <= to_unsigned(3, 3);                 --#################################################################################5
+        q_reading <= to_unsigned(5, 3);
       elsif (DEC_Reading = '1') then
         q_reading <= (q_reading - to_unsigned(1, 3));
       end if;

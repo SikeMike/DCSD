@@ -23,7 +23,7 @@ component lcd_receiver
 
     OP_FILTER :    out std_logic;
     COMAND_READY : out std_logic;
-    COMANDO :      out std_logic_vector(7 downto 0)
+    COMAND :      out std_logic_vector(7 downto 0)
   );
 
 end component;
@@ -54,7 +54,7 @@ signal tb_DONE : std_logic := '0';
 
 signal tb_OP_FILTER : std_logic;
 signal tb_COMAND_READY : std_logic;
-signal tb_COMANDO : std_logic_vector(7 downto 0);
+signal tb_COMAND : std_logic_vector(7 downto 0);
 
 --SIGNALS DE LCD_FILTER
 --signal tb_CLK : std_logic;
@@ -82,7 +82,7 @@ begin
 
     OP_FILTER => tb_OP_FILTER,
     COMAND_READY => tb_COMAND_READY,
-    COMANDO => tb_COMANDO
+    COMAND => tb_COMAND
 
   );
 
@@ -106,28 +106,32 @@ begin
   begin
     wait for 20 ns;     -- ciclo 1
     tb_RESET_L <= '1';
-    wait for 40 ns;     -- start bit
+    wait for 60 ns;     -- start bit
     tb_RX <= '0';
-    wait for 1240 ns;   -- bit 1
+    wait for 3333333 ns;     -- 1 bit
     tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- bit 1
-    tb_RX <= '1';
-    wait for 1240 ns;   -- parity bit
+    wait for 3333333 ns;     -- 2 bit
     tb_RX <= '0';
-    wait for 1240 ns;   -- bit 1
+    wait for 3333333 ns;     -- 3 bit
+    tb_RX <= '1';
+    wait for 3333333 ns;     -- 4 bit
+    tb_RX <= '1';
+    wait for 3333333 ns;     -- 5 bit
+    tb_RX <= '1';
+    wait for 3333333 ns;     -- 6 bit
     tb_RX <= '0';
+    wait for 3333333 ns;     -- 7 bit
+    tb_RX <= '0';
+    wait for 3333333 ns;     -- 8 bit
+    tb_RX <= '1';
+    wait for 3333333 ns;     -- parity bit
+    tb_RX <= '1';
+    wait for 3333333 ns;     -- stop bit
+    tb_RX <= '1';
+    wait for 5000000 ns;
+    tb_DONE <= '1';
+    wait for 300 ns;
+    tb_DONE <= '0';
     wait;
   end process ;
 

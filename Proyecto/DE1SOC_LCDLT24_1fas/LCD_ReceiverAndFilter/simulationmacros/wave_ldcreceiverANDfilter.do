@@ -12,6 +12,15 @@ add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/COMAND_READY
 add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/COMANDO
 add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/EP
 add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/ES
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/StartBit
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/StopBit
+add wave -noupdate -divider {New Divider}
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/ParityBit
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/Odd
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/Mux_Out
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/InputK
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/Sum
+add wave -noupdate /lcd_receiverandfilter_tb/uReceiver/Init
 add wave -noupdate -divider -height 23 LCD_FILTER
 add wave -noupdate /lcd_receiverandfilter_tb/uFilter/OP_FILTER
 add wave -noupdate /lcd_receiverandfilter_tb/uFilter/RX
@@ -21,7 +30,7 @@ add wave -noupdate /lcd_receiverandfilter_tb/uFilter/RX_BIT
 add wave -noupdate /lcd_receiverandfilter_tb/uFilter/EP
 add wave -noupdate /lcd_receiverandfilter_tb/uFilter/ES
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2540643 ps} 0}
+WaveRestoreCursors {{Cursor 1} {38982986767 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 330
 configure wave -valuecolwidth 100
@@ -37,4 +46,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {21 us}
+WaveRestoreZoom {0 ps} {42 ms}

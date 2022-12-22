@@ -16,7 +16,7 @@ entity lcd_receiver is
 
     OP_FILTER :    out std_logic;
     COMAND_READY : out std_logic;
-    COMANDO :      out std_logic_vector(7 downto 0)
+    COMAND :      out std_logic_vector(7 downto 0)
   );
 
 end lcd_receiver;
@@ -27,9 +27,9 @@ type ESTADO is (E0, E1, E2, E3, E4, E5, E6, E7);
 
 --declaracion de las seniales de control
 signal EP, ES : ESTADO;
-signal Init, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, LD_Stop, StopBit, Odd, InputK, ParityBit, ParityCheck : std_logic;
+signal Init, LD_Start, StartBit, FIN_Cdwn, DEC_Cdwn, Shift, Sum, LD_Parity, LD_Stop, StopBit, Odd, Mux_Out, InputK, ParityBit, ParityCheck : std_logic;
 
-signal aux_Comando : std_logic_vector(7 downto 0);
+signal aux_Comand : std_logic_vector(7 downto 0);
 
 signal Q_Cdwn : unsigned(3 downto 0);
 
@@ -118,8 +118,11 @@ begin
   LD_Stop <= '1' when (EP = E5 and FILTER_DONE = '1') else '0';
   COMAND_READY <= '1' when (EP = E7 and DONE = '0') else '0';
 
+  --Multiplexor Mux_Out
+  Mux_Out <= RX_Bit when (Sum = '1') else '0';
+
   --OR Gate
-  InputK <= '1' when (Sum = '1' or Init = '1') else '0';
+  InputK <= '1' when (Mux_Out = '1' or Init = '1') else '0';
 
   --Registro StartBit
   RegStart : process(CLK, RESET_L)
@@ -163,21 +166,21 @@ begin
     end if;
   end process RegStop;
 
-  --Registro de desplazamiento COMANDO
-  RegCOMANDO : process(CLK, RESET_L)
+  --Registro de desplazamiento COMAND
+  RegCOMAND : process(CLK, RESET_L)
   begin
     if (RESET_L = '0') then
-      aux_Comando <= (others => '0');              --reset
+      aux_Comand <= (others => '0');              --reset
     elsif (CLK'event and CLK = '1') then          --flanco de reloj
       if (Init = '1') then
-        aux_Comando <= (others => '0');               --Init
+        aux_Comand <= (others => '0');               --Init
       elsif (Shift = '1') then
-        aux_Comando <= aux_Comando(6 downto 0) & RX_BIT;
+        aux_Comand <= aux_Comand(6 downto 0) & RX_BIT;
       end if;
     end if;
-  end process RegCOMANDO;
+  end process RegCOMAND;
 --###############################################
-  COMANDO <= aux_Comando;
+  COMAND <= aux_Comand;
 --###############################################
 
   --Biestable Flip Flop Odd
@@ -186,11 +189,11 @@ begin
     if (RESET_L = '0') then
       Odd <= '0';                             --reset
     elsif (CLK'event and CLK = '1') then      --flanco de reloj
-      if (Sum = '1' and InputK = '1') then
+      if (Mux_Out = '1' and InputK = '1') then
         Odd <= not Odd;                        --flip
-      elsif (Sum = '1' and InputK = '0') then
+      elsif (Mux_Out = '1' and InputK = '0') then
         Odd <= '1';                            --set
-      elsif (Sum = '0' and InputK = '1') then
+      elsif (Mux_Out = '0' and InputK = '1') then
         Odd <= '0';                            --Init
       end if;
     end if;
