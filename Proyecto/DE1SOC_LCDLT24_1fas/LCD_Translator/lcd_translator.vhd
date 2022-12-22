@@ -29,7 +29,7 @@ signal LD_Com, Clear : std_logic;
 signal Q_Com : std_logic_vector(7 downto 0);
 
 signal Code_DEL_SCREEN : std_logic_vector(7 downto 0) := "01100100";  -- tecla d
-signal Code_DRAW_FIG : std_logic_vector(7 downto 0) := "01100100";    -- tecla s
+signal Code_DRAW_FIG : std_logic_vector(7 downto 0) := "01110011";    -- tecla s
 
 begin
   --calculo del estado siguiente (combinacional)

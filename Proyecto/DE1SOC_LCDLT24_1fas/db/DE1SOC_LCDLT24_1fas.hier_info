@@ -14,6 +14,7 @@ KEY[0] => lcd_receiver:O4_LCDREC.RESET_L
 KEY[0] => lcd_filter:O5_LCDFILT.RESET_L
 KEY[0] => lcd_translator:O6_LCDTRANS.RESET_L
 KEY[1] => ~NO_FANOUT~
+KEY[2] => lcd_drawing:O2_LCDDRAW.DRAW_FIG
 KEY[2] => LEDR[5].DATAIN
 KEY[3] => LEDR[6].DATAIN
 SW[0] => lcd_drawing:O2_LCDDRAW.COLOUR_CODE[0]

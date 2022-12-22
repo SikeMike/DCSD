@@ -236,7 +236,6 @@ end component;
   signal TOP_OP_FILTER : std_logic;
   signal TOP_COMAND_READY : std_logic;
   signal TOP_COMAND : std_logic_vector(7 downto 0);
-  
     
   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
   
@@ -249,7 +248,6 @@ end component;
 
   --signal TOP_FILTER_DONE : std_logic;
   --signal TOP_RX_BIT : std_logic;
-  
     
   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
   
