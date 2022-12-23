@@ -36,9 +36,16 @@ signal q_reading, aux_cont1, aux_cont0 : unsigned(2 downto 0);
 
 signal int0s, int1s : integer;
 
-signal cicles230400 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(723, 15)); -- para la velocidad 230400 -> 723 ciclos
-signal cicles460800 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(361, 15)); -- para la velocidad 460800 -> 361 ciclos
-signal cicles921600 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(180, 15)); -- para la velocidad 921600 -> 180 ciclos
+-- la formula usada para calcular los ciclos de espera es la siguiente: (con el tiempo que tarda el lcd_filter)
+-- 1  +  ((X + 1)*6)  +  1  =  CiclosPorBit   ==>   6X + 8 = CiclosPorBit
+-- E0 +  (    E1   )  +  E2
+
+-- Para la velocidad 230400 ==> 723 ns por ciclo ==> 35 CiclosPorBit
+signal vel230400 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(35, 15));
+-- Para la velocidad 460800 ==> 361 ns por ciclo ==> 17 CiclosPorBit
+signal vel460800 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(17, 15));
+-- Para la velocidad 921600 ==> 180 ns por ciclo ==> 8 CiclosPorBit
+signal vel921600 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(8, 15));
 
 begin
 
@@ -80,9 +87,9 @@ begin
 
   --asignacion de la SPEED
   WaitingCicles <=
-    (cicles230400) when (SPEED = "01") else
-    (cicles460800) when (SPEED = "10") else
-    (cicles921600);
+    (vel230400) when (SPEED = "01") else
+    (vel460800) when (SPEED = "10") else
+    (vel921600);
 
   --activacion de las seniales de control
   Init <= '1' when (EP = E0) else '0';

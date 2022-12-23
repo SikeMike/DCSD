@@ -69,9 +69,10 @@ begin
   DONE <= '1' when (EP = E1) else '0';
   Clear <= '1' when (EP = E2) else '0';
 
-  --Comparadores 
+  --Comparadores
   DEL_SCREEN <= '1' when (Code_DEL_SCREEN = Q_Com) else '0';
-  DRAW_FIG <= '1' when (Code_DRAW_FIG = Q_Com) else '0';
+  DRAW_FIG <= '1' when (Code_DEL_SCREEN /= Q_Com and Q_Com /= "00000000") else '0';
+  --DRAW_FIG <= '1' when (Code_DRAW_FIG = Q_Com) else '0';
 
   --Registro COMAND
   RegCom : process(CLK, RESET_L)
