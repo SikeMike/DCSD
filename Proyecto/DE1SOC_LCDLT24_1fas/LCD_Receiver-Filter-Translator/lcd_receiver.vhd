@@ -175,7 +175,7 @@ begin
       if (Init = '1') then
         aux_Comand <= (others => '0');               --Init
       elsif (Shift = '1') then
-        aux_Comand <= aux_Comand(6 downto 0) & RX_BIT;
+        aux_Comand <= RX_BIT & aux_Comand(7 downto 1);
       end if;
     end if;
   end process RegCOMAND;

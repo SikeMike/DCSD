@@ -36,6 +36,10 @@ signal q_reading, aux_cont1, aux_cont0 : unsigned(2 downto 0);
 
 signal int0s, int1s : integer;
 
+signal cicles230400 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(723, 15)); -- para la velocidad 230400 -> 723 ciclos
+signal cicles460800 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(361, 15)); -- para la velocidad 460800 -> 361 ciclos
+signal cicles921600 : std_logic_vector(14 downto 0) := std_logic_vector(to_unsigned(180, 15)); -- para la velocidad 921600 -> 180 ciclos
+
 begin
 
   --calculo del estado siguiente
@@ -74,14 +78,11 @@ begin
       end if;
     end process SEC;
 
-  --calculo de la SPEED
-  --con 300 x sera 27.777 = 110110010000001
-  --con 600 x sera 13.888 = 11011001000000
-  --con 1200 x sera 6944 =  1101100100000
+  --asignacion de la SPEED
   WaitingCicles <=
-    (std_logic_vector(to_unsigned(27777, 15))) when (SPEED = "01") else --300
-    (std_logic_vector(to_unsigned(13888, 15))) when (SPEED = "10") else --600
-    (std_logic_vector(to_unsigned(6944, 15))); --1200
+    (cicles230400) when (SPEED = "01") else
+    (cicles460800) when (SPEED = "10") else
+    (cicles921600);
 
   --activacion de las seniales de control
   Init <= '1' when (EP = E0) else '0';
