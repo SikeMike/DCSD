@@ -11,10 +11,12 @@ entity lcd_translator is
 
     COMAND_READY :          in std_logic;
     COMAND : in std_logic_vector(7 downto 0);
+    selector : in std_logic_vector(7 downto 0);
 
     DEL_SCREEN :    out std_logic;
     DRAW_FIG : out std_logic;
-    DONE :      out std_logic
+    DONE :      out std_logic;
+    COLOUR_CODE : out std_logic_vector(7 downto 0)
   );
 
 end lcd_translator;
@@ -30,6 +32,7 @@ signal Q_Com : std_logic_vector(7 downto 0);
 
 signal Code_DEL_SCREEN : std_logic_vector(7 downto 0) := "01100100";  -- tecla d
 signal Code_DRAW_FIG : std_logic_vector(7 downto 0) := "01110011";    -- tecla s
+
 
 begin
   --calculo del estado siguiente (combinacional)
@@ -68,6 +71,18 @@ begin
   LD_Com <= '1' when (EP = E1) else '0';
   DONE <= '1' when (EP = E1) else '0';
   Clear <= '1' when (EP = E2) else '0';
+
+--cambio de colores
+COLOUR_CODE <=
+  ("00000000") when selector = "01010000" else --negro
+  ("00000001") when selector = "01010001" else --azul
+  ("00000010") when selector = "01010010" else --verde
+  ("00000011") when selector = "01010011" else --celeste
+  ("00000100") when selector = "01010100" else --rojo
+  ("00000101") when selector = "01010101" else --fuxia
+  ("00000110") when selector = "01010110" else --amarillo
+  ("00000111") when selector = "01010111" else --girs
+  ("00000000");
 
   --Comparadores 
   DEL_SCREEN <= '1' when (Code_DEL_SCREEN = Q_Com) else '0';

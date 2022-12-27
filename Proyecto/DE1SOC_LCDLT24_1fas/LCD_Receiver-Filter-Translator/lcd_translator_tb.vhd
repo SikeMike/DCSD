@@ -20,7 +20,9 @@ component lcd_translator
 
     COMAND_READY :          in std_logic;
     COMAND : in std_logic_vector(7 downto 0);
-
+    selector : in std_logic_vector(7 downto 0);
+   
+    COLOUR_CODE : out std_logic_vector(7 downto 0);
     DEL_SCREEN :    out std_logic;
     DRAW_FIG : out std_logic;
     DONE :      out std_logic
@@ -35,6 +37,9 @@ signal tb_RESET_L : std_logic := '0';
 signal tb_COMAND_READY : std_logic := '0';
 signal tb_COMAND : std_logic_vector(7 downto 0) := (others => '0');
 
+signal tb_selector : std_logic_vector(7 downto 0) :=(others=> '0');
+signal tb_COLOUR_CODE: std_logic_vector(7 downto 0) :=(others=> '0');
+
 signal tb_DEL_SCREEN : std_logic;
 signal tb_DRAW_FIG : std_logic;
 signal tb_DONE : std_logic;
@@ -48,6 +53,9 @@ begin
 
     COMAND_READY => tb_COMAND_READY,
     COMAND => tb_COMAND,
+
+    selector => tb_selector,
+    COLOUR_CODE => tb_COLOUR_CODE,
 
     DEL_SCREEN => tb_DEL_SCREEN,
     DRAW_FIG => tb_DRAW_FIG,
@@ -65,8 +73,15 @@ begin
     wait for 60 ns;
     tb_COMAND_READY <= '1';
     tb_COMAND <= "01100100";
-    wait for 20 ns;
-    tb_COMAND_READY <= '0';
+    wait for 60 ns;
+    tb_COMAND_READY <= '1';
+    tb_selector <= "01010001";
+     
+    wait for 60 ns;
+    tb_COMAND_READY <= '1';
+    tb_COMAND<= "01110011";
+    tb_selector <= "01010101";
+	
     wait;
   end process;
 
