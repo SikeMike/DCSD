@@ -11,23 +11,23 @@ entity lcd_translator is
 
     COMAND_READY :          in std_logic;
     COMAND : in std_logic_vector(7 downto 0);
-    selector : in std_logic_vector(7 downto 0);
+   
 
     DEL_SCREEN :    out std_logic;
     DRAW_FIG : out std_logic;
     DONE :      out std_logic;
-    COLOUR_CODE : out std_logic_vector(7 downto 0)
+    COLOUR_CODE : out std_logic_vector(2 downto 0)
   );
 
 end lcd_translator;
 
 architecture arc_de_lcd_translator of lcd_translator is
 
-type ESTADO is (E0, E1, E2);
+type ESTADO is (E0, E1, E2, E3);
 
 --declaracion de las seniales de control
 signal EP, ES : ESTADO;
-signal LD_Com, Clear : std_logic;
+signal LD_Com, Clear, INIT, CAMBIO_COLOR : std_logic;
 signal Q_Com : std_logic_vector(7 downto 0);
 
 signal Code_DEL_SCREEN : std_logic_vector(7 downto 0) := "01100100";  -- tecla d
@@ -40,17 +40,20 @@ begin
   begin
     case EP is
       when E0 =>
-        if (COMAND_READY = '1') then
-          ES <= E1;
-        else
-          ES <= E0;
-        end if;
+        ES <= E1;
 
       when E1 =>
-        ES <= E2;
+        if (COMAND_READY = '1') then
+          ES <= E2;
+        else
+          ES <= E1;
+        end if;
 
       when E2 =>
-        ES <= E0;
+        ES <= E3;
+
+      when E3 =>
+        ES <= E1;
 
       when others =>
         ES <= E0;
@@ -71,22 +74,13 @@ begin
   LD_Com <= '1' when (EP = E1) else '0';
   DONE <= '1' when (EP = E1) else '0';
   Clear <= '1' when (EP = E2) else '0';
+  INIT <= '1' when (EP = E0) else '0';
 
---cambio de colores
-COLOUR_CODE <=
-  ("00000000") when selector = "01010000" else --negro
-  ("00000001") when selector = "01010001" else --azul
-  ("00000010") when selector = "01010010" else --verde
-  ("00000011") when selector = "01010011" else --celeste
-  ("00000100") when selector = "01010100" else --rojo
-  ("00000101") when selector = "01010101" else --fuxia
-  ("00000110") when selector = "01010110" else --amarillo
-  ("00000111") when selector = "01010111" else --girs
-  ("00000000");
 
   --Comparadores 
   DEL_SCREEN <= '1' when (Code_DEL_SCREEN = Q_Com) else '0';
   DRAW_FIG <= '1' when (Code_DRAW_FIG = Q_Com) else '0';
+  CAMBIO_COLOR <= '1' when (Q_COM(7 downto 3) = "01010") else '0';
 
   --Registro COMAND
   RegCom : process(CLK, RESET_L)
@@ -101,5 +95,19 @@ COLOUR_CODE <=
       end if;
     end if;
   end process RegCom;
+
+  --Registro Color
+  RegComColor : process (CLK, RESET_L)
+  begin
+    if (RESET_L = '0') then
+      COLOUR_CODE<= (others => '0');                   --reset
+    elsif (CLK'event and CLK = '1') then
+      if(INIT = '1') then
+        COLOUR_CODE<= (others => '0');
+      elsif (CAMBIO_COLOR = '1') then
+          COLOUR_CODE <= Q_COM(2 downto 0);
+      end if;
+    end if;
+  end process RegComColor;
 
 end arc_de_lcd_translator;

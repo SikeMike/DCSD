@@ -1,9 +1,10 @@
 
 State Machine - |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|EP
-Name EP.E2 EP.E1 EP.E0 
-EP.E0 0 0 0 
-EP.E1 0 1 1 
-EP.E2 1 0 1 
+Name EP.E3 EP.E2 EP.E1 EP.E0 
+EP.E0 0 0 0 0 
+EP.E1 0 0 1 1 
+EP.E2 0 1 0 1 
+EP.E3 1 0 0 1 
 
 State Machine - |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|EP
 Name EP.E5 EP.E4 EP.E3 EP.E2 EP.E1 EP.E0 

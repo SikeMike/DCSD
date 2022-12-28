@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1SOC_LCDLT24_1fas
-Fri Dec 23 11:22:51 2022
+Wed Dec 28 15:08:41 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -27,11 +27,12 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  19. Inverted Register Statistics
  20. Multiplexer Restructuring Statistics (Restructuring Performed)
  21. Source assignments for LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET
- 22. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
- 23. Port Connectivity Checks: "LT24Setup:O1_SETUP"
- 24. Post-Synthesis Netlist Statistics for Top Partition
- 25. Elapsed Time Per Partition
- 26. Analysis & Synthesis Messages
+ 22. Port Connectivity Checks: "lcd_translator:O6_LCDTRANS"
+ 23. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
+ 24. Port Connectivity Checks: "LT24Setup:O1_SETUP"
+ 25. Post-Synthesis Netlist Statistics for Top Partition
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
 
 
 
@@ -57,13 +58,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Dec 23 11:22:51 2022       ;
+; Analysis & Synthesis Status     ; Successful - Wed Dec 28 15:08:41 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; DE1SOC_LCDLT24_1fas                         ;
 ; Top-level Entity Name           ; DE1SOC_LCDLT24_1fas                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 265                                         ;
+; Total registers                 ; 263                                         ;
 ; Total pins                      ; 48                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
@@ -205,25 +206,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 203            ;
+; Estimate of Logic utilization (ALMs needed) ; 201            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 338            ;
+; Combinational ALUT usage for logic          ; 337            ;
 ;     -- 7 input functions                    ; 3              ;
-;     -- 6 input functions                    ; 60             ;
-;     -- 5 input functions                    ; 41             ;
-;     -- 4 input functions                    ; 30             ;
-;     -- <=3 input functions                  ; 204            ;
+;     -- 6 input functions                    ; 56             ;
+;     -- 5 input functions                    ; 43             ;
+;     -- 4 input functions                    ; 38             ;
+;     -- <=3 input functions                  ; 197            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 265            ;
+; Dedicated logic registers                   ; 263            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 48             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 265            ;
-; Total fan-out                               ; 2221           ;
-; Average fan-out                             ; 3.18           ;
+; Maximum fan-out                             ; 263            ;
+; Total fan-out                               ; 2192           ;
+; Average fan-out                             ; 3.15           ;
 +---------------------------------------------+----------------+
 
 
@@ -232,7 +233,7 @@ refer to the applicable agreement for further details.
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                             ; Entity Name         ; Library Name ;
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1SOC_LCDLT24_1fas            ; 338 (1)             ; 265 (0)                   ; 0                 ; 0          ; 48   ; 0            ; |DE1SOC_LCDLT24_1fas                                                            ; DE1SOC_LCDLT24_1fas ; work         ;
+; |DE1SOC_LCDLT24_1fas            ; 337 (1)             ; 263 (0)                   ; 0                 ; 0          ; 48   ; 0            ; |DE1SOC_LCDLT24_1fas                                                            ; DE1SOC_LCDLT24_1fas ; work         ;
 ;    |LT24Setup:O1_SETUP|         ; 176 (38)            ; 135 (19)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP                                         ; LT24Setup           ; work         ;
 ;       |LT24InitLCD:DUT_InitLCD| ; 34 (23)             ; 31 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD                 ; LT24InitLCD         ; work         ;
 ;          |romsinc:DUT_ROM|      ; 11 (11)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM ; romsinc             ; work         ;
@@ -241,7 +242,7 @@ refer to the applicable agreement for further details.
 ;    |lcd_drawing:O2_LCDDRAW|     ; 39 (39)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW                                     ; lcd_drawing         ; work         ;
 ;    |lcd_filter:O5_LCDFILT|      ; 47 (47)             ; 28 (28)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT                                      ; lcd_filter          ; work         ;
 ;    |lcd_receiver:O4_LCDREC|     ; 19 (19)             ; 24 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC                                     ; lcd_receiver        ; work         ;
-;    |lcd_translator:O6_LCDTRANS| ; 4 (4)               ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS                                 ; lcd_translator      ; work         ;
+;    |lcd_translator:O6_LCDTRANS| ; 3 (3)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS                                 ; lcd_translator      ; work         ;
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -249,13 +250,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Encoding Type:  One-Hot
 +--------------------------------------------------------------------+
 ; State Machine - |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|EP ;
-+-------+-------+-------+--------------------------------------------+
-; Name  ; EP.E2 ; EP.E1 ; EP.E0                                      ;
-+-------+-------+-------+--------------------------------------------+
-; EP.E0 ; 0     ; 0     ; 0                                          ;
-; EP.E1 ; 0     ; 1     ; 1                                          ;
-; EP.E2 ; 1     ; 0     ; 1                                          ;
-+-------+-------+-------+--------------------------------------------+
++-------+-------+-------+-------+------------------------------------+
+; Name  ; EP.E3 ; EP.E2 ; EP.E1 ; EP.E0                              ;
++-------+-------+-------+-------+------------------------------------+
+; EP.E0 ; 0     ; 0     ; 0     ; 0                                  ;
+; EP.E1 ; 0     ; 0     ; 1     ; 1                                  ;
+; EP.E2 ; 0     ; 1     ; 0     ; 1                                  ;
+; EP.E3 ; 1     ; 0     ; 0     ; 1                                  ;
++-------+-------+-------+-------+------------------------------------+
 
 
 Encoding Type:  One-Hot
@@ -392,25 +394,28 @@ Encoding Type:  One-Hot
 +------------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                   ;
-+----------------------------------------+---------------------------------------------+
-; Register name                          ; Reason for Removal                          ;
-+----------------------------------------+---------------------------------------------+
-; lcd_control:O3_LCDCONT|RXCOL[2,6,7]    ; Stuck at GND due to stuck port data_in      ;
-; LT24Setup:O1_SETUP|LT24_RD_N           ; Stuck at VCC due to stuck port data_in      ;
-; lcd_control:O3_LCDCONT|RXCOL[0,1,3,4]  ; Merged with lcd_control:O3_LCDCONT|RXCOL[5] ;
-; lcd_control:O3_LCDCONT|RRGB[3]         ; Merged with lcd_control:O3_LCDCONT|RRGB[0]  ;
-; lcd_control:O3_LCDCONT|RRGB[2,4]       ; Merged with lcd_control:O3_LCDCONT|RRGB[1]  ;
-; lcd_control:O3_LCDCONT|RRGB[6,9]       ; Merged with lcd_control:O3_LCDCONT|RRGB[5]  ;
-; lcd_control:O3_LCDCONT|RRGB[7,8]       ; Merged with lcd_control:O3_LCDCONT|RRGB[10] ;
-; lcd_control:O3_LCDCONT|RRGB[14]        ; Merged with lcd_control:O3_LCDCONT|RRGB[11] ;
-; lcd_control:O3_LCDCONT|RRGB[13,15]     ; Merged with lcd_control:O3_LCDCONT|RRGB[12] ;
-; lcd_filter:O5_LCDFILT|EP.E3            ; Lost fanout                                 ;
-; lcd_filter:O5_LCDFILT|EP.E4            ; Lost fanout                                 ;
-; lcd_filter:O5_LCDFILT|EP.E5            ; Lost fanout                                 ;
-; Total Number of Removed Registers = 21 ;                                             ;
-+----------------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                        ;
++----------------------------------------+------------------------------------------------------------------+
+; Register name                          ; Reason for Removal                                               ;
++----------------------------------------+------------------------------------------------------------------+
+; lcd_control:O3_LCDCONT|RXCOL[2,6,7]    ; Stuck at GND due to stuck port data_in                           ;
+; LT24Setup:O1_SETUP|LT24_RD_N           ; Stuck at VCC due to stuck port data_in                           ;
+; lcd_control:O3_LCDCONT|RXCOL[0,1,3,4]  ; Merged with lcd_control:O3_LCDCONT|RXCOL[5]                      ;
+; lcd_control:O3_LCDCONT|RRGB[3]         ; Merged with lcd_control:O3_LCDCONT|RRGB[0]                       ;
+; lcd_control:O3_LCDCONT|RRGB[2,4]       ; Merged with lcd_control:O3_LCDCONT|RRGB[1]                       ;
+; lcd_control:O3_LCDCONT|RRGB[6,9]       ; Merged with lcd_control:O3_LCDCONT|RRGB[5]                       ;
+; lcd_control:O3_LCDCONT|RRGB[7,8]       ; Merged with lcd_control:O3_LCDCONT|RRGB[10]                      ;
+; lcd_control:O3_LCDCONT|RRGB[14]        ; Merged with lcd_control:O3_LCDCONT|RRGB[11]                      ;
+; lcd_control:O3_LCDCONT|RRGB[13,15]     ; Merged with lcd_control:O3_LCDCONT|RRGB[12]                      ;
+; lcd_filter:O5_LCDFILT|EP.E3            ; Lost fanout                                                      ;
+; lcd_filter:O5_LCDFILT|EP.E4            ; Lost fanout                                                      ;
+; lcd_filter:O5_LCDFILT|EP.E5            ; Lost fanout                                                      ;
+; lcd_translator:O6_LCDTRANS|EP.E2       ; Lost fanout                                                      ;
+; lcd_translator:O6_LCDTRANS|EP.E3       ; Lost fanout                                                      ;
+; lcd_translator:O6_LCDTRANS|EP.E0       ; Merged with LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|ep.e_init ;
+; Total Number of Removed Registers = 24 ;                                                                  ;
++----------------------------------------+------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -418,10 +423,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 265   ;
-; Number of registers using Synchronous Clear  ; 96    ;
-; Number of registers using Synchronous Load   ; 28    ;
-; Number of registers using Asynchronous Clear ; 258   ;
+; Total registers                              ; 263   ;
+; Number of registers using Synchronous Clear  ; 98    ;
+; Number of registers using Synchronous Load   ; 13    ;
+; Number of registers using Asynchronous Clear ; 256   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 82    ;
 ; Number of registers using Preset             ; 0     ;
@@ -444,27 +449,27 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|Q_Com[1]                         ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[7]                           ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[3]                           ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_reading[2]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|Q_Com[3]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[1]                           ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[13]                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_reading[0]                          ;
 ; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|aux_Comand[1]                        ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contdat[1]                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[16]                      ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[2]                       ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[6]                          ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contdat[2]                       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[6]                       ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[8]                       ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[5]                          ;
 ; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[8]                          ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_15usec[4]   ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_15usec[6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[5]   ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_5msec[6]    ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[10] ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[12] ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont1[2]                          ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont0[2]                          ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[2]  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[6]                           ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[12]                             ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[5]                                ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|ES.E5                                ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont0[0]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[6]  ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[0]                           ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[11]                             ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[3]                                ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|ES.E4                                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 
 
@@ -494,6 +499,15 @@ Encoding Type:  One-Hot
 +---------------------------+-------+------+------------------------+
 
 
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "lcd_translator:O6_LCDTRANS"                                                                                     ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                  ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; colour_code ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
 +-------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"                                  ;
 +---------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -517,32 +531,32 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 265                         ;
-;     CLR               ; 106                         ;
+; arriav_ff             ; 263                         ;
+;     CLR               ; 104                         ;
 ;     CLR SCLR          ; 68                          ;
 ;     CLR SLD           ; 2                           ;
-;     ENA CLR           ; 28                          ;
-;     ENA CLR SCLR      ; 28                          ;
-;     ENA CLR SLD       ; 26                          ;
+;     ENA CLR           ; 41                          ;
+;     ENA CLR SCLR      ; 30                          ;
+;     ENA CLR SLD       ; 11                          ;
 ;     plain             ; 7                           ;
-; arriav_lcell_comb     ; 343                         ;
+; arriav_lcell_comb     ; 342                         ;
 ;     arith             ; 119                         ;
 ;         1 data inputs ; 113                         ;
 ;         2 data inputs ; 6                           ;
 ;     extend            ; 3                           ;
 ;         7 data inputs ; 3                           ;
-;     normal            ; 221                         ;
+;     normal            ; 220                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 13                          ;
-;         2 data inputs ; 38                          ;
-;         3 data inputs ; 37                          ;
-;         4 data inputs ; 30                          ;
-;         5 data inputs ; 41                          ;
-;         6 data inputs ; 60                          ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 36                          ;
+;         3 data inputs ; 35                          ;
+;         4 data inputs ; 38                          ;
+;         5 data inputs ; 43                          ;
+;         6 data inputs ; 56                          ;
 ; boundary_port         ; 48                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.10                        ;
-; Average LUT depth     ; 2.08                        ;
+; Average LUT depth     ; 2.11                        ;
 +-----------------------+-----------------------------+
 
 
@@ -551,7 +565,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -561,7 +575,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Dec 23 11:22:40 2022
+    Info: Processing started: Wed Dec 28 15:08:29 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas -c DE1SOC_LCDLT24_1fas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -584,7 +598,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file de1soc_
     Info (12022): Found design unit 1: DE1SOC_LCDLT24_1fas-str File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 51
     Info (12023): Found entity 1: DE1SOC_LCDLT24_1fas File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_receiver-filter-translator/lcd_translator.vhd
-    Info (12022): Found design unit 1: lcd_translator-arc_de_lcd_translator File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 22
+    Info (12022): Found design unit 1: lcd_translator-arc_de_lcd_translator File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 24
     Info (12023): Found entity 1: lcd_translator File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file lcd_receiver-filter-translator/lcd_receiver.vhd
     Info (12022): Found design unit 1: lcd_receiver-arc_de_lcd_receiver File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_receiver.vhd Line: 24
@@ -613,11 +627,15 @@ Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D6"
 Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D7" assigned a value but never read File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
 Info (12128): Elaborating entity "lcd_receiver" for hierarchy "lcd_receiver:O4_LCDREC" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 357
 Info (12128): Elaborating entity "lcd_filter" for hierarchy "lcd_filter:O5_LCDFILT" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 374
+Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(44): used explicit default value for signal "vel230400" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 44
+Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(46): used explicit default value for signal "vel460800" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 46
+Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(48): used explicit default value for signal "vel921600" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 48
 Info (12128): Elaborating entity "lcd_translator" for hierarchy "lcd_translator:O6_LCDTRANS" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 389
-Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(31): used explicit default value for signal "Code_DEL_SCREEN" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 31
-Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(32): used explicit default value for signal "Code_DRAW_FIG" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 32
+Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(33): used explicit default value for signal "Code_DEL_SCREEN" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 33
+Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(34): used explicit default value for signal "Code_DRAW_FIG" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 34
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276004): RAM logic "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM|rom" is uninferred due to inappropriate RAM size File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 16
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
     Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
@@ -629,7 +647,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LT24_LCD_ON" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 29
     Warning (13410): Pin "LT24_RD_N" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 32
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 6 input pin(s) that do not drive logic
@@ -639,14 +657,14 @@ Warning (21074): Design contains 6 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
-Info (21057): Implemented 431 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 430 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 32 output pins
-    Info (21061): Implemented 383 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 26 warnings
+    Info (21061): Implemented 382 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
     Info: Peak virtual memory: 4857 megabytes
-    Info: Processing ended: Fri Dec 23 11:22:51 2022
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Processing ended: Wed Dec 28 15:08:41 2022
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:21
 
 

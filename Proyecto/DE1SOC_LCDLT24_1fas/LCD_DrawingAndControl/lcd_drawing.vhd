@@ -13,7 +13,7 @@ entity lcd_drawing is
     DRAW_FIG :    in std_logic;
     DONE_CURSOR : in std_logic;
     DONE_COLOUR : in std_logic;
-    COLOUR_CODE : in std_logic_vector(7 downto 0);
+    COLOUR_CODE : in std_logic_vector(2 downto 0);
 
     XCOL :          out std_logic_vector(7 downto 0);
     YROW :          out std_logic_vector(8 downto 0);
@@ -117,14 +117,14 @@ begin
 
   --Multiplexor de Colour
   Colour <=
-    (x"0000") when COLOUR_CODE = "00000000" else -- negro
-    (x"001F") when COLOUR_CODE = "00000001" else -- azul
-    (x"07E0") when COLOUR_CODE = "00000010" else -- verde
-    (x"07FF") when COLOUR_CODE = "00000011" else -- celeste
-    (x"F800") when COLOUR_CODE = "00000100" else -- rojo
-    (x"F81F") when COLOUR_CODE = "00000101" else -- fuxia
-    (x"FFE0") when COLOUR_CODE = "00000110" else -- amarillo
-    (x"B596") when COLOUR_CODE = "00000111" else -- gris
+    (x"0000") when COLOUR_CODE = "000" else -- negro
+    (x"001F") when COLOUR_CODE = "001" else -- azul
+    (x"07E0") when COLOUR_CODE = "010" else -- verde
+    (x"07FF") when COLOUR_CODE = "011" else -- celeste
+    (x"F800") when COLOUR_CODE = "100" else -- rojo
+    (x"F81F") when COLOUR_CODE = "101" else -- fuxia
+    (x"FFE0") when COLOUR_CODE = "110" else -- amarillo
+    (x"B596") when COLOUR_CODE = "111" else -- gris
      (x"0000");
 
   --Multiplexor de RGB
