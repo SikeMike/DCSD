@@ -146,29 +146,41 @@ begin
   begin
     wait for 20 ns;     -- ciclo 1
     tb_RESET_L <= '1';
-    wait for 2000000 ns;     -- start bit
+    wait for 8000 ns;
+
     tb_RX <= '0';
-    wait for 3333333 ns;     -- 1 bit
+    wait for 4340 ns;     -- start bit
+
     tb_RX <= '0';
-    wait for 3333333 ns;     -- 2 bit
+    wait for 4340 ns;     -- 1 bit
+
+    tb_RX <= '0';
+    wait for 4340 ns;     -- 2 bit
+
     tb_RX <= '1';
-    wait for 3333333 ns;     -- 3 bit
-    tb_RX <= '1';
-    wait for 3333333 ns;     -- 4 bit
+    wait for 4340 ns;     -- 3 bit
+
     tb_RX <= '0';
-    wait for 3333333 ns;     -- 5 bit
+    wait for 4340 ns;     -- 4 bit
+
     tb_RX <= '0';
-    wait for 3333333 ns;     -- 6 bit
+    wait for 4340 ns;     -- 5 bit
+
     tb_RX <= '1';
-    wait for 3333333 ns;     -- 7 bit
+    wait for 4340 ns;     -- 6 bit
+
+    tb_RX <= '1';
+    wait for 4340 ns;     -- 7 bit
+
     tb_RX <= '0';
-    wait for 3333333 ns;     -- 8 bit
-    tb_RX <= '0';
-    wait for 3333333 ns;     -- parity bit
+    wait for 4340 ns;     -- 8 bit
+
     tb_RX <= '1';
-    wait for 3333333 ns;     -- stop bit
+    wait for 4340 ns;     -- parity bit
+
     tb_RX <= '1';
-    wait for 5000000 ns;
+    wait for 8000 ns;     -- stop bit
+
     wait;
   end process ;
 
