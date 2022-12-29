@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Wed Dec 28 15:08:41 2022
+Analysis & Synthesis Status : Successful - Thu Dec 29 16:04:11 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : DE1SOC_LCDLT24_1fas
 Top-level Entity Name : DE1SOC_LCDLT24_1fas
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
 Total registers : 263
-Total pins : 48
+Total pins : 90
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

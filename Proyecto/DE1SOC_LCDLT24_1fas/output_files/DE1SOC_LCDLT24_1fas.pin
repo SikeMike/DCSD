@@ -31,7 +31,7 @@
  --                  Bank 3B:       3.3V
  --                  Bank 4A:       3.3V
  --                  Bank 5A:       3.3V
- --                  Bank 5B:       2.5V
+ --                  Bank 5B:       3.3V
  --                  Bank 6B:       2.5V
  --                  Bank 6A:  2.5V
  --                  Bank 7A:  2.5V
@@ -129,11 +129,11 @@ RESERVED_INPUT               : AA20      :        :                   :         
 RESERVED_INPUT               : AA21      :        :                   :         : 4A        :                
 GND                          : AA22      : gnd    :                   :         :           :                
 VCCPGM                       : AA23      : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
-RESERVED_INPUT               : AA24      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AA25      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AA26      :        :                   :         : 5B        :                
-VCCIO5B                      : AA27      : power  :                   : 2.5V    : 5B        :                
-RESERVED_INPUT               : AA28      :        :                   :         : 5B        :                
+HEX4[0]                      : AA24      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX5[6]                      : AA25      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX5[5]                      : AA26      : output : 3.3-V LVTTL       :         : 5B        : Y              
+VCCIO5B                      : AA27      : power  :                   : 3.3V    : 5B        :                
+HEX5[1]                      : AA28      : output : 3.3-V LVTTL       :         : 5B        : Y              
 VREFB5BN0                    : AA29      : power  :                   :         : 5B        :                
 RESERVED_INPUT               : AA30      :        :                   :         : 5B        :                
 GND                          : AB1       : gnd    :                   :         :           :                
@@ -157,13 +157,13 @@ VCCPD3B4A                    : AB18      : power  :                   : 3.3V    
 GND                          : AB19      : gnd    :                   :         :           :                
 VCCPD3B4A                    : AB20      : power  :                   : 3.3V    : 3B, 4A    :                
 RESERVED_INPUT               : AB21      :        :                   :         : 4A        :                
-RESERVED_INPUT               : AB22      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AB23      :        :                   :         : 5A        :                
+HEX3[6]                      : AB22      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX2[0]                      : AB23      : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCIO5A                      : AB24      : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : AB25      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AB26      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AB27      :        :                   :         : 5B        :                
-RESERVED_INPUT               : AB28      :        :                   :         : 5B        :                
+HEX3[5]                      : AB25      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX5[4]                      : AB26      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX5[3]                      : AB27      : output : 3.3-V LVTTL       :         : 5B        : Y              
+HEX3[4]                      : AB28      : output : 3.3-V LVTTL       :         : 5B        : Y              
 GND                          : AB29      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AB30      :        :                   :         : 5B        :                
 GND                          : AC1       : gnd    :                   :         :           :                
@@ -190,12 +190,12 @@ VCCIO4A                      : AC21      : power  :                   : 3.3V    
 LT24_LCD_ON                  : AC22      : output : 3.3-V LVTTL       :         : 4A        : Y              
 RESERVED_INPUT               : AC23      :        :                   :         : 4A        :                
 VREFB5AN0                    : AC24      : power  :                   :         : 5A        :                
-RESERVED_INPUT               : AC25      :        :                   :         : 5A        :                
+HEX3[3]                      : AC25      : output : 3.3-V LVTTL       :         : 5A        : Y              
 GND                          : AC26      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AC27      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AC28      :        :                   :         : 5B        :                
-RESERVED_INPUT               : AC29      :        :                   :         : 5B        :                
-RESERVED_INPUT               : AC30      :        :                   :         : 5B        :                
+HEX3[1]                      : AC27      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX2[3]                      : AC28      : output : 3.3-V LVTTL       :         : 5B        : Y              
+HEX2[5]                      : AC29      : output : 3.3-V LVTTL       :         : 5B        : Y              
+HEX2[6]                      : AC30      : output : 3.3-V LVTTL       :         : 5B        : Y              
 GND                          : AD1       : gnd    :                   :         :           :                
 GND                          : AD2       : gnd    :                   :         :           :                
 DNU                          : AD3       :        :                   :         :           :                
@@ -220,12 +220,12 @@ LT24_RESET_N                 : AD21      : output : 3.3-V LVTTL       :         
 VCC_AUX                      : AD22      : power  :                   : 2.5V    :           :                
 GND                          : AD23      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AD24      :        :                   :         : 4A        :                
-RESERVED_INPUT               : AD25      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AD26      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AD27      :        :                   :         : 5A        :                
+HEX3[2]                      : AD25      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX3[0]                      : AD26      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX1[6]                      : AD27      : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCIO5A                      : AD28      : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : AD29      :        :                   :         : 5B        :                
-RESERVED_INPUT               : AD30      :        :                   :         : 5B        :                
+HEX2[2]                      : AD29      : output : 3.3-V LVTTL       :         : 5B        : Y              
+HEX2[4]                      : AD30      : output : 3.3-V LVTTL       :         : 5B        : Y              
 GND                          : AE1       : gnd    :                   :         :           :                
 GND                          : AE2       : gnd    :                   :         :           :                
 GND                          : AE3       : gnd    :                   :         :           :                
@@ -251,11 +251,11 @@ RESERVED_INPUT               : AE22      :        :                   :         
 LT24_D[3]                    : AE23      : output : 3.3-V LVTTL       :         : 4A        : Y              
 LT24_D[2]                    : AE24      : output : 3.3-V LVTTL       :         : 4A        : Y              
 VCCIO4A                      : AE25      : power  :                   : 3.3V    : 4A        :                
-RESERVED_INPUT               : AE26      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AE27      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AE28      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AE29      :        :                   :         : 5B        :                
-VCCIO5B                      : AE30      : power  :                   : 2.5V    : 5B        :                
+HEX0[0]                      : AE26      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX0[1]                      : AE27      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX0[2]                      : AE28      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX2[1]                      : AE29      : output : 3.3-V LVTTL       :         : 5B        : Y              
+VCCIO5B                      : AE30      : power  :                   : 3.3V    : 5B        :                
 GND                          : AF1       : gnd    :                   :         :           :                
 GND                          : AF2       : gnd    :                   :         :           :                
 GND                          : AF3       : gnd    :                   :         :           :                
@@ -283,9 +283,9 @@ RESERVED_INPUT               : AF24      :        :                   :         
 LT24_D[1]                    : AF25      : output : 3.3-V LVTTL       :         : 4A        : Y              
 LT24_D[0]                    : AF26      : output : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : AF27      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AF28      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AF29      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AF30      :        :                   :         : 5A        :                
+HEX0[4]                      : AF28      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX1[4]                      : AF29      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX1[5]                      : AF30      : output : 3.3-V LVTTL       :         : 5A        : Y              
 RESERVED_INPUT               : AG1       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AG2       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AG3       :        :                   :         : 3A        :                
@@ -312,10 +312,10 @@ LT24_D[14]                   : AG23      : output : 3.3-V LVTTL       :         
 GND                          : AG24      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AG25      :        :                   :         : 4A        :                
 LT24_RD_N                    : AG26      : output : 3.3-V LVTTL       :         : 4A        : Y              
-RESERVED_INPUT               : AG27      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AG28      :        :                   :         : 5A        :                
+HEX0[3]                      : AG27      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX0[5]                      : AG28      : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCIO5A                      : AG29      : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : AG30      :        :                   :         : 5A        :                
+HEX1[3]                      : AG30      : output : 3.3-V LVTTL       :         : 5A        : Y              
 GND                          : AH1       : gnd    :                   :         :           :                
 RESERVED_INPUT               : AH2       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AH3       :        :                   :         : 3A        :                
@@ -343,9 +343,9 @@ LT24_WR_N                    : AH24      : output : 3.3-V LVTTL       :         
 LT24_D[10]                   : AH25      : output : 3.3-V LVTTL       :         : 4A        : Y              
 VCCIO4A                      : AH26      : power  :                   : 3.3V    : 4A        :                
 LT24_RS                      : AH27      : output : 3.3-V LVTTL       :         : 4A        : Y              
-RESERVED_INPUT               : AH28      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AH29      :        :                   :         : 5A        :                
-RESERVED_INPUT               : AH30      :        :                   :         : 5A        :                
+HEX0[6]                      : AH28      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX1[1]                      : AH29      : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX1[2]                      : AH30      : output : 3.3-V LVTTL       :         : 5A        : Y              
 RESERVED_INPUT               : AJ1       :        :                   :         : 3A        :                
 RESERVED_INPUT               : AJ2       :        :                   :         : 3A        :                
 GND                          : AJ3       : gnd    :                   :         :           :                
@@ -374,7 +374,7 @@ LT24_D[11]                   : AJ25      : output : 3.3-V LVTTL       :         
 LT24_D[8]                    : AJ26      : output : 3.3-V LVTTL       :         : 4A        : Y              
 LT24_D[4]                    : AJ27      : output : 3.3-V LVTTL       :         : 4A        : Y              
 GND                          : AJ28      : gnd    :                   :         :           :                
-RESERVED_INPUT               : AJ29      :        :                   :         : 5A        :                
+HEX1[0]                      : AJ29      : output : 3.3-V LVTTL       :         : 5A        : Y              
 GND                          : AJ30      : gnd    :                   :         :           :                
 RESERVED_INPUT               : AK2       :        :                   :         : 3B        :                
 RESERVED_INPUT               : AK3       :        :                   :         : 3B        :                
@@ -876,7 +876,7 @@ VCCIO6B_HPS                  : U19       : power  :                   : 2.5V    
 RESERVED_INPUT               : U20       :        :                   :         : 6B        :                
 VCC                          : U21       : power  :                   : 1.1V    :           :                
 GND                          : U22       : gnd    :                   :         :           :                
-VCCPD5B                      : U23       : power  :                   : 2.5V    : 5B        :                
+VCCPD5B                      : U23       : power  :                   : 3.3V    : 5B        :                
 GND                          : U24       : gnd    :                   :         :           :                
 RESERVED_INPUT               : U25       :        :                   :         : 6B        :                
 RESERVED_INPUT               : U26       :        :                   :         : 6B        :                
@@ -906,9 +906,9 @@ GND                          : V19       : gnd    :                   :         
 RESERVED_INPUT               : V20       :        :                   :         : 6B        :                
 GND                          : V21       : gnd    :                   :         :           :                
 VCCPD5A                      : V22       : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : V23       :        :                   :         : 5A        :                
+HEX4[5]                      : V23       : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCPD5A                      : V24       : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : V25       :        :                   :         : 5B        :                
+HEX5[0]                      : V25       : output : 3.3-V LVTTL       :         : 5B        : Y              
 VCCIO6B_HPS                  : V26       : power  :                   : 2.5V    : 6B        :                
 RESERVED_INPUT               : V27       :        :                   :         : 6B        :                
 RESERVED_INPUT               : V28       :        :                   :         : 6B        :                
@@ -935,10 +935,10 @@ GND                          : W18       : gnd    :                   :         
 LEDR[5]                      : W19       : output : 3.3-V LVTTL       :         : 4A        : Y              
 LEDR[7]                      : W20       : output : 3.3-V LVTTL       :         : 5A        : Y              
 LEDR[8]                      : W21       : output : 3.3-V LVTTL       :         : 5A        : Y              
-RESERVED_INPUT               : W22       :        :                   :         : 5A        :                
+HEX4[3]                      : W22       : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCIO5A                      : W23       : power  :                   : 3.3V    : 5A        :                
-RESERVED_INPUT               : W24       :        :                   :         : 5A        :                
-RESERVED_INPUT               : W25       :        :                   :         : 5B        :                
+HEX4[4]                      : W24       : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX4[6]                      : W25       : output : 3.3-V LVTTL       :         : 5B        : Y              
 RESERVED_INPUT               : W26       :        :                   :         : 6B        :                
 RESERVED_INPUT               : W27       :        :                   :         : 6B        :                
 GND                          : W28       : gnd    :                   :         :           :                
@@ -966,11 +966,11 @@ LEDR[6]                      : Y19       : output : 3.3-V LVTTL       :         
 GND                          : Y20       : gnd    :                   :         :           :                
 LEDR[9]                      : Y21       : output : 3.3-V LVTTL       :         : 5A        : Y              
 VCCA_FPLL                    : Y22       : power  :                   : 2.5V    :           :                
-RESERVED_INPUT               : Y23       :        :                   :         : 5A        :                
-RESERVED_INPUT               : Y24       :        :                   :         : 5A        :                
+HEX4[1]                      : Y23       : output : 3.3-V LVTTL       :         : 5A        : Y              
+HEX4[2]                      : Y24       : output : 3.3-V LVTTL       :         : 5A        : Y              
 GND                          : Y25       : gnd    :                   :         :           :                
 RESERVED_INPUT               : Y26       :        :                   :         : 5B        :                
-RESERVED_INPUT               : Y27       :        :                   :         : 5B        :                
+HEX5[2]                      : Y27       : output : 3.3-V LVTTL       :         : 5B        : Y              
 RESERVED_INPUT               : Y28       :        :                   :         : 6B        :                
 RESERVED_INPUT               : Y29       :        :                   :         : 6B        :                
 GND                          : Y30       : gnd    :                   :         :           :                

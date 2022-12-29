@@ -32,18 +32,18 @@ entity DE1SOC_LCDLT24_1fas is
    LT24_RD_N       : out std_logic;
    LT24_RS         : out std_logic;
    LT24_WR_N       : out std_logic;
-   LT24_D          : out   std_logic_vector(15 downto 0)
+   LT24_D          : out   std_logic_vector(15 downto 0);
 
 	-- GPIO ----------------
 --	GPIO_0 		: inout	std_logic_vector(35 downto 0);
 
 	-- SEG7 ----------------
---	HEX0	: out	std_logic_vector(6 downto 0);
---	HEX1	: out	std_logic_vector(6 downto 0);
---	HEX2	: out	std_logic_vector(6 downto 0);
---	HEX3	: out	std_logic_vector(6 downto 0);
---	HEX4	: out	std_logic_vector(6 downto 0);
---	HEX5	: out	std_logic_vector(6 downto 0);
+	HEX0	: out	std_logic_vector(6 downto 0);
+	HEX1	: out	std_logic_vector(6 downto 0);
+	HEX2	: out	std_logic_vector(6 downto 0);
+	HEX3	: out	std_logic_vector(6 downto 0);
+	HEX4	: out	std_logic_vector(6 downto 0);
+	HEX5	: out	std_logic_vector(6 downto 0)
 
  );
 end;
@@ -256,10 +256,12 @@ end component;
   --signal TOP_clk, TOP_reset, TOP_reset_l : std_logic;
   --signal TOP_COMAND_READY : std_logic := '0';
   --signal TOP_COMAND : std_logic_vector(7 downto 0) := (others => '0');
+  
 
   --signal TOP_DEL_SCREEN : std_logic;
   --signal TOP_DRAW_FIG : std_logic;
   --signal TOP_DONE : std_logic;
+  --signal TOP_COLOUR_CODE : std_logic;
   
 
 begin
@@ -283,8 +285,111 @@ begin
 	TOP_SPEED(0) <= SW(8);
 	
 	TOP_RX <= UART_RX;
+	
+	--NEGRO
+	--B
+	ActivarLuces : process(TOP_COLOUR_CODE)
+	begin
+		if TOP_COLOUR_CODE = "000" then
+			--BLACK
+			--B
+			HEX0 <= "1111111";
+			--L
+			HEX1 <= "0111000";
+			--A
+			HEX2 <= "1110111";
+			--C
+			HEX3 <= "0111001";
+			--K
+			HEX4 <="1110110";
+		
+		elsif	TOP_COLOUR_CODE = "001" then
+			--BLUE
+			--B
+			HEX0 <="1111111";
+			--L
+			HEX1<="0111000";
+			--U
+			HEX2<="0111110";
+			--E
+			HEX3<= "1111001";
+			
+		elsif	TOP_COLOUR_CODE = "010" then
+			--GREEN
+			--G
+			HEX0<="1111101";
+			--R
+			HEX1<="1110101";
+			--E
+			HEX2<="1111001";
+			--E
+			HEX3<="1111001";
+			--N
+			HEX4<="0110101";
+		elsif	TOP_COLOUR_CODE = "011" then
+			--CELESTE (CELE)
+			--CELE
+			--C
+			HEX0<="0111001";
+			--E
+			HEX1<="1111001";
+			--L
+			HEX2<="0111000";
+			--E
+			HEX3<="1111001";
+			
+		elsif	TOP_COLOUR_CODE = "100" then
+			--ROJO
+			--RED
+			--R
+			HEX0<="1110101";
+			--E
+			HEX1<="1111001";
+			--D
+			HEX2<="0111111";
+		
+		elsif	TOP_COLOUR_CODE = "101" then
+			--ROSA
+			--PINK
+			--P
+			HEX0<="1110001";
+			--I
+			HEX1<="0110000";
+			--N
+			HEX2<="0110101";
+			--K
+			HEX3<="1110110";
+			
+		elsif	TOP_COLOUR_CODE = "110" then
 
-    
+			--AMARILLO (YELLO)
+			--YELLO
+			--Y
+			HEX0<="1110000";
+			--E
+			HEX1<="1111001";
+			--L
+			HEX2<="0111000";
+			--L
+			HEX3<="0111000";
+			--O
+			HEX4<="0111111";
+					
+		elsif	TOP_COLOUR_CODE = "111" then
+			--GRIS
+			--GREY
+			--G
+			HEX0<="1111101";
+			--R
+			HEX1<="1110101";
+			--E
+			HEX2<="1111001";
+			--Y
+			HEX3<="1110000";
+			
+		end if;
+	end process ActivarLuces;
+	
 -- Osagaien elkarketa        --------------    
 
   O1_SETUP:LT24Setup 

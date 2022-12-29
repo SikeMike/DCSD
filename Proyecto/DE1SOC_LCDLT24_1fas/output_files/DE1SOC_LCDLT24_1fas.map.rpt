@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1SOC_LCDLT24_1fas
-Wed Dec 28 15:08:41 2022
+Thu Dec 29 16:04:11 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -22,17 +22,18 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  14. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|ep2
  15. State Machine - |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|ep
  16. Registers Protected by Synthesis
- 17. Registers Removed During Synthesis
- 18. General Register Statistics
- 19. Inverted Register Statistics
- 20. Multiplexer Restructuring Statistics (Restructuring Performed)
- 21. Source assignments for LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET
- 22. Port Connectivity Checks: "lcd_translator:O6_LCDTRANS"
- 23. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
- 24. Port Connectivity Checks: "LT24Setup:O1_SETUP"
- 25. Post-Synthesis Netlist Statistics for Top Partition
- 26. Elapsed Time Per Partition
- 27. Analysis & Synthesis Messages
+ 17. User-Specified and Inferred Latches
+ 18. Registers Removed During Synthesis
+ 19. General Register Statistics
+ 20. Inverted Register Statistics
+ 21. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 22. Source assignments for LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET
+ 23. Port Connectivity Checks: "lcd_translator:O6_LCDTRANS"
+ 24. Port Connectivity Checks: "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM"
+ 25. Port Connectivity Checks: "LT24Setup:O1_SETUP"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
 
 
 
@@ -58,14 +59,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Dec 28 15:08:41 2022       ;
+; Analysis & Synthesis Status     ; Successful - Thu Dec 29 16:04:11 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; DE1SOC_LCDLT24_1fas                         ;
 ; Top-level Entity Name           ; DE1SOC_LCDLT24_1fas                         ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
 ; Total registers                 ; 263                                         ;
-; Total pins                      ; 48                                          ;
+; Total pins                      ; 90                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -178,7 +179,8 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -206,25 +208,25 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 201            ;
+; Estimate of Logic utilization (ALMs needed) ; 213            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 337            ;
-;     -- 7 input functions                    ; 3              ;
-;     -- 6 input functions                    ; 56             ;
-;     -- 5 input functions                    ; 43             ;
-;     -- 4 input functions                    ; 38             ;
-;     -- <=3 input functions                  ; 197            ;
+; Combinational ALUT usage for logic          ; 362            ;
+;     -- 7 input functions                    ; 2              ;
+;     -- 6 input functions                    ; 57             ;
+;     -- 5 input functions                    ; 44             ;
+;     -- 4 input functions                    ; 37             ;
+;     -- <=3 input functions                  ; 222            ;
 ;                                             ;                ;
 ; Dedicated logic registers                   ; 263            ;
 ;                                             ;                ;
-; I/O pins                                    ; 48             ;
+; I/O pins                                    ; 90             ;
 ;                                             ;                ;
 ; Total DSP Blocks                            ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 263            ;
-; Total fan-out                               ; 2192           ;
-; Average fan-out                             ; 3.15           ;
+; Total fan-out                               ; 2331           ;
+; Average fan-out                             ; 2.90           ;
 +---------------------------------------------+----------------+
 
 
@@ -233,7 +235,7 @@ refer to the applicable agreement for further details.
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node      ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                             ; Entity Name         ; Library Name ;
 +---------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------+---------------------+--------------+
-; |DE1SOC_LCDLT24_1fas            ; 337 (1)             ; 263 (0)                   ; 0                 ; 0          ; 48   ; 0            ; |DE1SOC_LCDLT24_1fas                                                            ; DE1SOC_LCDLT24_1fas ; work         ;
+; |DE1SOC_LCDLT24_1fas            ; 362 (26)            ; 263 (0)                   ; 0                 ; 0          ; 90   ; 0            ; |DE1SOC_LCDLT24_1fas                                                            ; DE1SOC_LCDLT24_1fas ; work         ;
 ;    |LT24Setup:O1_SETUP|         ; 176 (38)            ; 135 (19)                  ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP                                         ; LT24Setup           ; work         ;
 ;       |LT24InitLCD:DUT_InitLCD| ; 34 (23)             ; 31 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD                 ; LT24InitLCD         ; work         ;
 ;          |romsinc:DUT_ROM|      ; 11 (11)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM ; romsinc             ; work         ;
@@ -394,6 +396,39 @@ Encoding Type:  One-Hot
 +------------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; HEX0[0]$latch                                       ; GND                 ; yes                    ;
+; HEX0[1]$latch                                       ; GND                 ; yes                    ;
+; HEX0[2]$latch                                       ; GND                 ; yes                    ;
+; HEX0[3]$latch                                       ; GND                 ; yes                    ;
+; HEX0[6]$latch                                       ; GND                 ; yes                    ;
+; HEX1[0]$latch                                       ; GND                 ; yes                    ;
+; HEX1[2]$latch                                       ; GND                 ; yes                    ;
+; HEX1[3]$latch                                       ; GND                 ; yes                    ;
+; HEX1[6]$latch                                       ; GND                 ; yes                    ;
+; HEX2[0]$latch                                       ; GND                 ; yes                    ;
+; HEX2[1]$latch                                       ; GND                 ; yes                    ;
+; HEX2[2]$latch                                       ; GND                 ; yes                    ;
+; HEX2[3]$latch                                       ; GND                 ; yes                    ;
+; HEX2[6]$latch                                       ; GND                 ; yes                    ;
+; HEX3[0]$latch                                       ; HEX3[6]             ; yes                    ;
+; HEX3[1]$latch                                       ; HEX3[6]             ; yes                    ;
+; HEX3[2]$latch                                       ; HEX3[6]             ; yes                    ;
+; HEX3[3]$latch                                       ; HEX3[6]             ; yes                    ;
+; HEX3[6]$latch                                       ; HEX3[6]             ; yes                    ;
+; HEX4[0]$latch                                       ; HEX4[6]             ; yes                    ;
+; HEX4[1]$latch                                       ; HEX4[6]             ; yes                    ;
+; HEX4[3]$latch                                       ; HEX4[6]             ; yes                    ;
+; HEX4[6]$latch                                       ; HEX4[6]             ; yes                    ;
+; Number of user-specified and inferred latches = 23  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +-----------------------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                                        ;
 +----------------------------------------+------------------------------------------------------------------+
@@ -425,7 +460,7 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Total registers                              ; 263   ;
 ; Number of registers using Synchronous Clear  ; 98    ;
-; Number of registers using Synchronous Load   ; 13    ;
+; Number of registers using Synchronous Load   ; 15    ;
 ; Number of registers using Asynchronous Clear ; 256   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 82    ;
@@ -449,27 +484,29 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|Q_Com[3]                         ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[1]                           ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[13]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_translator:O6_LCDTRANS|Q_Com[5]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[5]                           ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[8]                           ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_reading[0]                          ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|aux_Comand[1]                        ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_receiver:O4_LCDREC|aux_Comand[3]                        ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contdat[2]                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[6]                       ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[8]                       ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[5]                          ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[8]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[10]                      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|aux_contpix[14]                      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[6]                          ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_drawing:O2_LCDDRAW|Q_Square[4]                          ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_15usec[6]   ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[5]   ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_5msec[6]    ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[12] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont1[2]                          ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont0[0]                          ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[6]  ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[0]                           ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[11]                             ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[3]                                ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_10usec[1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|cont_5msec[2]    ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXmSec[30] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont1[1]                          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|aux_cont0[2]                          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET|NumTicsXuSec[3]  ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|RRGB[10]                             ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|lcd_filter:O5_LCDFILT|q_cicles[4]                           ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |DE1SOC_LCDLT24_1fas|LT24Setup:O1_SETUP|LT24_D[5]                                ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|lcd_control:O3_LCDCONT|ES.E4                                ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|HEX2[1]                                                     ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |DE1SOC_LCDLT24_1fas|HEX0[0]                                                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
 
 
@@ -535,28 +572,28 @@ Encoding Type:  One-Hot
 ;     CLR               ; 104                         ;
 ;     CLR SCLR          ; 68                          ;
 ;     CLR SLD           ; 2                           ;
-;     ENA CLR           ; 41                          ;
+;     ENA CLR           ; 39                          ;
 ;     ENA CLR SCLR      ; 30                          ;
-;     ENA CLR SLD       ; 11                          ;
+;     ENA CLR SLD       ; 13                          ;
 ;     plain             ; 7                           ;
-; arriav_lcell_comb     ; 342                         ;
+; arriav_lcell_comb     ; 376                         ;
 ;     arith             ; 119                         ;
 ;         1 data inputs ; 113                         ;
 ;         2 data inputs ; 6                           ;
-;     extend            ; 3                           ;
-;         7 data inputs ; 3                           ;
-;     normal            ; 220                         ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 255                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 36                          ;
-;         3 data inputs ; 35                          ;
-;         4 data inputs ; 38                          ;
-;         5 data inputs ; 43                          ;
-;         6 data inputs ; 56                          ;
-; boundary_port         ; 48                          ;
+;         1 data inputs ; 19                          ;
+;         2 data inputs ; 39                          ;
+;         3 data inputs ; 57                          ;
+;         4 data inputs ; 37                          ;
+;         5 data inputs ; 44                          ;
+;         6 data inputs ; 57                          ;
+; boundary_port         ; 90                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.10                        ;
-; Average LUT depth     ; 2.11                        ;
+; Average LUT depth     ; 2.09                        ;
 +-----------------------+-----------------------------+
 
 
@@ -565,7 +602,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -575,7 +612,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Dec 28 15:08:29 2022
+    Info: Processing started: Thu Dec 29 16:04:00 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1SOC_LCDLT24_1fas -c DE1SOC_LCDLT24_1fas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -613,29 +650,93 @@ Info (12021): Found 2 design units, including 1 entities, in source file lcd_dra
     Info (12022): Found design unit 1: lcd_control-arc_de_lcd_control File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 30
     Info (12023): Found entity 1: lcd_control File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 5
 Info (12127): Elaborating entity "DE1SOC_LCDLT24_1fas" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at DE1SOC_LCDLT24_1fas.vhd(46): used implicit default value for signal "HEX5" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
 Warning (10036): Verilog HDL or VHDL warning at DE1SOC_LCDLT24_1fas.vhd(170): object "TOP_reset" assigned a value but never read File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 170
+Warning (10631): VHDL Process Statement warning at DE1SOC_LCDLT24_1fas.vhd(291): inferring latch(es) for signal or variable "HEX0", which holds its previous value in one or more paths through the process File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Warning (10631): VHDL Process Statement warning at DE1SOC_LCDLT24_1fas.vhd(291): inferring latch(es) for signal or variable "HEX1", which holds its previous value in one or more paths through the process File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Warning (10631): VHDL Process Statement warning at DE1SOC_LCDLT24_1fas.vhd(291): inferring latch(es) for signal or variable "HEX2", which holds its previous value in one or more paths through the process File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Warning (10631): VHDL Process Statement warning at DE1SOC_LCDLT24_1fas.vhd(291): inferring latch(es) for signal or variable "HEX3", which holds its previous value in one or more paths through the process File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Warning (10631): VHDL Process Statement warning at DE1SOC_LCDLT24_1fas.vhd(291): inferring latch(es) for signal or variable "HEX4", which holds its previous value in one or more paths through the process File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
 Warning (10873): Using initial value X (don't care) for net "LEDR[9]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
 Warning (10873): Using initial value X (don't care) for net "LEDR[7]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
 Warning (10873): Using initial value X (don't care) for net "LEDR[4..0]" at DE1SOC_LCDLT24_1fas.vhd(26) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
-Info (12128): Elaborating entity "LT24Setup" for hierarchy "LT24Setup:O1_SETUP" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 290
+Info (10041): Inferred latch for "HEX4[0]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[1]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[2]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[3]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[4]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[5]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX4[6]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[0]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[1]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[2]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[3]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[4]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[5]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX3[6]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[0]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[1]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[2]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[3]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[4]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[5]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX2[6]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[0]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[1]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[2]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[3]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[4]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[5]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX1[6]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[0]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[1]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[2]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[3]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[4]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[5]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (10041): Inferred latch for "HEX0[6]" at DE1SOC_LCDLT24_1fas.vhd(291) File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Info (12128): Elaborating entity "LT24Setup" for hierarchy "LT24Setup:O1_SETUP" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 395
 Info (12128): Elaborating entity "LT24InitReset" for hierarchy "LT24Setup:O1_SETUP|LT24InitReset:DUT_RESET" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 108
 Info (12128): Elaborating entity "LT24InitLCD" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24SetUp.vhd Line: 122
 Info (12128): Elaborating entity "romsinc" for hierarchy "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/LT24InitLCD.vhd Line: 88
-Info (12128): Elaborating entity "lcd_drawing" for hierarchy "lcd_drawing:O2_LCDDRAW" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 313
-Info (12128): Elaborating entity "lcd_control" for hierarchy "lcd_control:O3_LCDCONT" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 334
+Info (12128): Elaborating entity "lcd_drawing" for hierarchy "lcd_drawing:O2_LCDDRAW" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 418
+Info (12128): Elaborating entity "lcd_control" for hierarchy "lcd_control:O3_LCDCONT" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 439
 Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D6" assigned a value but never read File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
 Warning (10036): Verilog HDL or VHDL warning at lcd_control.vhd(40): object "D7" assigned a value but never read File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_DrawingAndControl/lcd_control.vhd Line: 40
-Info (12128): Elaborating entity "lcd_receiver" for hierarchy "lcd_receiver:O4_LCDREC" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 357
-Info (12128): Elaborating entity "lcd_filter" for hierarchy "lcd_filter:O5_LCDFILT" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 374
+Info (12128): Elaborating entity "lcd_receiver" for hierarchy "lcd_receiver:O4_LCDREC" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 462
+Info (12128): Elaborating entity "lcd_filter" for hierarchy "lcd_filter:O5_LCDFILT" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 479
 Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(44): used explicit default value for signal "vel230400" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 44
 Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(46): used explicit default value for signal "vel460800" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 46
 Warning (10540): VHDL Signal Declaration warning at lcd_filter.vhd(48): used explicit default value for signal "vel921600" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_filter.vhd Line: 48
-Info (12128): Elaborating entity "lcd_translator" for hierarchy "lcd_translator:O6_LCDTRANS" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 389
+Info (12128): Elaborating entity "lcd_translator" for hierarchy "lcd_translator:O6_LCDTRANS" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 494
 Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(33): used explicit default value for signal "Code_DEL_SCREEN" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 33
 Warning (10540): VHDL Signal Declaration warning at lcd_translator.vhd(34): used explicit default value for signal "Code_DRAW_FIG" because signal was never assigned a value File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_Receiver-Filter-Translator/lcd_translator.vhd Line: 34
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276004): RAM logic "LT24Setup:O1_SETUP|LT24InitLCD:DUT_InitLCD|romsinc:DUT_ROM|rom" is uninferred due to inappropriate RAM size File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/LCD_SetUp/romsinc.vhd Line: 16
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "HEX3[2]$latch" merged with LATCH primitive "HEX3[1]$latch" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+Warning (13012): Latch HEX3[0]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports ENA and PRE on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX3[1]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX3[3]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (13013): Ports ENA and PRE on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX3[6]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (13013): Ports ENA and PRE on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX4[0]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX4[1]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (13013): Ports ENA and PRE on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX4[3]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
+Warning (13012): Latch HEX4[6]$latch has unsafe behavior File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13013): Ports ENA and PRE on the latch are fed by the same signal SW[0] File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
     Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
@@ -646,6 +747,25 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 26
     Warning (13410): Pin "LT24_LCD_ON" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 29
     Warning (13410): Pin "LT24_RD_N" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 32
+    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX1[4]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX1[5]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX2[4]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX2[5]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX3[4]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX3[5]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 291
+    Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[2]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 46
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 5 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -657,14 +777,14 @@ Warning (21074): Design contains 6 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/usuario/OneDrive/Escritorio/Bianca/uni/Tercero/DCSD/gitgit/DCSD/Proyecto/DE1SOC_LCDLT24_1fas/DE1SOC_LCDLT24_1fas.vhd Line: 23
-Info (21057): Implemented 430 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 498 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
-    Info (21059): Implemented 32 output pins
-    Info (21061): Implemented 382 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
-    Info: Peak virtual memory: 4857 megabytes
-    Info: Processing ended: Wed Dec 28 15:08:41 2022
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:21
+    Info (21059): Implemented 74 output pins
+    Info (21061): Implemented 408 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 76 warnings
+    Info: Peak virtual memory: 4853 megabytes
+    Info: Processing ended: Thu Dec 29 16:04:11 2022
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:18
 
 
