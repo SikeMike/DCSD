@@ -162,7 +162,8 @@ component lcd_translator
 
 		DEL_SCREEN :    out std_logic;
 		DRAW_FIG : out std_logic;
-		DONE :      out std_logic
+		DONE :      out std_logic;
+		COLOUR_CODE :   out std_logic_vector(2 downto 0)
 	);
 end component;
 
@@ -258,11 +259,18 @@ end component;
   --signal TOP_COMAND : std_logic_vector(7 downto 0) := (others => '0');
   
 
-  --signal TOP_DEL_SCREEN : std_logic;
-  --signal TOP_DRAW_FIG : std_logic;
+  signal TOP_UART_DEL_SCREEN : std_logic;
+  signal TOP_UART_DRAW_FIG : std_logic;
+  signal TOP_UART_COLOUR_CODE : std_logic_vector(2 downto 0);
   --signal TOP_DONE : std_logic;
   --signal TOP_COLOUR_CODE : std_logic;
-  
+
+  signal TOP_SelectUartOrButon : std_logic;
+  signal TOP_BUTON_DEL_SCREEN : std_logic;
+  signal TOP_BUTON_DRAW_FIG : std_logic;
+  signal TOP_BUTON_COLOUR_CODE : std_logic_vector(2 downto 0);
+
+
 
 begin
 
@@ -274,9 +282,9 @@ begin
 	
    LEDR(8) <= TOP_LT24_Init_Done;
 	
-	--TOP_DEL_SCREEN <= not(KEY(3));					-- FASE 1
-	--TOP_DRAW_FIG <= not(KEY(2));					--
-	TOP_COLOUR_CODE <= SW(2 downto 0);
+	TOP_BUTON_DEL_SCREEN <= not(KEY(3));
+	TOP_BUTON_DRAW_FIG <= not(KEY(2));
+	TOP_BUTON_COLOUR_CODE <= SW(2 downto 0);
 	
 	LEDR(6) <= not(KEY(3)); --OP_SETCURSOR 
 	LEDR(5) <= not(KEY(2)); --OP_DRAWCOLOUR
@@ -285,107 +293,105 @@ begin
 	TOP_SPEED(0) <= SW(8);
 	
 	TOP_RX <= UART_RX;
+
+	TOP_SelectUartOrButon <= SW(6);
 	
+	AlternarUartBotones : process(TOP_SelectUartOrButon, TOP_UART_DEL_SCREEN,
+								  TOP_UART_DRAW_FIG, TOP_UART_COLOUR_CODE,
+								  TOP_BUTON_DEL_SCREEN, TOP_BUTON_DRAW_FIG,
+								  TOP_BUTON_COLOUR_CODE)
+	begin
+		if (TOP_SelectUartOrButon = '0') then	-- UART
+			TOP_DEL_SCREEN <= TOP_UART_DEL_SCREEN;
+			TOP_DRAW_FIG <= TOP_UART_DRAW_FIG;
+			TOP_COLOUR_CODE <= TOP_UART_COLOUR_CODE;
+		else									-- BUTON
+			TOP_DEL_SCREEN <= TOP_BUTON_DEL_SCREEN;
+			TOP_DRAW_FIG <= TOP_BUTON_DRAW_FIG;
+			TOP_COLOUR_CODE <= TOP_BUTON_COLOUR_CODE;
+		end if;
+	end process;
+
 	--NEGRO
 	--B
 	ActivarLuces : process(TOP_COLOUR_CODE)
 	begin
 		if TOP_COLOUR_CODE = "000" then
 			--BLACK
-			--B
+			HEX5 <= "0000000"; --B
+			HEX4 <= "1000111"; --L
+			HEX3 <= "0001000"; --A
+			HEX2 <= "1000110"; --C
+			HEX1 <= "0001001"; --K
 			HEX0 <= "1111111";
-			--L
-			HEX1 <= "0111000";
-			--A
-			HEX2 <= "1110111";
-			--C
-			HEX3 <= "0111001";
-			--K
-			HEX4 <="1110110";
 		
 		elsif	TOP_COLOUR_CODE = "001" then
 			--BLUE
-			--B
-			HEX0 <="1111111";
-			--L
-			HEX1<="0111000";
-			--U
-			HEX2<="0111110";
-			--E
-			HEX3<= "1111001";
+			HEX5 <= "0000000"; --B
+			HEX4 <= "1000111"; --L
+			HEX3 <= "1000001"; --U
+			HEX2 <= "0000110"; --E
+			HEX1 <= "1111111";
+			HEX0 <= "1111111";
 			
 		elsif	TOP_COLOUR_CODE = "010" then
 			--GREEN
-			--G
-			HEX0<="1111101";
-			--R
-			HEX1<="1110101";
-			--E
-			HEX2<="1111001";
-			--E
-			HEX3<="1111001";
-			--N
-			HEX4<="0110101";
+			HEX5 <= "0000010"; --G
+			HEX4 <= "0101111"; --R
+			HEX3 <= "0000110"; --E
+			HEX2 <= "0000110"; --E
+			HEX1 <= "0101011"; --N
+			HEX0 <= "1111111";
 		elsif	TOP_COLOUR_CODE = "011" then
 			--CELESTE (CELE)
 			--CELE
-			--C
-			HEX0<="0111001";
-			--E
-			HEX1<="1111001";
-			--L
-			HEX2<="0111000";
-			--E
-			HEX3<="1111001";
+			HEX5 <= "1000110"; --C
+			HEX4 <= "0000110"; --E
+			HEX3 <= "1000111"; --L
+			HEX2 <= "0000110"; --E
+			HEX1 <= "1111111";
+			HEX0 <= "1111111";
 			
 		elsif	TOP_COLOUR_CODE = "100" then
 			--ROJO
 			--RED
-			--R
-			HEX0<="1110101";
-			--E
-			HEX1<="1111001";
-			--D
-			HEX2<="0111111";
+			HEX5 <= "0101111"; --R
+			HEX4 <= "0000110"; --E
+			HEX3 <= "0100001"; --D
+			HEX2 <= "1111111";
+			HEX1 <= "1111111";
+			HEX0 <= "1111111";
 		
 		elsif	TOP_COLOUR_CODE = "101" then
 			--ROSA
 			--PINK
-			--P
-			HEX0<="1110001";
-			--I
-			HEX1<="0110000";
-			--N
-			HEX2<="0110101";
-			--K
-			HEX3<="1110110";
+			HEX5 <= "0001100"; --P
+			HEX4 <= "1001111"; --I
+			HEX3 <= "0101011"; --N
+			HEX2 <= "0001001"; --K
+			HEX1 <= "1111111";
+			HEX0 <= "1111111";
 			
 		elsif	TOP_COLOUR_CODE = "110" then
 
 			--AMARILLO (YELLO)
 			--YELLO
-			--Y
-			HEX0<="1110000";
-			--E
-			HEX1<="1111001";
-			--L
-			HEX2<="0111000";
-			--L
-			HEX3<="0111000";
-			--O
-			HEX4<="0111111";
+			HEX5 <= "0011001"; --Y
+			HEX4 <= "0000110"; --E
+			HEX3 <= "1000111"; --L
+			HEX2 <= "1000111"; --L
+			HEX1 <= "1000000"; --O
+			HEX0 <= "1111111";
 					
 		elsif	TOP_COLOUR_CODE = "111" then
 			--GRIS
 			--GREY
-			--G
-			HEX0<="1111101";
-			--R
-			HEX1<="1110101";
-			--E
-			HEX2<="1111001";
-			--Y
-			HEX3<="1110000";
+			HEX5 <= "0000010"; --G
+			HEX4 <= "0101111"; --R
+			HEX3 <= "0000110"; --E
+			HEX2 <= "0011001"; --Y
+			HEX1 <= "1111111";
+			HEX0 <= "1111111";
 			
 		end if;
 	end process ActivarLuces;
@@ -500,9 +506,10 @@ begin
 		COMAND_READY	=> TOP_COMAND_READY,
 		COMAND			=> TOP_COMAND,
 
-		DEL_SCREEN	=> TOP_DEL_SCREEN,
-		DRAW_FIG		=> TOP_DRAW_FIG,
-		DONE			=> TOP_DONE
+		DEL_SCREEN		=> TOP_UART_DEL_SCREEN,
+		DRAW_FIG		=> TOP_UART_DRAW_FIG,
+		DONE			=> TOP_DONE,
+		COLOUR_CODE		=> TOP_UART_COLOUR_CODE
 		
 	);
   

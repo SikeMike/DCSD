@@ -32,6 +32,7 @@ signal Q_Com : std_logic_vector(7 downto 0);
 
 signal Code_DEL_SCREEN : std_logic_vector(7 downto 0) := "01100100";  -- tecla d
 signal Code_DRAW_FIG : std_logic_vector(7 downto 0) := "01110011";    -- tecla s
+signal Code_COLOUR : std_logic_vector(4 downto 0) := "00110";          -- teclas 0-7
 
 
 begin
@@ -71,16 +72,16 @@ begin
   end process SEC;
 
   --activacion de las seniales de control
-  LD_Com <= '1' when (EP = E1) else '0';
-  DONE <= '1' when (EP = E1) else '0';
-  Clear <= '1' when (EP = E2) else '0';
+  LD_Com <= '1' when (EP = E2) else '0';
+  DONE <= '1' when (EP = E2) else '0';
+  Clear <= '1' when (EP = E3) else '0';
   INIT <= '1' when (EP = E0) else '0';
 
 
   --Comparadores 
   DEL_SCREEN <= '1' when (Code_DEL_SCREEN = Q_Com) else '0';
   DRAW_FIG <= '1' when (Code_DRAW_FIG = Q_Com) else '0';
-  CAMBIO_COLOR <= '1' when (Q_COM(7 downto 3) = "01010") else '0';
+  CAMBIO_COLOR <= '1' when (Code_COLOUR = Q_Com(7 downto 3)) else '0';
 
   --Registro COMAND
   RegCom : process(CLK, RESET_L)
@@ -97,13 +98,13 @@ begin
   end process RegCom;
 
   --Registro Color
-  RegComColor : process (CLK, RESET_L)
+  RegComColor : process(CLK, RESET_L)
   begin
     if (RESET_L = '0') then
       COLOUR_CODE<= (others => '0');                   --reset
     elsif (CLK'event and CLK = '1') then
       if(INIT = '1') then
-        COLOUR_CODE<= (others => '0');
+        COLOUR_CODE <= (others => '0');
       elsif (CAMBIO_COLOR = '1') then
           COLOUR_CODE <= Q_COM(2 downto 0);
       end if;
